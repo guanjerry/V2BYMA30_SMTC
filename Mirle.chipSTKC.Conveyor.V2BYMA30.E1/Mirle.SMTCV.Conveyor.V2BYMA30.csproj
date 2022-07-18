@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9B3FF83A-25FC-4683-A2BF-B54D763E5A6A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mirle.SMTCV.Conveyor.V2BYMA30</RootNamespace>
+    <AssemblyName>Mirle.SMTCV.Conveyor.V2BYMA30</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AsyncIO, Version=0.1.69.0, Culture=neutral, PublicKeyToken=44a94435bd6f33f8, processorArchitecture=MSIL">
+      <HintPath>..\packages\AsyncIO.0.1.69\lib\net40\AsyncIO.dll</HintPath>
+    </Reference>
+    <Reference Include="Mirle, Version=2.1.0.2207, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mirle.2.1.0\lib\net48\Mirle.dll</HintPath>
+    </Reference>
+    <Reference Include="Mirle.MPLC.MCProtocol, Version=2.1.0.2207, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mirle.MPLC.MCProtocol.2.1.0\lib\net48\Mirle.MPLC.MCProtocol.dll</HintPath>
+    </Reference>
+    <Reference Include="Mirle.MPLC.MXComponent, Version=1.0.2.2007, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mirle.MPLC.MXComponent.1.0.2\lib\net472\Mirle.MPLC.MXComponent.dll</HintPath>
+    </Reference>
+    <Reference Include="NetMQ, Version=4.0.0.207, Culture=neutral, PublicKeyToken=a6decef4ddc58b3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetMQ.4.0.0.207\lib\net40\NetMQ.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.19.13.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.115.5, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Buffer.cs" />
+    <Compile Include="Events\AlarmEventArgs.cs" />
+    <Compile Include="Events\BufferEventArgs.cs" />
+    <Compile Include="Events\ReqAckEventArgs.cs" />
+    <Compile Include="Events\StkLabelClickArgs.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Signal\BCRResult.cs" />
+    <Compile Include="Signal\BCRResultSignal.cs" />
+    <Compile Include="Signal\BitSignal.cs" />
+    <Compile Include="Signal\BufferAckSignal.cs" />
+    <Compile Include="Signal\BufferControllerSignal.cs" />
+    <Compile Include="Signal\BufferRequestControllerSignal.cs" />
+    <Compile Include="Signal\BufferSignal.cs" />
+    <Compile Include="Signal\BufferStatusSignal.cs" />
+    <Compile Include="Signal\ConveyorControllerSignal.cs" />
+    <Compile Include="Signal\ConveyorSignal.cs" />
+    <Compile Include="Signal\SignalMapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Resources\Down.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Left.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Right.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Up.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mirle.chipSTKC.Conveyor.Config\Mirle.SMTCV.Conveyor.Config.csproj">
+      <Project>{4fe81277-7845-425b-b263-509f9771a516}</Project>
+      <Name>Mirle.SMTCV.Conveyor.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mirle.Def\Mirle.Def.csproj">
+      <Project>{906da4ee-6b8d-40c7-bd49-a410feb1d2c8}</Project>
+      <Name>Mirle.Def</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>此專案參考這部電腦上所缺少的 NuGet 套件。請啟用 NuGet 套件還原，以下載該套件。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+  </Target>
+</Project>
