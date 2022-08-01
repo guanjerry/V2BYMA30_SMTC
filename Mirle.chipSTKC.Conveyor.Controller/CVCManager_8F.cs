@@ -17,7 +17,7 @@ namespace Mirle.SMTCV.Conveyor.Controller
         private readonly SignalMapper _Signal;
         private readonly Dictionary<int, V2BYMA30.Buffer> _Buffers = new Dictionary<int, V2BYMA30.Buffer>();
         private PLCHost _plcHost;
-        private IMPLCProvider _mplc;
+        //private IMPLCProvider _mplc;
 
         private ThreadWorker _Heartbeat;
         private ThreadWorker _CalibrateSystemTime;

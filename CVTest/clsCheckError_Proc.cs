@@ -44,7 +44,7 @@ namespace CVTest
                             string HappenTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
                             AlarmReport info = new AlarmReport
                             {
-                                EqpID = "SMTCV",
+                                DeviceID = "SMTCV",
                                 AlarmCode = ErrorCode,
                                 Status = ErrorStatus.ToString(),
                                 HappenTime = HappenTime

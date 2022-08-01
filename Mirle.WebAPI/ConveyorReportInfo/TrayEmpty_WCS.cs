@@ -8,8 +8,8 @@ namespace Mirle.WebAPI.ConveyorReportInfo
 {
     public class TrayEmpty_WCS
     {
-        public string jobID { get; set; }
-        public string transactionID { get; set; }
+        public string jobId { get; set; }
+        public string transactionId { get; set; }
         public string TrayID { get; set; }
         public string CmdSno { get; set; }
         public string returnCode { get; set; }
