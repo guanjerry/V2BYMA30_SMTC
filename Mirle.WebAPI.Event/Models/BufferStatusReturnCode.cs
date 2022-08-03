@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Mirle.WebAPI.Event.U2NMMA30.Models
 {
-    public class BufferReturnCode : ReturnCode
+    public class BufferStatusReturnCode : ReturnCode
     {
         public string bufferId { get; set; }
+        public string ready { get; set; }
     }
 }

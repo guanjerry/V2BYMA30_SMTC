@@ -57,13 +57,13 @@
     <Compile Include="clsTool.cs" />
     <Compile Include="clsWriLog.cs" />
     <Compile Include="ConveyorFunction\RackAwayInform.cs" />
-    <Compile Include="ConveyorFunction\TrayLeaveInform.cs" />
-    <Compile Include="ConveyorFunction\TrayEmptyInform.cs" />
+    <Compile Include="ConveyorFunction\BCRCheckRequest.cs" />
+    <Compile Include="ConveyorFunction\UnknownBinLeaveInfo.cs" />
     <Compile Include="ConveyorReportInfo\RackAwayInfo.cs" />
     <Compile Include="ConveyorReportInfo\TrayLeave_WCS.cs" />
-    <Compile Include="ConveyorReportInfo\TrayLeave_Controller.cs" />
+    <Compile Include="ConveyorReportInfo\BCRCheckRequestInfo.cs" />
     <Compile Include="ConveyorReportInfo\TrayEmpty_WCS.cs" />
-    <Compile Include="ConveyorReportInfo\TrayEmpty_Controller.cs" />
+    <Compile Include="ConveyorReportInfo\UnknownBinLeaveReport.cs" />
     <Compile Include="Function\PositionReportFunc.cs" />
     <Compile Include="Function\AlarmHappenUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

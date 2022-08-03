@@ -13,16 +13,16 @@ namespace Mirle.WebAPI
     {
         private WebApiConfig _config = new WebApiConfig();
         private AlarmHappenUpdate alarmHappenUpdate;
-        private TrayEmptyInform trayEmptyInform;
-        private TrayLeaveInform trayLeaveInform;
+        private UnknownBinLeaveInfo trayEmptyInform;
+        private BCRCheckRequest trayLeaveInform;
         private PositionReportFunc positionReportFunc;
         private RackAwayInform rackAwayInform;
         public clsHost(WebApiConfig Config)
         {
             _config = Config;
             alarmHappenUpdate = new AlarmHappenUpdate(_config);
-            trayEmptyInform = new TrayEmptyInform(_config);
-            trayLeaveInform = new TrayLeaveInform(_config);
+            trayEmptyInform = new UnknownBinLeaveInfo(_config);
+            trayLeaveInform = new BCRCheckRequest(_config);
             positionReportFunc = new PositionReportFunc(_config);
             rackAwayInform = new RackAwayInform(_config);
         }
@@ -31,11 +31,11 @@ namespace Mirle.WebAPI
         {
             return alarmHappenUpdate;
         }
-        public TrayEmptyInform GetTrayEmptyInform()
+        public UnknownBinLeaveInfo GetTrayEmptyInform()
         {
             return trayEmptyInform;
         }
-        public TrayLeaveInform GetTrayReadyGoInform()
+        public BCRCheckRequest GetTrayReadyGoInform()
         {
             return trayLeaveInform;
         }

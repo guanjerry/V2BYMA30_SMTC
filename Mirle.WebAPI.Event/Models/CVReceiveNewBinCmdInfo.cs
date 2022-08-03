@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mirle.WebAPI.Event.U2NMMA30.Models
 {
-    public class BufferReturnCode : ReturnCode
+    public class CVReceiveNewBinCmdInfo : BaseInfo
     {
         public string bufferId { get; set; }
     }

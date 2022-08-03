@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace Mirle.WebAPI.ConveyorFunction
 {
-    public class TrayLeaveInform
+    public class BCRCheckRequest
     {
         private WebApiConfig _config = new WebApiConfig();
 
-        public TrayLeaveInform(WebApiConfig Config)
+        public BCRCheckRequest(WebApiConfig Config)
         {
             _config = Config;
         }
 
-        public bool FunReport(TrayLeave_Controller info, ref TrayLeave_WCS info_wcs)
+        public bool FunReport(BCRCheckRequestInfo info, ref TrayLeave_WCS info_wcs)
         {
             try
             {

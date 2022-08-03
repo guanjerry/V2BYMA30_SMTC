@@ -57,11 +57,11 @@ namespace CVTest
                                 if (!string.IsNullOrWhiteSpace(TrayID))
                                 {
                                     clsInitSys.FunWriTraceLog_CV($"<Position> S{CVNo}-{BufferNo.ToString().PadLeft(3, '0')} <Mag ID>{TrayID} => 準備離開");
-                                    TrayLeave_Controller info = new TrayLeave_Controller
+                                    BCRCheckRequestInfo info = new BCRCheckRequestInfo
                                     {
-                                        TrayID = TrayID,
-                                        IOType = "Mag",
-                                        Position = $"S{CVNo}-{BufferNo.ToString().PadLeft(3, '0')}"
+                                        barcode = TrayID,
+                                        ioType = "Mag",
+                                        location = $"S{CVNo}-{BufferNo.ToString().PadLeft(3, '0')}"
                                     };
                                     TrayLeave_WCS info_wcs = new TrayLeave_WCS();
                                     if (clsWcsApi.GetApiProcess().GetTrayReadyGoInform().FunReport(info, ref info_wcs))

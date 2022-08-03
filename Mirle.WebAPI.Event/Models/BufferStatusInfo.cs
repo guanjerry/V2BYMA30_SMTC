@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Mirle.WebAPI.Event.U2NMMA30.Models
 {
-    public class BufferWriteCommandInfo : BaseInfo
+    public class BufferStatusInfo : BaseInfo
     {
-        public string BufferID { get; set; }
-        public string CommandID { get; set; }
+        public string bufferId { get; set; }
     }
 }

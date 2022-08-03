@@ -24,7 +24,7 @@ namespace Mirle.WebAPI.Function
             {
                 string strJson = JsonConvert.SerializeObject(info);
                 clsWriLog.Log.FunWriTraceLog_CV(strJson);
-                string sLink = $"http://{_config.IP}/WCS/ALARM_HAPPEN_UPDATE";
+                string sLink = $"http://{_config.IP}/WCS/ALARM_HAPPEN_REPORT";
                 clsWriLog.Log.FunWriTraceLog_CV($"URL: {sLink}");
                 string re = clsTool.HttpPost(sLink, strJson);
                 clsWriLog.Log.FunWriTraceLog_CV(re);

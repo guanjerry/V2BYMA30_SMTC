@@ -16,14 +16,14 @@ namespace Mirle.WebAPI.Event.U2NMMA30
         //37,41,45
         //40,44,48
         //1,7,13,19,25,31
-        [Route("SMTCVC/BUFFER_ROLL_INFO")]
+        [Route("SMTC/BUFFER_ROLL_INFO")]
         [HttpPost]
         public IHttpActionResult BUFFER_ROLL_INFO([FromBody] BufferRollInfo Body)
         {
             clsWriLog.Log.FunWriTraceLog_CV($"<BUFFER_ROLL_INFO> <WCS Send>\n{JsonConvert.SerializeObject(Body)}");
             BufferReturnCode rMsg = new BufferReturnCode
             {
-                BufferID = Body.BufferID,
+                bufferId = Body.BufferID,
                 jobId = Body.jobId,
                 transactionId = Body.transactionId
             };
@@ -62,42 +62,92 @@ namespace Mirle.WebAPI.Event.U2NMMA30
 
         //37,41,45
         //1,7,13,19,25,31
-        [Route("SMTCVC/BUFFER_WRITE_COMMAND_INFO")]
+        [Route("SMTC/CV_RECEIVE_NEW_BIN_CMD")]
         [HttpPost]
-        public IHttpActionResult BUFFER_WRITE_COMMAND_INFO([FromBody] BufferWriteCommandInfo Body)
+        public IHttpActionResult CV_RECEIVE_NEW_BIN_CMD([FromBody] CVReceiveNewBinCmdInfo Body)
         {
-            clsWriLog.Log.FunWriTraceLog_CV($"<BUFFER_WRITE_COMMAND_INFO> <WCS Send>\n{JsonConvert.SerializeObject(Body)}");
+            clsWriLog.Log.FunWriTraceLog_CV($"<CV_RECEIVE_NEW_BIN_CMD> <WCS Send>\n{JsonConvert.SerializeObject(Body)}");
             ReturnCode rMsg = new ReturnCode
             {
                 jobId = Body.jobId,
                 transactionId = Body.transactionId
             };
-            clsWriLog.Log.FunWriTraceLog_CV($"<{Body.jobId}>BUFFER_WRITE_COMMAND_INFO start!");
+            clsWriLog.Log.FunWriTraceLog_CV($"<{Body.jobId}>CV_RECEIVE_NEW_BIN_CMD start!");
             try
             {
-                int plcNo = Convert.ToInt32(Body.BufferID.Substring(1, 1));
-                int bufferNo = Convert.ToInt32(Body.BufferID.Substring(3, 2));
+                int plcNo = Convert.ToInt32(Body.bufferId.Substring(1, 1));
+                int bufferNo = Convert.ToInt32(Body.bufferId.Substring(3, 2));
                 if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).IsConnected)
                 {
                     if (!string.IsNullOrWhiteSpace(clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).CommandID))
                     {
-                        string exMessage = $"<Buffer> {Body.BufferID} already have other command, FAIL to insert.";
+                        string exMessage = $"<Buffer> {Body.bufferId} already have other command, FAIL to insert.";
                         throw new Exception(exMessage);
                     }
                     //path 10 是送輸送板機
-                    if (!clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).WriteCommandAsync(Body.CommandID, 2, 10).Result)
+                    if (!clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).WriteCommandAsync(Body.jobId, 2, 10).Result)
                     {
-                        string exMessage = $"<Buffer> {Body.BufferID} fail to write Command Info...";
+                        string exMessage = $"<Buffer> {Body.bufferId} fail to write Command Info...";
                         throw new Exception(exMessage);
                     }
                 }
                 else
                 {
-                    throw new Exception($"<{Body.jobId}>BUFFER_WRITE_COMMAND_INFO <PLC>{plcNo} not connected!!!");
+                    throw new Exception($"<{Body.jobId}>CV_RECEIVE_NEW_BIN_CMD <PLC>{plcNo} not connected!!!");
                 }
                 rMsg.returnCode = clsConstValue.ApiReturnCode.Success;
                 rMsg.returnComment = "";
-                clsWriLog.Log.FunWriTraceLog_CV($"<{Body.jobId}>BUFFER_WRITE_COMMAND_INFO end!");
+                clsWriLog.Log.FunWriTraceLog_CV($"<{Body.jobId}>CV_RECEIVE_NEW_BIN_CMD end!");
+                return Json(rMsg);
+            }
+            catch (Exception ex)
+            {
+                rMsg.returnCode = clsConstValue.ApiReturnCode.Fail;
+                rMsg.returnComment = ex.Message;
+
+                var cmet = System.Reflection.MethodBase.GetCurrentMethod();
+                clsWriLog.Log.subWriteExLog(cmet.DeclaringType.FullName + "." + cmet.Name, ex.Message);
+                return Json(rMsg);
+            }
+        }
+
+        [Route("SMTC/BUFFER_STATUS_QUERY")]
+        [HttpPost]
+        public IHttpActionResult BUFFER_STATUS_QUERY([FromBody] BufferStatusInfo Body)
+        {
+            clsWriLog.Log.FunWriTraceLog_CV($"<BUFFER_STATUS_QUERY> <WCS Send>\n{JsonConvert.SerializeObject(Body)}");
+            BufferStatusReturnCode rMsg = new BufferStatusReturnCode
+            {
+                jobId = Body.jobId,
+                transactionId = Body.transactionId,
+                bufferId = Body.bufferId
+            };
+            clsWriLog.Log.FunWriTraceLog_CV($"<{Body.jobId}>BUFFER_STATUS_QUERY record start!");
+            try
+            {
+                int plcNo = Convert.ToInt32(Body.bufferId.Substring(1, 1));
+                int bufferNo = Convert.ToInt32(Body.bufferId.Substring(3, 2));
+                if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).IsConnected)
+                {
+                    if (!string.IsNullOrWhiteSpace(clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).CommandID))
+                    {
+                        string exMessage = $"<Buffer> {Body.bufferId} already have other command, FAIL to insert.";
+                        throw new Exception(exMessage);
+                    }
+                    //path 10 是送輸送板機
+                    if (!clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).WriteCommandAsync(Body.jobId, 2, 10).Result)
+                    {
+                        string exMessage = $"<Buffer> {Body.bufferId} fail to write Command Info...";
+                        throw new Exception(exMessage);
+                    }
+                }
+                else
+                {
+                    throw new Exception($"<{Body.jobId}>CV_RECEIVE_NEW_BIN_CMD <PLC>{plcNo} not connected!!!");
+                }
+                rMsg.returnCode = clsConstValue.ApiReturnCode.Success;
+                rMsg.returnComment = "";
+                clsWriLog.Log.FunWriTraceLog_CV($"<{Body.jobId}>CV_RECEIVE_NEW_BIN_CMD end!");
                 return Json(rMsg);
             }
             catch (Exception ex)

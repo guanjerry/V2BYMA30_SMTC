@@ -66,9 +66,9 @@ namespace CVTest
                                     clsInitSys.FunWriTraceLog_CV($"<任務號>{sCmdSno} => 抵達終點");
                                     PositionReport info = new PositionReport
                                     {
-                                        CmdSno = sCmdSno,
-                                        IOType = "Tray",
-                                        Position = $"S{CVNo}-{bufferNo.ToString().PadLeft(2, '0')}"
+                                        jobId = sCmdSno,
+                                        ioType = "Tray",
+                                        position = $"S{CVNo}-{bufferNo.ToString().PadLeft(2, '0')}"
                                     };
                                     if (clsWcsApi.GetApiProcess().GetPositionReportFunc().FunReport(info))
                                         clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo).SetSentPos(true);

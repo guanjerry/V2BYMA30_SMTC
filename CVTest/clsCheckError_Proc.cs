@@ -44,10 +44,10 @@ namespace CVTest
                             string HappenTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
                             AlarmReport info = new AlarmReport
                             {
-                                DeviceID = "SMTCV",
-                                AlarmCode = ErrorCode,
-                                Status = ErrorStatus.ToString(),
-                                HappenTime = HappenTime
+                                deviceId = "SMTCV",
+                                alarmCode = ErrorCode,
+                                status = ErrorStatus.ToString(),
+                                happenTime = HappenTime
                             };
                             if (clsWcsApi.GetApiProcess().GetAlarmHappenUpdate().FunReport(info))
                             {

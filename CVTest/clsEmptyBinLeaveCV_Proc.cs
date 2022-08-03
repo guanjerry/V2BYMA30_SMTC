@@ -44,10 +44,9 @@ namespace CVTest
                             {
                                 if (string.IsNullOrWhiteSpace(sCmdSno))
                                 {
-                                    TrayEmpty_Controller info = new TrayEmpty_Controller
+                                    UnknownBinLeaveReport info = new UnknownBinLeaveReport
                                     {
-                                        TrayID = "EMPTY",
-                                        Position = $"S{CVNo}-{bufferNo}"
+                                        position = $"S{CVNo}-{bufferNo}"
                                     };
                                     TrayEmpty_WCS info_wcs = new TrayEmpty_WCS();
                                     if (clsWcsApi.GetApiProcess().GetTrayEmptyInform().FunReport(info, ref info_wcs))

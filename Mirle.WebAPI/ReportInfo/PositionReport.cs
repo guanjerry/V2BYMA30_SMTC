@@ -9,11 +9,10 @@ namespace Mirle.WebAPI.ReportInfo
 {
     public class PositionReport
     {
-        public string transactionID { get; set; } = "POSITION_REPORT";
+        public string transactionId { get; set; } = "POSITION_REPORT";
         public string jobId { get; set; }
-        public string CmdSno { get; set; }
-        public string IOType { get; set; }
-        public string Id { get; set; }
-        public string Position { get; set; }
+        public string ioType { get; set; }
+        public string id { get; set; }
+        public string position { get; set; }
     }
 }
