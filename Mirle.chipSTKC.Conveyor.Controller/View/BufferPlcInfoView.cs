@@ -6,18 +6,20 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Mirle.MPLC;
+using Mirle.SMTCV.Conveyor.Config;
 
 namespace Mirle.SMTCV.Conveyor.Controller.View
 {
     public partial class BufferPlcInfoView : Form
     {
         private CVCHost _cvcHost;
+        private readonly LoggerService _LoggerService;
         //private CVCManager_8F[] cvController = new CVCManager_8F[6];
         private int CurController = 0;
         int[][] InvisibleItem = new int[6][];
         private int[] RollBuffer = new int[] { 1, 7, 13, 19, 25, 31, 37, 40, 41, 44, 45, 48 };
         private int[] TrayIndexBuffer = new int[] { 1, 7, 13, 19, 25, 31 };
-        public BufferPlcInfoView(CVCHost controller, int curC)
+        public BufferPlcInfoView(CVCHost controller, int curC, LoggerService Log)
         {
             InitializeComponent();
             _cvcHost = controller;
@@ -30,6 +32,7 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
             InvisibleItem[5] = new int[] { 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
                                             34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50 };
             SetCurController(curC);
+            _LoggerService = Log;
         }
         public int GetCurController()
         {
@@ -130,6 +133,52 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
             #endregion 調整Combobox寬度
 
             refreshTimer.Enabled = true;
+        }
+
+        private void btn_Initial_PC_Click(object sender, EventArgs e)
+        {
+            btn_Initial_PC.Enabled = false;
+            try
+            {
+                if (comboBoxBufferIndex.SelectedIndex > -1 && _cvcHost.GetCVCManager(CurController + 1).IsConnected)
+                {
+                    int StnIdx = Convert.ToInt32(comboBoxBufferIndex.Text.Split(':')[0]);
+                    _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).WriteCommandAsync("00000", 0, 0);
+                    _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).SetReadReq(0);
+                    _LoggerService.WriteLog($"手動按下CV初始PC -> PLC按鈕：<Buffer> {comboBoxBufferIndex.Text.Split(':')[1]}");
+                }
+            }
+            catch (Exception ex)
+            {
+                _LoggerService.WriteExceptionLog(MethodBase.GetCurrentMethod(), $"{ex.Message}\n{ex.StackTrace}");
+            }
+            finally
+            {
+                btn_Initial_PC.Enabled = true;
+            }
+        }
+
+        private void btn_Initial_PLC_Click(object sender, EventArgs e)
+        {
+            btn_Initial_PLC.Enabled = false;
+            try
+            {
+                if (comboBoxBufferIndex.SelectedIndex > -1 && _cvcHost.GetCVCManager(CurController + 1).IsConnected)
+                {
+                    int StnIdx = Convert.ToInt32(comboBoxBufferIndex.Text.Split(':')[0]);
+                    _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).NoticeInital();
+
+                    _LoggerService.WriteLog($"手動按下CV初始通知按鈕： <Buffer> {comboBoxBufferIndex.Text.Split(':')[1]}");
+                }
+            }
+            catch (Exception ex)
+            {
+                _LoggerService.WriteExceptionLog(MethodBase.GetCurrentMethod(), $"{ex.Message}\n{ex.StackTrace}");
+            }
+            finally
+            {
+                btn_Initial_PLC.Enabled = true;
+            }
         }
     }
 }

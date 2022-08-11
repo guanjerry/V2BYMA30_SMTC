@@ -51,7 +51,7 @@
             this.labe = new System.Windows.Forms.Label();
             this.lblIni = new System.Windows.Forms.Label();
             this.lblInitial_Req = new System.Windows.Forms.Label();
-            this.btn_Initial_PLC = new System.Windows.Forms.Button();
+            this.btn_Initial_PC = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label_Mode = new System.Windows.Forms.Label();
@@ -70,6 +70,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.comboBoxBufferIndex = new System.Windows.Forms.ComboBox();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
+            this.btn_Initial_PLC = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -136,6 +137,7 @@
             this.tableLayoutPanel2.Controls.Add(this.label_ReadSignal, 3, 1);
             this.tableLayoutPanel2.Controls.Add(this.label6, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.label_Ready, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btn_Initial_PLC, 6, 0);
             this.tableLayoutPanel2.Controls.Add(this.label_gg, 5, 0);
             this.tableLayoutPanel2.Controls.Add(this.label_Initial, 5, 1);
             this.tableLayoutPanel2.Controls.Add(this.label_InMode, 0, 2);
@@ -262,7 +264,7 @@
             this.tableLayoutPanel4.Controls.Add(this.labe, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.lblIni, 4, 0);
             this.tableLayoutPanel4.Controls.Add(this.lblInitial_Req, 4, 1);
-            this.tableLayoutPanel4.Controls.Add(this.btn_Initial_PLC, 4, 3);
+            this.tableLayoutPanel4.Controls.Add(this.btn_Initial_PC, 4, 3);
             this.tableLayoutPanel4.Controls.Add(this.label9, 4, 2);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(4, 26);
@@ -438,15 +440,16 @@
             this.lblInitial_Req.TabIndex = 79;
             this.lblInitial_Req.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btn_Initial_PLC
+            // btn_Initial_PC
             // 
-            this.btn_Initial_PLC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_Initial_PLC.Location = new System.Drawing.Point(971, 174);
-            this.btn_Initial_PLC.Name = "btn_Initial_PLC";
-            this.btn_Initial_PLC.Size = new System.Drawing.Size(240, 51);
-            this.btn_Initial_PLC.TabIndex = 84;
-            this.btn_Initial_PLC.Text = "通知初始PLC";
-            this.btn_Initial_PLC.UseVisualStyleBackColor = true;
+            this.btn_Initial_PC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_Initial_PC.Location = new System.Drawing.Point(971, 174);
+            this.btn_Initial_PC.Name = "btn_Initial_PC";
+            this.btn_Initial_PC.Size = new System.Drawing.Size(240, 51);
+            this.btn_Initial_PC.TabIndex = 84;
+            this.btn_Initial_PC.Text = "初始化PC數據";
+            this.btn_Initial_PC.UseVisualStyleBackColor = true;
+            this.btn_Initial_PC.Click += new System.EventHandler(this.btn_Initial_PC_Click);
             // 
             // label9
             // 
@@ -692,6 +695,17 @@
             this.refreshTimer.Interval = 500;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
+            // btn_Initial_PLC
+            // 
+            this.btn_Initial_PLC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_Initial_PLC.Location = new System.Drawing.Point(1053, 3);
+            this.btn_Initial_PLC.Name = "btn_Initial_PLC";
+            this.btn_Initial_PLC.Size = new System.Drawing.Size(174, 46);
+            this.btn_Initial_PLC.TabIndex = 84;
+            this.btn_Initial_PLC.Text = "通知初始化PLC數據";
+            this.btn_Initial_PLC.UseVisualStyleBackColor = true;
+            this.btn_Initial_PLC.Click += new System.EventHandler(this.btn_Initial_PLC_Click);
+            // 
             // BufferPlcInfoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -750,9 +764,10 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label lblPath_PC;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button btn_Initial_PLC;
+        private System.Windows.Forms.Button btn_Initial_PC;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblTrayID;
+        private System.Windows.Forms.Button btn_Initial_PLC;
     }
 }

@@ -30,7 +30,7 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
             InitializeComponent();
             _cvcHost = controller;
             _monitorLayout = new MonitorLayout(controller, CurController);
-            _bufferPlcInfoView = new BufferPlcInfoView(controller, CurController);
+            _bufferPlcInfoView = new BufferPlcInfoView(controller, CurController, _loggerService);
         }
         private void SubPLCView_Load(object sender, EventArgs e)
         {
@@ -145,7 +145,7 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
             {
                 if (_bufferPlcInfoView == null)
                 {
-                    _bufferPlcInfoView = new BufferPlcInfoView(_cvcHost, CurController);
+                    _bufferPlcInfoView = new BufferPlcInfoView(_cvcHost, CurController, _loggerService);
                 }
 
                 ChangeSubForm(_bufferPlcInfoView);

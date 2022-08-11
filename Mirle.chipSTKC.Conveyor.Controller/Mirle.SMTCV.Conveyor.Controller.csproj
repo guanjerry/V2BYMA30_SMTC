@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Mirle.SMTCV.Conveyor.Controller</RootNamespace>
     <AssemblyName>Mirle.SMTCV.Conveyor.Controller</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
@@ -37,10 +37,10 @@
       <HintPath>..\packages\AsyncIO.0.1.69\lib\net40\AsyncIO.dll</HintPath>
     </Reference>
     <Reference Include="Mirle, Version=2.1.0.2207, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mirle.2.1.0\lib\net48\Mirle.dll</HintPath>
+      <HintPath>..\packages\Mirle.2.1.0\lib\net472\Mirle.dll</HintPath>
     </Reference>
     <Reference Include="Mirle.MPLC.MCProtocol, Version=2.1.0.2207, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mirle.MPLC.MCProtocol.2.1.0\lib\net48\Mirle.MPLC.MCProtocol.dll</HintPath>
+      <HintPath>..\packages\Mirle.MPLC.MCProtocol.2.1.0\lib\net472\Mirle.MPLC.MCProtocol.dll</HintPath>
     </Reference>
     <Reference Include="Mirle.MPLC.MXComponent, Version=1.0.2.2007, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Mirle.MPLC.MXComponent.1.0.2\lib\net472\Mirle.MPLC.MXComponent.dll</HintPath>
