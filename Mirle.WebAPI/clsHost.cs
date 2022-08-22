@@ -17,6 +17,7 @@ namespace Mirle.WebAPI
         private BCRCheckRequest trayLeaveInform;
         private PositionReportFunc positionReportFunc;
         private RackAwayInform rackAwayInform;
+        private BCRCheckRequest bCRCheckRequest;
         public clsHost(WebApiConfig Config)
         {
             _config = Config;
@@ -25,6 +26,7 @@ namespace Mirle.WebAPI
             trayLeaveInform = new BCRCheckRequest(_config);
             positionReportFunc = new PositionReportFunc(_config);
             rackAwayInform = new RackAwayInform(_config);
+            bCRCheckRequest = new BCRCheckRequest(_config);
         }
 
         public AlarmHappenUpdate GetAlarmHappenUpdate()
@@ -46,6 +48,10 @@ namespace Mirle.WebAPI
         public RackAwayInform GetRackAwayInform()
         {
             return rackAwayInform;
+        }
+        public BCRCheckRequest GetBCRCheckRequest()
+        {
+            return bCRCheckRequest;
         }
     }
 }

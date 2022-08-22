@@ -17,7 +17,7 @@ namespace Mirle.SMTCVStart
         private static CVCHost[] CVcontrollerHost = new CVCHost[6];
         private static MainPLCView _mainView;
 
-        public static void FunInitalCVController(clsPlcConfig[] CVConfig)
+        public static void FunInitalCVController(clsPlcConfig[] CVConfig, clsPlcConfig S800Config)
         {
             var ConfigCV = new ConveyorConfig[6];
             for (int i = 0; i < CVConfig.Length; i++)
@@ -28,7 +28,10 @@ namespace Mirle.SMTCVStart
                 //CVcontrollerHost[i] = new CVCHost(Config_CV);
                 //CVcontrollerHost[i].GetCVCManager_E1().Start();
             }
-            controllerHost = new CVCHost(ConfigCV);
+            var ConfigS800 = new ConveyorConfig($"CV_S800", S800Config.MPLCNo, S800Config.InMemorySimulator, S800Config.UseMCProtocol);
+            ConfigS800.SetIPAddress(S800Config.MPLCIP);
+            ConfigS800.SetPort(S800Config.MPLCPort);
+            controllerHost = new CVCHost(ConfigCV, ConfigS800);
             _mainView = new MainPLCView(controllerHost);
 
         }

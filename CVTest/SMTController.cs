@@ -31,7 +31,7 @@ namespace CVTest
         {
             clsInitSys.subInitSystem();
             //_Client.FunInitialIPC_Proc();
-            clsSMTCVStart.FunInitalCVController(clsInitSys.CV_Config);
+            clsSMTCVStart.FunInitalCVController(clsInitSys.CV_Config, clsInitSys.S800_Config);
             //_stkcCommand_Procs.subStart(1, _Client);
             //_binLeaveCV_Procs.subStart();
             //_cvReelStockInProc.subStart();
@@ -91,7 +91,7 @@ namespace CVTest
             timer1.Enabled = false;
             try
             {
-                
+                lblTimer.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             }
             catch (Exception ex)
             {
@@ -194,6 +194,11 @@ namespace CVTest
         private void BTN_S6_Click(object sender, EventArgs e)
         {
             clsSMTCVStart.GetMainView_Object().SetCurController(5);
+        }
+
+        private void BTN_S800_Click(object sender, EventArgs e)
+        {
+            clsSMTCVStart.GetMainView_Object().SetCurController(6);
         }
     }
 }

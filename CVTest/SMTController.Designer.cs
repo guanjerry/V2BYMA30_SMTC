@@ -28,24 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SMTController));
-            this.timer1 = new System.Windows.Forms.Timer();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.BTN_S6 = new System.Windows.Forms.Button();
+            this.BTN_S5 = new System.Windows.Forms.Button();
             this.lblTimer = new System.Windows.Forms.Label();
             this.picMirle = new System.Windows.Forms.PictureBox();
             this.BTN_S1 = new System.Windows.Forms.Button();
             this.BTN_S2 = new System.Windows.Forms.Button();
             this.BTN_S3 = new System.Windows.Forms.Button();
             this.BTN_S4 = new System.Windows.Forms.Button();
-            this.BTN_S5 = new System.Windows.Forms.Button();
-            this.BTN_S6 = new System.Windows.Forms.Button();
+            this.BTN_S800 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMirle)).BeginInit();
             this.SuspendLayout();
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // splitContainer1
             // 
@@ -63,23 +69,25 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 8;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel1.ColumnCount = 9;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28563F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28563F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28563F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28563F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28563F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28563F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28563F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.0002857127F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.0002857127F));
+            this.tableLayoutPanel1.Controls.Add(this.BTN_S6, 8, 0);
+            this.tableLayoutPanel1.Controls.Add(this.BTN_S5, 7, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblTimer, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.picMirle, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.BTN_S1, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.BTN_S2, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.BTN_S3, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.BTN_S4, 5, 0);
-            this.tableLayoutPanel1.Controls.Add(this.BTN_S5, 6, 0);
-            this.tableLayoutPanel1.Controls.Add(this.BTN_S6, 7, 0);
+            this.tableLayoutPanel1.Controls.Add(this.BTN_S800, 6, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -88,16 +96,42 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1382, 109);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
+            // BTN_S6
+            // 
+            this.BTN_S6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BTN_S6.Font = new System.Drawing.Font("新細明體", 12F);
+            this.BTN_S6.Location = new System.Drawing.Point(1382, 3);
+            this.BTN_S6.Name = "BTN_S6";
+            this.BTN_S6.Size = new System.Drawing.Size(1, 103);
+            this.BTN_S6.TabIndex = 0;
+            this.BTN_S6.Text = "Back-7";
+            this.BTN_S6.UseVisualStyleBackColor = true;
+            this.BTN_S6.Visible = false;
+            this.BTN_S6.Click += new System.EventHandler(this.BTN_S6_Click);
+            // 
+            // BTN_S5
+            // 
+            this.BTN_S5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BTN_S5.Font = new System.Drawing.Font("新細明體", 12F);
+            this.BTN_S5.Location = new System.Drawing.Point(1382, 3);
+            this.BTN_S5.Name = "BTN_S5";
+            this.BTN_S5.Size = new System.Drawing.Size(1, 103);
+            this.BTN_S5.TabIndex = 0;
+            this.BTN_S5.Text = "Front-7";
+            this.BTN_S5.UseVisualStyleBackColor = true;
+            this.BTN_S5.Visible = false;
+            this.BTN_S5.Click += new System.EventHandler(this.BTN_S5_Click);
+            // 
             // lblTimer
             // 
             this.lblTimer.BackColor = System.Drawing.SystemColors.Control;
             this.lblTimer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTimer.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTimer.ForeColor = System.Drawing.Color.Black;
-            this.lblTimer.Location = new System.Drawing.Point(176, 0);
+            this.lblTimer.Location = new System.Drawing.Point(201, 0);
             this.lblTimer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTimer.Name = "lblTimer";
-            this.lblTimer.Size = new System.Drawing.Size(164, 109);
+            this.lblTimer.Size = new System.Drawing.Size(189, 109);
             this.lblTimer.TabIndex = 269;
             this.lblTimer.Text = "yyyy/MM/dd hh:mm:ss";
             this.lblTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -109,7 +143,7 @@
             this.picMirle.Location = new System.Drawing.Point(4, 4);
             this.picMirle.Margin = new System.Windows.Forms.Padding(4);
             this.picMirle.Name = "picMirle";
-            this.picMirle.Size = new System.Drawing.Size(164, 101);
+            this.picMirle.Size = new System.Drawing.Size(189, 101);
             this.picMirle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picMirle.TabIndex = 268;
             this.picMirle.TabStop = false;
@@ -118,9 +152,9 @@
             // 
             this.BTN_S1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BTN_S1.Font = new System.Drawing.Font("新細明體", 12F);
-            this.BTN_S1.Location = new System.Drawing.Point(347, 3);
+            this.BTN_S1.Location = new System.Drawing.Point(397, 3);
             this.BTN_S1.Name = "BTN_S1";
-            this.BTN_S1.Size = new System.Drawing.Size(166, 103);
+            this.BTN_S1.Size = new System.Drawing.Size(191, 103);
             this.BTN_S1.TabIndex = 0;
             this.BTN_S1.Text = "Front-1,2,3";
             this.BTN_S1.UseVisualStyleBackColor = true;
@@ -130,9 +164,9 @@
             // 
             this.BTN_S2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BTN_S2.Font = new System.Drawing.Font("新細明體", 12F);
-            this.BTN_S2.Location = new System.Drawing.Point(519, 3);
+            this.BTN_S2.Location = new System.Drawing.Point(594, 3);
             this.BTN_S2.Name = "BTN_S2";
-            this.BTN_S2.Size = new System.Drawing.Size(166, 103);
+            this.BTN_S2.Size = new System.Drawing.Size(191, 103);
             this.BTN_S2.TabIndex = 0;
             this.BTN_S2.Text = "Back-1,2,3";
             this.BTN_S2.UseVisualStyleBackColor = true;
@@ -142,9 +176,9 @@
             // 
             this.BTN_S3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BTN_S3.Font = new System.Drawing.Font("新細明體", 12F);
-            this.BTN_S3.Location = new System.Drawing.Point(691, 3);
+            this.BTN_S3.Location = new System.Drawing.Point(791, 3);
             this.BTN_S3.Name = "BTN_S3";
-            this.BTN_S3.Size = new System.Drawing.Size(166, 103);
+            this.BTN_S3.Size = new System.Drawing.Size(191, 103);
             this.BTN_S3.TabIndex = 0;
             this.BTN_S3.Text = "Front-4,5,6";
             this.BTN_S3.UseVisualStyleBackColor = true;
@@ -154,37 +188,25 @@
             // 
             this.BTN_S4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BTN_S4.Font = new System.Drawing.Font("新細明體", 12F);
-            this.BTN_S4.Location = new System.Drawing.Point(863, 3);
+            this.BTN_S4.Location = new System.Drawing.Point(988, 3);
             this.BTN_S4.Name = "BTN_S4";
-            this.BTN_S4.Size = new System.Drawing.Size(166, 103);
+            this.BTN_S4.Size = new System.Drawing.Size(191, 103);
             this.BTN_S4.TabIndex = 0;
             this.BTN_S4.Text = "Back-4,5,6";
             this.BTN_S4.UseVisualStyleBackColor = true;
             this.BTN_S4.Click += new System.EventHandler(this.BTN_S4_Click);
             // 
-            // BTN_S5
+            // BTN_S800
             // 
-            this.BTN_S5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BTN_S5.Font = new System.Drawing.Font("新細明體", 12F);
-            this.BTN_S5.Location = new System.Drawing.Point(1035, 3);
-            this.BTN_S5.Name = "BTN_S5";
-            this.BTN_S5.Size = new System.Drawing.Size(166, 103);
-            this.BTN_S5.TabIndex = 0;
-            this.BTN_S5.Text = "Front-7";
-            this.BTN_S5.UseVisualStyleBackColor = true;
-            this.BTN_S5.Click += new System.EventHandler(this.BTN_S5_Click);
-            // 
-            // BTN_S6
-            // 
-            this.BTN_S6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BTN_S6.Font = new System.Drawing.Font("新細明體", 12F);
-            this.BTN_S6.Location = new System.Drawing.Point(1207, 3);
-            this.BTN_S6.Name = "BTN_S6";
-            this.BTN_S6.Size = new System.Drawing.Size(172, 103);
-            this.BTN_S6.TabIndex = 0;
-            this.BTN_S6.Text = "Back-7";
-            this.BTN_S6.UseVisualStyleBackColor = true;
-            this.BTN_S6.Click += new System.EventHandler(this.BTN_S6_Click);
+            this.BTN_S800.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BTN_S800.Font = new System.Drawing.Font("新細明體", 12F);
+            this.BTN_S800.Location = new System.Drawing.Point(1185, 3);
+            this.BTN_S800.Name = "BTN_S800";
+            this.BTN_S800.Size = new System.Drawing.Size(191, 103);
+            this.BTN_S800.TabIndex = 270;
+            this.BTN_S800.Text = "S800";
+            this.BTN_S800.UseVisualStyleBackColor = true;
+            this.BTN_S800.Click += new System.EventHandler(this.BTN_S800_Click);
             // 
             // SMTController
             // 
@@ -216,6 +238,7 @@
         private System.Windows.Forms.Button BTN_S4;
         private System.Windows.Forms.Button BTN_S5;
         private System.Windows.Forms.Button BTN_S6;
+        private System.Windows.Forms.Button BTN_S800;
     }
 }
 

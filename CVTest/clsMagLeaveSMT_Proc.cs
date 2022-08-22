@@ -63,14 +63,14 @@ namespace CVTest
                                         ioType = "Mag",
                                         location = $"S{CVNo}-{BufferNo.ToString().PadLeft(3, '0')}"
                                     };
-                                    TrayLeave_WCS info_wcs = new TrayLeave_WCS();
-                                    if (clsWcsApi.GetApiProcess().GetTrayReadyGoInform().FunReport(info, ref info_wcs))
+                                    if (clsWcsApi.GetApiProcess().GetTrayReadyGoInform().FunReport(info))
                                     {
-                                        string CommandID = info_wcs.CmdSno;
-                                        //填入Port
-                                        if (clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).WriteCommandAndSetReadReqAsync(CommandID, 1, 20).Result)
-                                            //填入觸發的buffer
-                                            clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).WriteCommandAndSetReadReqAsync(CommandID, 1, 20);
+                                        clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).SetReadReq();
+                                        //string CommandID = info_wcs.CmdSno;
+                                        ////填入Port
+                                        //if (clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).WriteCommandAndSetReadReqAsync(CommandID, 1, 20).Result)
+                                        //    //填入觸發的buffer
+                                        //    clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).WriteCommandAndSetReadReqAsync(CommandID, 1, 20);
                                     }
                                 }
                             }

@@ -67,9 +67,13 @@
       <Project>{D32194AF-ADB8-46B5-9802-E81F8290D707}</Project>
       <Name>Mirle.SMTCV.Conveyor.Controller</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mirle.chipSTKC.Conveyor.V2BYMA30.E1\Mirle.SMTCV.Conveyor.V2BYMA30.csproj">
-      <Project>{9B3FF83A-25FC-4683-A2BF-B54D763E5A6A}</Project>
-      <Name>Mirle.SMTCV.Conveyor.V2BYMA30</Name>
+    <ProjectReference Include="..\Mirle.chipSTKC.Conveyor.V2BYMA30.S800\Mirle.SMTCV.Conveyor.V2BYMA30.S800.csproj">
+      <Project>{ba5b7d1d-8cef-4f4c-afff-0e5a601ce904}</Project>
+      <Name>Mirle.SMTCV.Conveyor.V2BYMA30.S800</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mirle.chipSTKC.Conveyor.V2BYMA30.SMT\Mirle.SMTCV.Conveyor.V2BYMA30.SMT.csproj">
+      <Project>{9b3ff83a-25fc-4683-a2bf-b54d763e5a6a}</Project>
+      <Name>Mirle.SMTCV.Conveyor.V2BYMA30.SMT</Name>
     </ProjectReference>
     <ProjectReference Include="..\Mirle.ChipSTKC\Mirle.SMTCVStart.csproj">
       <Project>{BEFBC0F1-668D-4EE1-B05C-BFA8A96AF246}</Project>

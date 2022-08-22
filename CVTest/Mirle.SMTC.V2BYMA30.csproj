@@ -73,6 +73,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsCVBinCheck_Proc.cs" />
+    <Compile Include="clsSMTRack_Proc.cs" />
     <Compile Include="clsEmptyRackLeave_Proc.cs" />
     <Compile Include="clsCheckError_Proc.cs" />
     <Compile Include="clsEmptyBinLeaveCV_Proc.cs" />
@@ -141,9 +143,13 @@
       <Project>{d32194af-adb8-46b5-9802-e81f8290d707}</Project>
       <Name>Mirle.SMTCV.Conveyor.Controller</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mirle.chipSTKC.Conveyor.V2BYMA30.E1\Mirle.SMTCV.Conveyor.V2BYMA30.csproj">
+    <ProjectReference Include="..\Mirle.chipSTKC.Conveyor.V2BYMA30.S800\Mirle.SMTCV.Conveyor.V2BYMA30.S800.csproj">
+      <Project>{ba5b7d1d-8cef-4f4c-afff-0e5a601ce904}</Project>
+      <Name>Mirle.SMTCV.Conveyor.V2BYMA30.S800</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mirle.chipSTKC.Conveyor.V2BYMA30.SMT\Mirle.SMTCV.Conveyor.V2BYMA30.SMT.csproj">
       <Project>{9b3ff83a-25fc-4683-a2bf-b54d763e5a6a}</Project>
-      <Name>Mirle.SMTCV.Conveyor.V2BYMA30</Name>
+      <Name>Mirle.SMTCV.Conveyor.V2BYMA30.SMT</Name>
     </ProjectReference>
     <ProjectReference Include="..\Mirle.ChipSTKC\Mirle.SMTCVStart.csproj">
       <Project>{befbc0f1-668d-4ee1-b05c-bfa8a96af246}</Project>

@@ -32,17 +32,35 @@ namespace Mirle.WebAPI.Event.U2NMMA30
             {
                 int plcNo = Convert.ToInt32(Body.BufferID.Substring(1, 1));
                 int bufferNo = Convert.ToInt32(Body.BufferID.Substring(3, 2));
-                if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).IsConnected)
+                if (plcNo != 0)
                 {
-                    if (!clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).SetStartRollAsync().Result)
+                    if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).IsConnected)
                     {
-                        string exMessage = $"<Buffer> {Body.BufferID} fail to write START ROLL...";
-                        throw new Exception(exMessage);
+                        if (!clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).SetStartRollAsync().Result)
+                        {
+                            string exMessage = $"<Buffer> {Body.BufferID} fail to write START ROLL...";
+                            throw new Exception(exMessage);
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception($"<{Body.jobId}>BUFFER_ROLL_INFO <PLC>{plcNo} not connected!!!");
                     }
                 }
                 else
                 {
-                    throw new Exception($"<{Body.jobId}>BUFFER_ROLL_INFO <PLC>{plcNo} not connected!!!");
+                    if (clsSMTCVStart.GetControllerHost().GetS800Manager().IsConnected)
+                    {
+                        if (!clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).SetStartRollAsync().Result)
+                        {
+                            string exMessage = $"<Buffer> {Body.BufferID} fail to write START ROLL...";
+                            throw new Exception(exMessage);
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception($"<{Body.jobId}>BUFFER_ROLL_INFO <PLC>{plcNo} not connected!!!");
+                    }
                 }
                 rMsg.returnCode = clsConstValue.ApiReturnCode.Success;
                 rMsg.returnComment = "";
@@ -77,23 +95,51 @@ namespace Mirle.WebAPI.Event.U2NMMA30
             {
                 int plcNo = Convert.ToInt32(Body.bufferId.Substring(1, 1));
                 int bufferNo = Convert.ToInt32(Body.bufferId.Substring(3, 2));
-                if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).IsConnected)
+                if (plcNo != 0)
                 {
-                    if (!string.IsNullOrWhiteSpace(clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).CommandID))
+                    if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).IsConnected)
                     {
-                        string exMessage = $"<Buffer> {Body.bufferId} already have other command, FAIL to insert.";
-                        throw new Exception(exMessage);
+                        if (bufferNo % 6 == 1)
+                        {
+                            if (!string.IsNullOrWhiteSpace(clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).CommandID))
+                            {
+                                string exMessage = $"<Buffer> {Body.bufferId} already have other command, FAIL to insert.";
+                                throw new Exception(exMessage);
+                            }
+                            //path 10 是送輸送板機
+                            if (!clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).WriteCommandAsync(Body.jobId, 2, 10).Result)
+                            {
+                                string exMessage = $"<Buffer> {Body.bufferId} fail to write Command Info...";
+                                throw new Exception(exMessage);
+                            }
+                        }
+                        
                     }
-                    //path 10 是送輸送板機
-                    if (!clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).WriteCommandAsync(Body.jobId, 2, 10).Result)
+                    else
                     {
-                        string exMessage = $"<Buffer> {Body.bufferId} fail to write Command Info...";
-                        throw new Exception(exMessage);
+                        throw new Exception($"<{Body.jobId}>CV_RECEIVE_NEW_BIN_CMD <PLC>{plcNo} not connected!!!");
                     }
                 }
                 else
                 {
-                    throw new Exception($"<{Body.jobId}>CV_RECEIVE_NEW_BIN_CMD <PLC>{plcNo} not connected!!!");
+                    if (clsSMTCVStart.GetControllerHost().GetS800Manager().IsConnected)
+                    {
+                        if (!string.IsNullOrWhiteSpace(clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).CommandID))
+                        {
+                            string exMessage = $"<Buffer> {Body.bufferId} already have other command, FAIL to insert.";
+                            throw new Exception(exMessage);
+                        }
+                        //path 10 是送輸送板機
+                        if (!clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).WriteCommandAsync(Body.jobId, 2, 10).Result)
+                        {
+                            string exMessage = $"<Buffer> {Body.bufferId} fail to write Command Info...";
+                            throw new Exception(exMessage);
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception($"<{Body.jobId}>CV_RECEIVE_NEW_BIN_CMD <PLC>{plcNo} not connected!!!");
+                    }
                 }
                 rMsg.returnCode = clsConstValue.ApiReturnCode.Success;
                 rMsg.returnComment = "";
@@ -127,23 +173,47 @@ namespace Mirle.WebAPI.Event.U2NMMA30
             {
                 int plcNo = Convert.ToInt32(Body.bufferId.Substring(1, 1));
                 int bufferNo = Convert.ToInt32(Body.bufferId.Substring(3, 2));
-                if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).IsConnected)
+                if (plcNo != 0)
                 {
-                    if (!string.IsNullOrWhiteSpace(clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).CommandID))
+                    if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).IsConnected)
                     {
-                        string exMessage = $"<Buffer> {Body.bufferId} already have other command, FAIL to insert.";
-                        throw new Exception(exMessage);
+                        if (!string.IsNullOrWhiteSpace(clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).CommandID))
+                        {
+                            string exMessage = $"<Buffer> {Body.bufferId} already have other command, FAIL to insert.";
+                            throw new Exception(exMessage);
+                        }
+                        //path 10 是送輸送板機
+                        if (!clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).WriteCommandAsync(Body.jobId, 2, 10).Result)
+                        {
+                            string exMessage = $"<Buffer> {Body.bufferId} fail to write Command Info...";
+                            throw new Exception(exMessage);
+                        }
                     }
-                    //path 10 是送輸送板機
-                    if (!clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).WriteCommandAsync(Body.jobId, 2, 10).Result)
+                    else
                     {
-                        string exMessage = $"<Buffer> {Body.bufferId} fail to write Command Info...";
-                        throw new Exception(exMessage);
+                        throw new Exception($"<{Body.jobId}>CV_RECEIVE_NEW_BIN_CMD <PLC>{plcNo} not connected!!!");
                     }
                 }
                 else
                 {
-                    throw new Exception($"<{Body.jobId}>CV_RECEIVE_NEW_BIN_CMD <PLC>{plcNo} not connected!!!");
+                    if (clsSMTCVStart.GetControllerHost().GetS800Manager().IsConnected)
+                    {
+                        if (!string.IsNullOrWhiteSpace(clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).CommandID))
+                        {
+                            string exMessage = $"<Buffer> {Body.bufferId} already have other command, FAIL to insert.";
+                            throw new Exception(exMessage);
+                        }
+                        //path 10 是送輸送板機
+                        if (!clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).WriteCommandAsync(Body.jobId, 2, 10).Result)
+                        {
+                            string exMessage = $"<Buffer> {Body.bufferId} fail to write Command Info...";
+                            throw new Exception(exMessage);
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception($"<{Body.jobId}>CV_RECEIVE_NEW_BIN_CMD <PLC>{plcNo} not connected!!!");
+                    }
                 }
                 rMsg.returnCode = clsConstValue.ApiReturnCode.Success;
                 rMsg.returnComment = "";

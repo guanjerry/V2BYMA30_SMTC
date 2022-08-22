@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirle.SMTCV.Conveyor.V2BYMA30", "Mirle.chipSTKC.Conveyor.V2BYMA30.E1\Mirle.SMTCV.Conveyor.V2BYMA30.csproj", "{9B3FF83A-25FC-4683-A2BF-B54D763E5A6A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirle.Def", "Mirle.Def\Mirle.Def.csproj", "{906DA4EE-6B8D-40C7-BD49-A410FEB1D2C8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirle.SMTCV.Conveyor.Controller", "Mirle.chipSTKC.Conveyor.Controller\Mirle.SMTCV.Conveyor.Controller.csproj", "{D32194AF-ADB8-46B5-9802-E81F8290D707}"
@@ -23,16 +21,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirle.Structure", "Mirle.St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirle.WebAPI.Event", "Mirle.WebAPI.Event\Mirle.WebAPI.Event.csproj", "{2E09050B-3BB2-482A-B27B-CF23DB03E342}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirle.SMTCV.Conveyor.V2BYMA30.S800", "Mirle.chipSTKC.Conveyor.V2BYMA30.S800\Mirle.SMTCV.Conveyor.V2BYMA30.S800.csproj", "{BA5B7D1D-8CEF-4F4C-AFFF-0E5A601CE904}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirle.SMTCV.Conveyor.V2BYMA30.SMT", "Mirle.chipSTKC.Conveyor.V2BYMA30.SMT\Mirle.SMTCV.Conveyor.V2BYMA30.SMT.csproj", "{9B3FF83A-25FC-4683-A2BF-B54D763E5A6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9B3FF83A-25FC-4683-A2BF-B54D763E5A6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B3FF83A-25FC-4683-A2BF-B54D763E5A6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B3FF83A-25FC-4683-A2BF-B54D763E5A6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B3FF83A-25FC-4683-A2BF-B54D763E5A6A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{906DA4EE-6B8D-40C7-BD49-A410FEB1D2C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{906DA4EE-6B8D-40C7-BD49-A410FEB1D2C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{906DA4EE-6B8D-40C7-BD49-A410FEB1D2C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +67,14 @@ Global
 		{2E09050B-3BB2-482A-B27B-CF23DB03E342}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E09050B-3BB2-482A-B27B-CF23DB03E342}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E09050B-3BB2-482A-B27B-CF23DB03E342}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA5B7D1D-8CEF-4F4C-AFFF-0E5A601CE904}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA5B7D1D-8CEF-4F4C-AFFF-0E5A601CE904}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA5B7D1D-8CEF-4F4C-AFFF-0E5A601CE904}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA5B7D1D-8CEF-4F4C-AFFF-0E5A601CE904}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B3FF83A-25FC-4683-A2BF-B54D763E5A6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B3FF83A-25FC-4683-A2BF-B54D763E5A6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B3FF83A-25FC-4683-A2BF-B54D763E5A6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B3FF83A-25FC-4683-A2BF-B54D763E5A6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

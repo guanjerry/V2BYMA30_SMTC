@@ -1,4 +1,4 @@
-﻿using Mirle.SMTCV.Conveyor.V2BYMA30.SMT.Signal;
+﻿using Mirle.SMTCV.Conveyor.V2BYMA30.S800.Signal;
 using Mirle.SMTCV.Conveyor.Config;
 using Mirle.MPLC;
 using Mirle.MPLC.DataBlocks;
@@ -10,12 +10,12 @@ using Mirle.MPLC.DataType;
 
 namespace Mirle.SMTCV.Conveyor.Controller
 {
-    public class CVCManager_8F : IDisposable
+    public class CVCManager_S800 : IDisposable
     {
         private readonly LoggerService _LoggerService;
         private readonly ConveyorConfig _ConveyorConfig;
         private readonly SignalMapper _Signal;
-        private readonly Dictionary<int, V2BYMA30.SMT.Buffer> _Buffers = new Dictionary<int, V2BYMA30.SMT.Buffer>();
+        private readonly Dictionary<int, V2BYMA30.S800.Buffer> _Buffers = new Dictionary<int, V2BYMA30.S800.Buffer>();
         private PLCHost _plcHost;
         //private IMPLCProvider _mplc;
 
@@ -25,7 +25,7 @@ namespace Mirle.SMTCV.Conveyor.Controller
         private ThreadWorker _Buffer;
 
         public bool IsConnected => _plcHost.IsConnected;
-        public CVCManager_8F(ConveyorConfig config)
+        public CVCManager_S800(ConveyorConfig config)
         {
             _ConveyorConfig = config;
             _LoggerService = new LoggerService(config.ConveyorId);
@@ -92,7 +92,7 @@ namespace Mirle.SMTCV.Conveyor.Controller
         //    _plcHost.Start();
         //}
 
-        public V2BYMA30.SMT.Buffer GetBuffer(int bufferIndex)
+        public V2BYMA30.S800.Buffer GetBuffer(int bufferIndex)
         {
             _Buffers.TryGetValue(bufferIndex, out var buffer);
             return buffer;
@@ -117,7 +117,7 @@ namespace Mirle.SMTCV.Conveyor.Controller
         {
             _Signal.GetConveyorSignal().Controller.ErrorIndex.SetValue(errorIndex);
         }
-        public V2BYMA30.SMT.Signal.SignalMapper GetSignalMapper()
+        public V2BYMA30.S800.Signal.SignalMapper GetSignalMapper()
         {
             return _Signal;
         }
@@ -189,7 +189,7 @@ namespace Mirle.SMTCV.Conveyor.Controller
         {
             foreach (int i in Enumerable.Range(1, SignalMapper.BufferCount))
             {
-                var buffer = new V2BYMA30.SMT.Buffer(_Signal.GetBufferSignal(i), "CV");
+                var buffer = new V2BYMA30.S800.Buffer(_Signal.GetBufferSignal(i), "CV");
                 _Buffers.Add(i, buffer);
             }
         }
@@ -215,7 +215,7 @@ namespace Mirle.SMTCV.Conveyor.Controller
             }
         }
 
-        ~CVCManager_8F()
+        ~CVCManager_S800()
         {
             Dispose(false);
         }

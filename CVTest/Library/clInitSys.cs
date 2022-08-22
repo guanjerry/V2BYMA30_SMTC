@@ -30,6 +30,7 @@ namespace CVTest
     {
         //public static clsDbConfig DbConfig = new clsDbConfig();
         public static clsPlcConfig[] CV_Config = new clsPlcConfig[6];
+        public static clsPlcConfig S800_Config = new clsPlcConfig();
         public static WebApiConfig chipC_Config = new WebApiConfig();
         
 
@@ -162,7 +163,7 @@ namespace CVTest
                 {
                     subGetCVConfig(i, sFileName, ref CV_Config[i-1]);
                 }
-                
+                subGetS800Config(sFileName, ref S800_Config);
 
                 FunWriTraceLog_CV("設定PLC連線完成......");
             }
@@ -253,6 +254,33 @@ namespace CVTest
             try
             {
                 string tempstrAppName = strAppName + Convert.ToString(plcNo);
+                strKeyName = "MPLCNo";
+                plcConfig.MPLCNo = int.Parse(funReadParam(strIniPathName, tempstrAppName, strKeyName));
+                strKeyName = "MPLCIP";
+                plcConfig.MPLCIP = funReadParam(strIniPathName, tempstrAppName, strKeyName);
+                strKeyName = "MPLCPort";
+                plcConfig.MPLCPort = int.Parse(funReadParam(strIniPathName, tempstrAppName, strKeyName));
+                strKeyName = "MPLCTimeout";
+                plcConfig.MPLCTimeout = int.Parse(funReadParam(strIniPathName, tempstrAppName, strKeyName));
+                strKeyName = "UseMCProtocol";
+                plcConfig.UseMCProtocol = int.Parse(funReadParam(strIniPathName, tempstrAppName, strKeyName)) == 1 ? true : false;
+                strKeyName = "InMemorySimulator";
+                plcConfig.InMemorySimulator = int.Parse(funReadParam(strIniPathName, tempstrAppName, strKeyName)) == 1 ? true : false;
+
+
+            }
+            catch (Exception ex)
+            {
+                var cmet = System.Reflection.MethodBase.GetCurrentMethod();
+                subWriteExLog(cmet.DeclaringType.FullName + "." + cmet.Name, ex.Message);
+            }
+        }
+        public static void subGetS800Config(string strIniPathName, ref clsPlcConfig plcConfig, string strAppName = "S800 PLC")
+        {
+            string strKeyName;
+            try
+            {
+                string tempstrAppName = strAppName;
                 strKeyName = "MPLCNo";
                 plcConfig.MPLCNo = int.Parse(funReadParam(strIniPathName, tempstrAppName, strKeyName));
                 strKeyName = "MPLCIP";

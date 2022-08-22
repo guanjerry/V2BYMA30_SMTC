@@ -1,5 +1,6 @@
 ﻿using Mirle.Def;
 using Mirle.WebAPI.ConveyorReportInfo;
+using Mirle.WebAPI.ReportInfo;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace Mirle.WebAPI.ConveyorFunction
             _config = Config;
         }
 
-        public bool FunReport(BCRCheckRequestInfo info, ref TrayLeave_WCS info_wcs)
+        public bool FunReport(BCRCheckRequestInfo info)
         {
             try
             {
@@ -28,9 +29,9 @@ namespace Mirle.WebAPI.ConveyorFunction
                 clsWriLog.Log.FunWriTraceLog_CV($"URL: {sLink}");
                 string re = clsTool.HttpPost(sLink, strJson);
                 clsWriLog.Log.FunWriTraceLog_CV(re);
-                info_wcs = (TrayLeave_WCS)Newtonsoft.Json.Linq.JObject.Parse(re).ToObject(typeof(TrayLeave_WCS));
-
-                return true;
+                ReturnMsgInfo info_wcs = (ReturnMsgInfo)Newtonsoft.Json.Linq.JObject.Parse(re).ToObject(typeof(ReturnMsgInfo));
+                if (info_wcs.returnCode == clsConstValue.ApiReturnCode.Success) return true;
+                else return false;
             }
             catch (Exception ex)
             {

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D32194AF-ADB8-46B5-9802-E81F8290D707}</ProjectGuid>
+    <ProjectGuid>{9B3FF83A-25FC-4683-A2BF-B54D763E5A6A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mirle.SMTCV.Conveyor.Controller</RootNamespace>
-    <AssemblyName>Mirle.SMTCV.Conveyor.Controller</AssemblyName>
+    <RootNamespace>Mirle.SMTCV.Conveyor.V2BYMA30.SMT</RootNamespace>
+    <AssemblyName>Mirle.SMTCV.Conveyor.V2BYMA30.SMT</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -56,7 +56,6 @@
     <Reference Include="System.Data.SQLite, Version=1.0.115.5, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\lib\net46\System.Data.SQLite.dll</HintPath>
     </Reference>
-    <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
@@ -68,75 +67,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsTool.cs" />
-    <Compile Include="CVCHost.cs" />
-    <Compile Include="CVCManager_S800.cs" />
-    <Compile Include="CVCManager_8F.cs" />
-    <Compile Include="MPLCService.cs" />
+    <Compile Include="Buffer.cs" />
+    <Compile Include="Events\AlarmEventArgs.cs" />
+    <Compile Include="Events\BufferEventArgs.cs" />
+    <Compile Include="Events\ReqAckEventArgs.cs" />
+    <Compile Include="Events\StkLabelClickArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\BufferPlcInfoView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\BufferPlcInfoView.designer.cs">
-      <DependentUpon>BufferPlcInfoView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\MonitorLayout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\MonitorLayout.Designer.cs">
-      <DependentUpon>MonitorLayout.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\MainPLCView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\MainPLCView.Designer.cs">
-      <DependentUpon>MainPLCView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\uclBuffer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\uclBuffer.designer.cs">
-      <DependentUpon>uclBuffer.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Signal\BCRResult.cs" />
+    <Compile Include="Signal\BCRResultSignal.cs" />
+    <Compile Include="Signal\BitSignal.cs" />
+    <Compile Include="Signal\BufferAckSignal.cs" />
+    <Compile Include="Signal\BufferControllerSignal.cs" />
+    <Compile Include="Signal\BufferRequestControllerSignal.cs" />
+    <Compile Include="Signal\BufferSignal.cs" />
+    <Compile Include="Signal\BufferStatusSignal.cs" />
+    <Compile Include="Signal\ConveyorControllerSignal.cs" />
+    <Compile Include="Signal\ConveyorSignal.cs" />
+    <Compile Include="Signal\SignalMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Resources\Down.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Left.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Right.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Up.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mirle.chipSTKC.Conveyor.Config\Mirle.SMTCV.Conveyor.Config.csproj">
       <Project>{4fe81277-7845-425b-b263-509f9771a516}</Project>
       <Name>Mirle.SMTCV.Conveyor.Config</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mirle.chipSTKC.Conveyor.V2BYMA30.E2\Mirle.chipSTKC.Conveyor.V2BYMA30.E2.csproj">
-      <Project>{01af1e4f-12f8-4a85-81cf-0b5a419511cc}</Project>
-      <Name>Mirle.chipSTKC.Conveyor.V2BYMA30.E2</Name>
+    <ProjectReference Include="..\Mirle.Def\Mirle.Def.csproj">
+      <Project>{906da4ee-6b8d-40c7-bd49-a410feb1d2c8}</Project>
+      <Name>Mirle.Def</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mirle.chipSTKC.Conveyor.V2BYMA30.S800\Mirle.SMTCV.Conveyor.V2BYMA30.S800.csproj">
-      <Project>{ba5b7d1d-8cef-4f4c-afff-0e5a601ce904}</Project>
-      <Name>Mirle.SMTCV.Conveyor.V2BYMA30.S800</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Mirle.chipSTKC.Conveyor.V2BYMA30.SMT\Mirle.SMTCV.Conveyor.V2BYMA30.SMT.csproj">
-      <Project>{9b3ff83a-25fc-4683-a2bf-b54d763e5a6a}</Project>
-      <Name>Mirle.SMTCV.Conveyor.V2BYMA30.SMT</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="View\BufferPlcInfoView.resx">
-      <DependentUpon>BufferPlcInfoView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\MonitorLayout.resx">
-      <DependentUpon>MonitorLayout.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\MainPLCView.resx">
-      <DependentUpon>MainPLCView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\uclBuffer.resx">
-      <DependentUpon>uclBuffer.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
