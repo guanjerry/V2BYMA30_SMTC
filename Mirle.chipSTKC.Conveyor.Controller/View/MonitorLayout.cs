@@ -99,7 +99,7 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                         {
                             BufferControl = Controls.Find("ucl" + i + "b", true).FirstOrDefault() as uclBuffer;
                         }
-                        BufferControl.Auto = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Auto;
+                        BufferControl.Auto = true;//_cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Auto;
                         BufferControl.bLoad = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Presence;
                         BufferControl.CmdMode = clsTool.funGetEnumValue<uclBuffer.enuCmdMode>(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).CommandMode);
                         BufferControl.CmdSno = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).CommandID;
@@ -128,7 +128,7 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                     for (int i = 1; i <= _cvcHost.GetS800Manager().GetSignalMapper().GetBufferCount(); i++)
                     {
                         uclBuffer BufferControl = Controls.Find("ucl" + showBuff[i - 1], true).FirstOrDefault() as uclBuffer;
-                        BufferControl.Auto = _cvcHost.GetS800Manager().GetBuffer(i).Auto;
+                        //BufferControl.Auto = _cvcHost.GetS800Manager().GetBuffer(i).Auto;
                         BufferControl.bLoad = _cvcHost.GetS800Manager().GetBuffer(i).Presence;
                         BufferControl.CmdMode = clsTool.funGetEnumValue<uclBuffer.enuCmdMode>(_cvcHost.GetS800Manager().GetBuffer(i).CommandMode);
                         BufferControl.CmdSno = _cvcHost.GetS800Manager().GetBuffer(i).CommandID;

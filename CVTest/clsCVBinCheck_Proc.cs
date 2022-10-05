@@ -47,19 +47,34 @@ namespace CVTest
                                 location = "S0-03",
                                 barcode = TrayID
                             };
-                            if (clsWcsApi.GetApiProcess().GetBCRCheckRequest().FunReport(bcrinfo))
+                            #region 測試
+                            if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(TrayBuffer).WriteCommandAndSetReadReqAsync("11111", 1, 10).Result)
                             {
-                                if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(TrayBuffer).WritePathAndReadReqAsync(10).Result)
-                                {
-                                    string Remark = $"<TrayID> {TrayID}, leave start";
-                                    clsInitSys.FunWriTraceLog_CV(Remark);
-                                }
-                                else
-                                {
-                                    string Remark = $"<Buffer> S0-03 fail to write to PLC...";
-                                    clsInitSys.FunWriTraceLog_CV(Remark);
-                                }
+                                string Remark = $"<TrayID> {TrayID}, leave start";
+                                clsInitSys.FunWriTraceLog_CV(Remark);
                             }
+                            else
+                            {
+                                string Remark = $"<Buffer> S0-03 fail to write to PLC...";
+                                clsInitSys.FunWriTraceLog_CV(Remark);
+                            }
+                            #endregion 測試
+                            #region 正式
+                            //if (clsWcsApi.GetApiProcess().GetBCRCheckRequest().FunReport(bcrinfo))
+                            //{
+                            //    if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(TrayBuffer).WritePathAndReadReqAsync(10).Result)
+                            //    {
+                            //        string Remark = $"<TrayID> {TrayID}, leave start";
+                            //        clsInitSys.FunWriTraceLog_CV(Remark);
+                            //    }
+                            //    else
+                            //    {
+                            //        string Remark = $"<Buffer> S0-03 fail to write to PLC...";
+                            //        clsInitSys.FunWriTraceLog_CV(Remark);
+                            //    }
+                            //}
+                            #endregion 正式
+
                         }
                     }
                    

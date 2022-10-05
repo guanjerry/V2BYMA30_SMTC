@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mirle.WebAPI.Event.U2NMMA30.Models
+namespace Mirle.WebAPI.Event.Models
 {
-    public class BufferRollInfo : BaseInfo
+    public class BufferStatusInfo : BaseInfo
     {
-        public string BufferID { get; set; }
+        public string bufferId { get; set; }
     }
 }

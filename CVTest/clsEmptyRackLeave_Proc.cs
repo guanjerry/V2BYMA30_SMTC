@@ -32,7 +32,7 @@ namespace CVTest
             timRead.Enabled = false;
             try
             {
-                for (int CVNo = 1; CVNo <= 6; CVNo ++)
+                for (int CVNo = 1; CVNo <= 4; CVNo ++)
                 {
                     for (int i = 0; i < 2; i ++)
                     {

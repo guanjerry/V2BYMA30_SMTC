@@ -3,8 +3,10 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using Mirle.Def;
-using Mirle.SMTCV.Conveyor.V2BYMA30.View;
+using Mirle.SMTCV;
 using Mirle.SMTCVStart;
+using Mirle.WebAPI.Event;
+using Unity;
 
 namespace CVTest
 {
@@ -17,6 +19,14 @@ namespace CVTest
         //Mag進來
         //Mag掃描
         public clsBinLeaveCV_Proc _binLeaveCV_Procs = new clsBinLeaveCV_Proc();
+        public clsCVBinCheck_Proc _cvBinCheck_Proc = new clsCVBinCheck_Proc();
+        public clsEmptyBinLeaveCV_Proc _emptyBinLeaveCV_Proc = new clsEmptyBinLeaveCV_Proc();
+        public clsSMTRack_Proc _smtRack_Proc = new clsSMTRack_Proc();
+        public clsMagLeaveSMT_Proc _magLeaveSMT_Proc = new clsMagLeaveSMT_Proc();
+        public clsCheckError_Proc _checkError_Proc = new clsCheckError_Proc();
+        public clsEmptyRackLeave_Proc _emptyRackLeave_Proc = new clsEmptyRackLeave_Proc();
+        private WebApiHost _webApiHost;
+        private UnityContainer _unityContainer;
         private static System.Timers.Timer timRead = new System.Timers.Timer();
         
         #region 建構函數
@@ -31,12 +41,19 @@ namespace CVTest
         {
             clsInitSys.subInitSystem();
             //_Client.FunInitialIPC_Proc();
+            
             clsSMTCVStart.FunInitalCVController(clsInitSys.CV_Config, clsInitSys.S800_Config);
-            //_stkcCommand_Procs.subStart(1, _Client);
-            //_binLeaveCV_Procs.subStart();
-            //_cvReelStockInProc.subStart();
-            //_writeCmdToCV_Proc.subStart();
+            _emptyBinLeaveCV_Proc.subStart();
+            _binLeaveCV_Procs.subStart();
+            _cvBinCheck_Proc.subStart();
+            _checkError_Proc.subStart();
+            _magLeaveSMT_Proc.subStart();
+            _emptyRackLeave_Proc.subStart();
+            _unityContainer = new UnityContainer();
+            _unityContainer.RegisterInstance(new WCSController());
+            _webApiHost = new WebApiHost(new Startup(_unityContainer), clsInitSys.SMTC_Config.IP);
             ChangeSubForm(clsSMTCVStart.GetMainView());
+            clsWcsApi.FunInit(clsInitSys.WCSApi_Config);
         }
 
         public void FunEventInit()
@@ -51,7 +68,7 @@ namespace CVTest
             ChkAppIsAlreadyRunning();
             Text = Text + "  v " + ProductVersion;
             FunInit();
-            FunEventInit();
+            //FunEventInit();
             //ChangeSubForm(_bufferPlcInfoView);
             clsInitSys.FunWriTraceLog_CV("產線程式已開啟！");
 

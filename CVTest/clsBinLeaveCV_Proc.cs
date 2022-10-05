@@ -33,8 +33,9 @@ namespace CVTest
             timRead.Enabled = false;
             try
             {
-                for (int CVNo = 1; CVNo <= 6; CVNo++)
+                for (int CVNo = 1; CVNo <= 4; CVNo++)
                 {
+                    //Mag要到8
                     for (int i = 0; i <= 2; i ++)
                     {
                         int bufferNo = 0;
@@ -67,7 +68,7 @@ namespace CVTest
                                     PositionReport info = new PositionReport
                                     {
                                         jobId = sCmdSno,
-                                        ioType = "Tray",
+                                        carrierType = "Bin",
                                         position = $"S{CVNo}-{bufferNo.ToString().PadLeft(2, '0')}"
                                     };
                                     if (clsWcsApi.GetApiProcess().GetPositionReportFunc().FunReport(info))

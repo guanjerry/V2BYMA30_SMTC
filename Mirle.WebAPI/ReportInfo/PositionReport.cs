@@ -11,7 +11,7 @@ namespace Mirle.WebAPI.ReportInfo
     {
         public string transactionId { get; set; } = "POSITION_REPORT";
         public string jobId { get; set; }
-        public string ioType { get; set; }
+        public string carrierType { get; set; }
         public string id { get; set; }
         public string position { get; set; }
     }

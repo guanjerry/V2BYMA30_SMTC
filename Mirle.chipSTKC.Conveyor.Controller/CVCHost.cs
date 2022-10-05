@@ -10,7 +10,7 @@ namespace Mirle.SMTCV.Conveyor.Controller
     public class CVCHost
     {
         private readonly CVCManager_8F _cvcManager_8F;
-        private readonly CVCManager_8F[] _cVCManager_8F = new CVCManager_8F[6];
+        private readonly CVCManager_8F[] _cVCManager_8F = new CVCManager_8F[4];
         private readonly CVCManager_S800 _cVCManager_S800;
         public CVCHost(ConveyorConfig configE1)
         {
@@ -19,7 +19,7 @@ namespace Mirle.SMTCV.Conveyor.Controller
         }
         public CVCHost(ConveyorConfig[] configE1, ConveyorConfig cVCManager_S800)
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 4; i++)
             {
                 _cVCManager_8F[i] = new CVCManager_8F(configE1[i]);
                 _cVCManager_8F[i].Start();

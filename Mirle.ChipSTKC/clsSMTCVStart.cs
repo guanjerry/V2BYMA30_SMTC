@@ -14,12 +14,12 @@ namespace Mirle.SMTCVStart
     public class clsSMTCVStart
     {
         private static CVCHost controllerHost;
-        private static CVCHost[] CVcontrollerHost = new CVCHost[6];
+        private static CVCHost[] CVcontrollerHost = new CVCHost[4];
         private static MainPLCView _mainView;
 
         public static void FunInitalCVController(clsPlcConfig[] CVConfig, clsPlcConfig S800Config)
         {
-            var ConfigCV = new ConveyorConfig[6];
+            var ConfigCV = new ConveyorConfig[4];
             for (int i = 0; i < CVConfig.Length; i++)
             {
                 ConfigCV[i] = new ConveyorConfig($"CV{i+1}", CVConfig[i].MPLCNo, CVConfig[i].InMemorySimulator, CVConfig[i].UseMCProtocol);

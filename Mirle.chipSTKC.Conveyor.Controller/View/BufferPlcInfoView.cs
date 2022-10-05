@@ -205,6 +205,11 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                 {
                     int StnIdx = Convert.ToInt32(comboBoxBufferIndex.Text.Split(':')[0]);
                     _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).WriteCommandAsync("00000", 0, 0);
+                    if (StnIdx == 37 || StnIdx == 40 || StnIdx == 41 || StnIdx == 44 || StnIdx == 45 || StnIdx == 48 ||
+                    StnIdx == 1 || StnIdx == 7 || StnIdx == 13 || StnIdx == 19 || StnIdx == 25 || StnIdx == 31)
+                    {
+                        _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).SetStopRollAsync();
+                    }
                     _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).SetReadReq(0);
                     _LoggerService.WriteLog($"手動按下CV初始PC -> PLC按鈕：<Buffer> {comboBoxBufferIndex.Text.Split(':')[1]}");
                 }

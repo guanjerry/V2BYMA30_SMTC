@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Mirle.SMTCV;
 using Mirle.WebAPI.ReportInfo;
 using Mirle.WebAPI.ConveyorReportInfo;
+using System.ComponentModel.Design;
 
 namespace CVTest
 {
@@ -31,7 +32,7 @@ namespace CVTest
             timRead.Enabled = false;
             try
             {
-                for (int CVNo = 1; CVNo <= 5; CVNo += 2)
+                for (int CVNo = 1; CVNo <= 3; CVNo += 2)
                 {
                     for (int i = 0; i <= 2; i++)
                     {
@@ -40,21 +41,26 @@ namespace CVTest
                         {
                             var leaveCVBuffer = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo);
                             string sCmdSno = leaveCVBuffer.CommandID;
-                            if (leaveCVBuffer.Presence && leaveCVBuffer.Ready == (int)clsEnum.Ready.Empty)
+                            if (leaveCVBuffer.Presence && leaveCVBuffer.Ready == (int)clsEnum.Ready.Leave && string.IsNullOrWhiteSpace(sCmdSno))
                             {
-                                if (string.IsNullOrWhiteSpace(sCmdSno))
+                                //string CommandID = "11111";
+                                if (!clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo).SetReadReq().Result)
                                 {
-                                    UnknownBinLeaveReport info = new UnknownBinLeaveReport
-                                    {
-                                        position = $"S{CVNo}-{bufferNo}"
-                                    };
-                                    TrayEmpty_WCS info_wcs = new TrayEmpty_WCS();
-                                    if (clsWcsApi.GetApiProcess().GetTrayEmptyInform().FunReport(info, ref info_wcs))
-                                    {
-                                        string CommandID = info_wcs.CmdSno;
-                                        clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo).WriteCommandAsync(CommandID, 1, 10);
-                                    }
+                                    clsInitSys.FunWriTraceLog_CV("空箱離開...");
                                 }
+                                //if (string.IsNullOrWhiteSpace(sCmdSno))
+                                //{
+                                //    UnknownBinLeaveReport info = new UnknownBinLeaveReport
+                                //    {
+                                //        position = $"S{CVNo}-{bufferNo}"
+                                //    };
+                                //    TrayEmpty_WCS info_wcs = new TrayEmpty_WCS();
+                                //    if (clsWcsApi.GetApiProcess().GetTrayEmptyInform().FunReport(info, ref info_wcs))
+                                //    {
+                                //        string CommandID = info_wcs.CmdSno;
+                                //        clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo).WriteCommandAsync(CommandID, 1, 10);
+                                //    }
+                                //}
                             }
                         }
                     }

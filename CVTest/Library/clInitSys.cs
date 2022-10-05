@@ -29,10 +29,12 @@ namespace CVTest
     public class clsInitSys
     {
         //public static clsDbConfig DbConfig = new clsDbConfig();
-        public static clsPlcConfig[] CV_Config = new clsPlcConfig[6];
+        public static clsPlcConfig[] CV_Config = new clsPlcConfig[4];
         public static clsPlcConfig S800_Config = new clsPlcConfig();
-        public static WebApiConfig chipC_Config = new WebApiConfig();
-        
+        public static WebApiConfig WCSApi_Config = new WebApiConfig();
+        public static WebApiConfig SMTC_Config = new WebApiConfig();
+        public static AutoArchive archive = new AutoArchive();
+
 
         //API
         [DllImport("kernel32.dll")]
@@ -128,11 +130,12 @@ namespace CVTest
         {
             try
             {
-                for (int i = 1; i <= 6; i++)
+                for (int i = 1; i <= 4; i++)
                 {
                     CV_Config[i-1] = new clsPlcConfig();
                 }
                 SubLoadCVSysIni();
+                archive.Start();
             }
             catch (Exception ex)
             {
@@ -159,10 +162,11 @@ namespace CVTest
                 }
 
                 //subGetDBConfig(sFileName);
-                for (int i = 1; i <= 6; i++)
+                for (int i = 1; i <= 4; i++)
                 {
                     subGetCVConfig(i, sFileName, ref CV_Config[i-1]);
                 }
+                subGetAPIConfig(sFileName);
                 subGetS800Config(sFileName, ref S800_Config);
 
                 FunWriTraceLog_CV("設定PLC連線完成......");
@@ -302,13 +306,15 @@ namespace CVTest
                 subWriteExLog(cmet.DeclaringType.FullName + "." + cmet.Name, ex.Message);
             }
         }
-        public static void subGetAPIConfig(string strIniPathName, string strAppName = "chipC_API")
+        public static void subGetAPIConfig(string strIniPathName, string strAppName = "WCS_API")
         {
             string strKeyName;
             try
             {
                 strKeyName = "IP";
-                chipC_Config.IP = funReadParam(strIniPathName, strAppName, strKeyName);
+                WCSApi_Config.IP = funReadParam(strIniPathName, strAppName, strKeyName);
+                strAppName = "SMTC_API";
+                SMTC_Config.IP = funReadParam(strIniPathName, strAppName, strKeyName);
             }
             catch (Exception ex)
             {

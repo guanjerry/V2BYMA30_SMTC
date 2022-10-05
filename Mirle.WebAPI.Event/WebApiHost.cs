@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Owin.Hosting;
 
-namespace Mirle.WebAPI.Event.U2NMMA30
+namespace Mirle.WebAPI.Event
 {
     public class WebApiHost
     {
@@ -10,7 +10,7 @@ namespace Mirle.WebAPI.Event.U2NMMA30
 
         public WebApiHost(Startup startup, string sIP)
         {
-        //    sIP = "127.0.0.1:9000";
+         //   sIP = "127.0.0.1:9000";
         //    //sIP = "127.0.0.1";
             _baseAddress = $"http://{sIP}/";
             _webService = WebApp.Start(url: _baseAddress, startup: startup.Configuration);

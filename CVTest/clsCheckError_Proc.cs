@@ -31,7 +31,7 @@ namespace CVTest
             timRead.Enabled = false;
             try
             {
-                for (int CVNo = 1; CVNo <= 6; CVNo ++)
+                for (int CVNo = 1; CVNo <= 4; CVNo ++)
                 {
                     if (clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).IsConnected)
                     {

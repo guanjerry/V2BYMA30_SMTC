@@ -225,6 +225,24 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.SMT
                 }
             });
         }
+
+        public Task<bool> SetStopRollAsync()
+        {
+            return Task.Run(() =>
+            {
+                try
+                {
+                    Signal.RequestController.StartRollRequest.SetValue(0);
+                    Task.Delay(500).Wait();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    _LoggerService.WriteExceptionLog(MethodBase.GetCurrentMethod(), $"{ex.Message}\n{ex.StackTrace}");
+                    return false;
+                }
+            });
+        }
         /// <summary>
         /// 通知初始
         /// </summary>

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mirle.WebAPI.Event.U2NMMA30.Models
+namespace Mirle.WebAPI.Event.Models
 {
-    public class BufferStatusInfo : BaseInfo
+    public class BufferReturnCode : ReturnCode
     {
         public string bufferId { get; set; }
     }
