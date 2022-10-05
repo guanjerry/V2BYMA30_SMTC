@@ -61,14 +61,29 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
             timMainProc.Enabled = false;
             try
             {
-                //Check PLC
-                if (_cvcHost.GetCVCManager(CurController + 1).IsConnected)
+                if (CurController != 6)
                 {
-                    lblPLCConnSts.BackColor = Color.Lime;
+                    //Check PLC
+                    if (_cvcHost.GetCVCManager(CurController + 1).IsConnected)
+                    {
+                        lblPLCConnSts.BackColor = Color.Lime;
+                    }
+                    else
+                    {
+                        lblPLCConnSts.BackColor = Color.Red;
+                    }
                 }
                 else
                 {
-                    lblPLCConnSts.BackColor = Color.Red;
+                    //Check PLC
+                    if (_cvcHost.GetS800Manager().IsConnected)
+                    {
+                        lblPLCConnSts.BackColor = Color.Lime;
+                    }
+                    else
+                    {
+                        lblPLCConnSts.BackColor = Color.Red;
+                    }
                 }
             }
             catch (Exception ex)

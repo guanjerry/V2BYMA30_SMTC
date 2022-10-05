@@ -59,6 +59,7 @@
             this.label_ReadSignal = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label_Ready = new System.Windows.Forms.Label();
+            this.btn_Initial_PLC = new System.Windows.Forms.Button();
             this.label_gg = new System.Windows.Forms.Label();
             this.label_Initial = new System.Windows.Forms.Label();
             this.label_InMode = new System.Windows.Forms.Label();
@@ -70,7 +71,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.comboBoxBufferIndex = new System.Windows.Forms.ComboBox();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.btn_Initial_PLC = new System.Windows.Forms.Button();
+            this.btnRoll_PcToPlc = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -266,6 +267,7 @@
             this.tableLayoutPanel4.Controls.Add(this.lblInitial_Req, 4, 1);
             this.tableLayoutPanel4.Controls.Add(this.btn_Initial_PC, 4, 3);
             this.tableLayoutPanel4.Controls.Add(this.label9, 4, 2);
+            this.tableLayoutPanel4.Controls.Add(this.btnRoll_PcToPlc, 3, 3);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(4, 26);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4);
@@ -545,6 +547,17 @@
             this.label_Ready.TabIndex = 70;
             this.label_Ready.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btn_Initial_PLC
+            // 
+            this.btn_Initial_PLC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_Initial_PLC.Location = new System.Drawing.Point(1053, 3);
+            this.btn_Initial_PLC.Name = "btn_Initial_PLC";
+            this.btn_Initial_PLC.Size = new System.Drawing.Size(174, 46);
+            this.btn_Initial_PLC.TabIndex = 84;
+            this.btn_Initial_PLC.Text = "通知初始化PLC數據";
+            this.btn_Initial_PLC.UseVisualStyleBackColor = true;
+            this.btn_Initial_PLC.Click += new System.EventHandler(this.btn_Initial_PLC_Click);
+            // 
             // label_gg
             // 
             this.label_gg.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -695,16 +708,16 @@
             this.refreshTimer.Interval = 500;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
-            // btn_Initial_PLC
+            // btnRoll_PcToPlc
             // 
-            this.btn_Initial_PLC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_Initial_PLC.Location = new System.Drawing.Point(1053, 3);
-            this.btn_Initial_PLC.Name = "btn_Initial_PLC";
-            this.btn_Initial_PLC.Size = new System.Drawing.Size(174, 46);
-            this.btn_Initial_PLC.TabIndex = 84;
-            this.btn_Initial_PLC.Text = "通知初始化PLC數據";
-            this.btn_Initial_PLC.UseVisualStyleBackColor = true;
-            this.btn_Initial_PLC.Click += new System.EventHandler(this.btn_Initial_PLC_Click);
+            this.btnRoll_PcToPlc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRoll_PcToPlc.Location = new System.Drawing.Point(729, 174);
+            this.btnRoll_PcToPlc.Name = "btnRoll_PcToPlc";
+            this.btnRoll_PcToPlc.Size = new System.Drawing.Size(236, 51);
+            this.btnRoll_PcToPlc.TabIndex = 86;
+            this.btnRoll_PcToPlc.Text = "滾動通知";
+            this.btnRoll_PcToPlc.UseVisualStyleBackColor = true;
+            this.btnRoll_PcToPlc.Click += new System.EventHandler(this.btnRoll_PcToPlc_Click);
             // 
             // BufferPlcInfoView
             // 
@@ -769,5 +782,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblTrayID;
         private System.Windows.Forms.Button btn_Initial_PLC;
+        private System.Windows.Forms.Button btnRoll_PcToPlc;
     }
 }

@@ -49,6 +49,7 @@ namespace CVTest
             _checkError_Proc.subStart();
             _magLeaveSMT_Proc.subStart();
             _emptyRackLeave_Proc.subStart();
+            _smtRack_Proc.subStart();
             _unityContainer = new UnityContainer();
             _unityContainer.RegisterInstance(new WCSController());
             _webApiHost = new WebApiHost(new Startup(_unityContainer), clsInitSys.SMTC_Config.IP);

@@ -10,7 +10,7 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.S800.Signal
     {
         public static readonly List<BlockInfo> SignalBlocks = new List<BlockInfo>()
         {
-            new BlockInfo(new DDeviceRange("D1001", "D3060"), "ReadWrite", 0),
+            new BlockInfo(new DDeviceRange("D1001", "D5005"), "ReadWrite", 0),
         };
 
         public readonly static int BufferCount = 5;

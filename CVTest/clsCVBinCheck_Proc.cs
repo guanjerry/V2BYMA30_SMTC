@@ -34,7 +34,7 @@ namespace CVTest
             {
                 if (clsSMTCVStart.GetControllerHost().GetS800Manager().IsConnected)
                 {
-                    int TrayBuffer = 4;
+                    int TrayBuffer = 3;
                     var stockInCV = clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(TrayBuffer);
                     if (stockInCV.Presence && stockInCV.ReadBcrAck == 1 && stockInCV.ReadBcrReq_PC == 0)
                     {

@@ -201,17 +201,35 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
             btn_Initial_PC.Enabled = false;
             try
             {
-                if (comboBoxBufferIndex.SelectedIndex > -1 && _cvcHost.GetCVCManager(CurController + 1).IsConnected)
+                if (CurController != 6)
                 {
-                    int StnIdx = Convert.ToInt32(comboBoxBufferIndex.Text.Split(':')[0]);
-                    _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).WriteCommandAsync("00000", 0, 0);
-                    if (StnIdx == 37 || StnIdx == 40 || StnIdx == 41 || StnIdx == 44 || StnIdx == 45 || StnIdx == 48 ||
-                    StnIdx == 1 || StnIdx == 7 || StnIdx == 13 || StnIdx == 19 || StnIdx == 25 || StnIdx == 31)
+                    if (comboBoxBufferIndex.SelectedIndex > -1 && _cvcHost.GetCVCManager(CurController + 1).IsConnected)
                     {
-                        _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).SetStopRollAsync();
+                        int StnIdx = Convert.ToInt32(comboBoxBufferIndex.Text.Split(':')[0]);
+                        _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).WriteCommandAsync("00000", 0, 0);
+                        if (StnIdx == 37 || StnIdx == 40 || StnIdx == 41 || StnIdx == 44 || StnIdx == 45 || StnIdx == 48 ||
+                        StnIdx == 1 || StnIdx == 7 || StnIdx == 13 || StnIdx == 19 || StnIdx == 25 || StnIdx == 31)
+                        {
+                            _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).SetStopRollAsync();
+                        }
+                        _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).SetReadReq(0);
+                        _LoggerService.WriteLog($"手動按下CV初始PC -> PLC按鈕：<Buffer> {comboBoxBufferIndex.Text.Split(':')[1]}");
                     }
-                    _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).SetReadReq(0);
-                    _LoggerService.WriteLog($"手動按下CV初始PC -> PLC按鈕：<Buffer> {comboBoxBufferIndex.Text.Split(':')[1]}");
+                }
+                else
+                {
+                    if (comboBoxBufferIndex.SelectedIndex > -1 && _cvcHost.GetS800Manager().IsConnected)
+                    {
+                        int StnIdx = Convert.ToInt32(comboBoxBufferIndex.Text.Split(':')[0]);
+                        _cvcHost.GetS800Manager().GetBuffer(StnIdx).WriteCommandAsync("00000", 0, 0);
+                        if (StnIdx == 1 || StnIdx == 4)
+                        {
+                            _cvcHost.GetS800Manager().GetBuffer(StnIdx).SetStopRollAsync();
+                        }
+                        _cvcHost.GetS800Manager().GetBuffer(StnIdx).SetReadReq(0);
+                        _LoggerService.WriteLog($"手動按下CV初始PC -> PLC按鈕：<Buffer> {comboBoxBufferIndex.Text.Split(':')[1]}");
+                    }
+                    
                 }
             }
             catch (Exception ex)
@@ -229,12 +247,25 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
             btn_Initial_PLC.Enabled = false;
             try
             {
-                if (comboBoxBufferIndex.SelectedIndex > -1 && _cvcHost.GetCVCManager(CurController + 1).IsConnected)
+                if (CurController != 6)
                 {
-                    int StnIdx = Convert.ToInt32(comboBoxBufferIndex.Text.Split(':')[0]);
-                    _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).NoticeInital();
+                    if (comboBoxBufferIndex.SelectedIndex > -1 && _cvcHost.GetCVCManager(CurController + 1).IsConnected)
+                    {
+                        int StnIdx = Convert.ToInt32(comboBoxBufferIndex.Text.Split(':')[0]);
+                        _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).NoticeInital();
 
-                    _LoggerService.WriteLog($"手動按下CV初始通知按鈕： <Buffer> {comboBoxBufferIndex.Text.Split(':')[1]}");
+                        _LoggerService.WriteLog($"手動按下CV初始通知按鈕： <Buffer> {comboBoxBufferIndex.Text.Split(':')[1]}");
+                    }
+                }
+                else
+                {
+                    if (comboBoxBufferIndex.SelectedIndex > -1 && _cvcHost.GetS800Manager().IsConnected)
+                    {
+                        int StnIdx = Convert.ToInt32(comboBoxBufferIndex.Text.Split(':')[0]);
+                        _cvcHost.GetS800Manager().GetBuffer(StnIdx).NoticeInital();
+
+                        _LoggerService.WriteLog($"手動按下CV初始通知按鈕： <Buffer> {comboBoxBufferIndex.Text.Split(':')[1]}");
+                    }
                 }
             }
             catch (Exception ex)
@@ -244,6 +275,55 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
             finally
             {
                 btn_Initial_PLC.Enabled = true;
+            }
+        }
+
+        private void btnRoll_PcToPlc_Click(object sender, EventArgs e)
+        {
+            btnRoll_PcToPlc.Enabled = false;
+            try
+            {
+                if (CurController != 6)
+                {
+                    if (comboBoxBufferIndex.SelectedIndex > -1 && _cvcHost.GetCVCManager(CurController + 1).IsConnected)
+                    {
+                        int StnIdx = Convert.ToInt32(comboBoxBufferIndex.Text.Split(':')[0]);
+                        _LoggerService.WriteLog($"手動按下滾動通知： <Buffer> {comboBoxBufferIndex.Text}");
+                        if (StnIdx == 37 || StnIdx == 40 || StnIdx == 41 || StnIdx == 44 || StnIdx == 45 || StnIdx == 48 ||
+                        StnIdx == 1 || StnIdx == 7 || StnIdx == 13 || StnIdx == 19 || StnIdx == 25 || StnIdx == 31)
+                        {
+                            if (!_cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).SetStartRollAsync().Result)
+                            {
+                                string exMessage = $"<Buffer> {comboBoxBufferIndex.Text} fail to write START ROLL...";
+                                throw new Exception(exMessage);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (comboBoxBufferIndex.SelectedIndex > -1 && _cvcHost.GetS800Manager().IsConnected)
+                    {
+                        int StnIdx = Convert.ToInt32(comboBoxBufferIndex.Text.Split(':')[0]);
+                        _LoggerService.WriteLog($"手動按下滾動通知： <Buffer> {comboBoxBufferIndex.Text}");
+                        if (StnIdx == 1 || StnIdx == 4)
+                        {
+                            if (!_cvcHost.GetS800Manager().GetBuffer(StnIdx).SetStartRollAsync().Result)
+                            {
+                                string exMessage = $"<Buffer> {comboBoxBufferIndex.Text} fail to write START ROLL...";
+                                throw new Exception(exMessage);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _LoggerService.WriteExceptionLog(MethodBase.GetCurrentMethod(), $"{ex.Message}\n{ex.StackTrace}");
+            }
+            finally
+            {
+                btnRoll_PcToPlc.Enabled = true;
             }
         }
     }
