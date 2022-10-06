@@ -43,7 +43,7 @@ namespace CVTest
                             string sCmdSno = leaveCVBuffer.CommandID;
                             if (leaveCVBuffer.Presence && leaveCVBuffer.Ready == (int)clsEnum.Ready.Leave)
                             {
-                                if (!string.IsNullOrWhiteSpace(sCmdSno) && SentPosition[i] == false)
+                                if (string.IsNullOrWhiteSpace(sCmdSno) && SentPosition[i] == false)
                                 {
                                     RackAwayInfo info = new RackAwayInfo
                                     {
@@ -52,7 +52,7 @@ namespace CVTest
                                     };
                                     if (clsWcsApi.GetApiProcess().GetRackAwayInform().FunReport(info))
                                     {
-                                        clsInitSys.FunWriTraceLog_CV($"<Buffer> E2-S{CVNo}-{bufferNo.ToString().PadLeft(3, '0')} <RackID> 空料架 => 已送出離開請求");
+                                        clsInitSys.FunWriTraceLog_Remark($"<Buffer> E2-S{CVNo}-{bufferNo.ToString().PadLeft(3, '0')} <RackID> 空料架 => 已送出離開請求");
                                         SentPosition[i] = true;
                                     }
                                 }

@@ -40,40 +40,73 @@ namespace CVTest
                             if (CVNo % 2 == 1)
                             {
                                 BufferNo = 6 * i + 2;
+                                int BcrBuffer = 6 * i + 1;
+                                var leaveCVBuffer = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo);
+                                var PortBuffer = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer);
+                                //string sCmdSno = leaveCVBuffer.CommandID;
+                                if (leaveCVBuffer.Presence && (!PortBuffer.Presence && string.IsNullOrWhiteSpace(PortBuffer.CommandID)))
+                                    if (leaveCVBuffer.ReadBcrAck == 1 && leaveCVBuffer.ReadBcrReq_PC == 0 )
+                                    {
+                                        string TrayID = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).GetTrayID.Trim();
+                                        if (!string.IsNullOrWhiteSpace(TrayID))
+                                        {
+                                            clsInitSys.FunWriTraceLog_Remark($"<Position> S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')} <Mag ID>{TrayID} => 準備離開");
+                                            SmtEmptyMagUnloadInfo info = new SmtEmptyMagUnloadInfo
+                                            {
+                                                carrierId = TrayID,
+                                                location = $"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}"
+                                            };
+                                            //if (clsWcsApi.GetApiProcess().GetSmtEmptyMagUnload().FunReport(info))
+                                            {
+                                                clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetReadReq();
+                                            }
+                                            //BCRCheckRequestInfo info = new BCRCheckRequestInfo
+                                            //{
+                                            //    barcode = TrayID,
+                                            //    ioType = "Mag",
+                                            //    location = $"S{CVNo}-{BufferNo.ToString().PadLeft(3, '0')}"
+                                            //};
+                                            //if (clsWcsApi.GetApiProcess().GetTrayReadyGoInform().FunReport(info))
+                                            //{
+                                            //    clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).SetReadReq();
+                                            //    //string CommandID = info_wcs.CmdSno;
+                                            //    ////填入Port
+                                            //    //if (clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).WriteCommandAndSetReadReqAsync(CommandID, 1, 20).Result)
+                                            //    //    //填入觸發的buffer
+                                            //    //    clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).WriteCommandAndSetReadReqAsync(CommandID, 1, 20);
+                                            //}
+                                        }
+                                    }
                             }
                             else
                             {
                                 BufferNo = 6 * i + 6;
-                            }
-                            int BcrBuffer = 6 * i + 1;
-                            var leaveCVBuffer = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo);
-                            var PortBuffer = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer);
-                            //string sCmdSno = leaveCVBuffer.CommandID;
-                            if (leaveCVBuffer.Presence && leaveCVBuffer.ReadBcrAck == 1 && leaveCVBuffer.ReadBcrReq_PC == 0 &&
-                                (!PortBuffer.Presence && string.IsNullOrWhiteSpace(PortBuffer.CommandID)))
-                            {
-                                
-                                string TrayID = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).GetTrayID.Trim();
-                                if (!string.IsNullOrWhiteSpace(TrayID))
+                                int BcrBuffer = 6 * i + 1;
+                                var leaveCVBuffer = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo);
+                                var PortBuffer = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer);
+                                //string sCmdSno = leaveCVBuffer.CommandID;
+                                if (leaveCVBuffer.Presence && leaveCVBuffer.ReadBcrAck == 1 && leaveCVBuffer.ReadBcrReq_PC == 0 &&
+                                    (!PortBuffer.Presence && string.IsNullOrWhiteSpace(PortBuffer.CommandID)))
                                 {
-                                    clsInitSys.FunWriTraceLog_CV($"<Position> S{CVNo}-{BufferNo.ToString().PadLeft(3, '0')} <Mag ID>{TrayID} => 準備離開");
-                                    BCRCheckRequestInfo info = new BCRCheckRequestInfo
+
+                                    string TrayID = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).GetTrayID.Trim();
+                                    if (!string.IsNullOrWhiteSpace(TrayID))
                                     {
-                                        barcode = TrayID,
-                                        ioType = "Mag",
-                                        location = $"S{CVNo}-{BufferNo.ToString().PadLeft(3, '0')}"
-                                    };
-                                    if (clsWcsApi.GetApiProcess().GetTrayReadyGoInform().FunReport(info))
-                                    {
-                                        clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).SetReadReq();
-                                        //string CommandID = info_wcs.CmdSno;
-                                        ////填入Port
-                                        //if (clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).WriteCommandAndSetReadReqAsync(CommandID, 1, 20).Result)
-                                        //    //填入觸發的buffer
-                                        //    clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).WriteCommandAndSetReadReqAsync(CommandID, 1, 20);
+                                        clsInitSys.FunWriTraceLog_Remark($"<Position> S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')} <Mag ID>{TrayID} => 準備離開");
+                                        BCRCheckRequestInfo info = new BCRCheckRequestInfo
+                                        {
+                                            barcode = TrayID,
+                                            ioType = "MAG",
+                                            location = $"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}"
+                                        };
+                                        //if (clsWcsApi.GetApiProcess().GetBcrChechRequest().FunReport(info))
+                                        {
+                                            clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).SetReadReq();
+                                        }
                                     }
                                 }
                             }
+                            
                         }
                     }
                 }

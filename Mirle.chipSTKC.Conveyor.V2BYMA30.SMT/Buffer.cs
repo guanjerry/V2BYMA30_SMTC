@@ -23,6 +23,7 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.SMT
         private clsEnum.WmsApi.EqSts _lastStatus = clsEnum.WmsApi.EqSts.StockOutOnly;
         private bool _lastPresence = false;
         private bool SentPos = false;
+        private bool askLeave = false;
         public BufferSignal Signal { get; }
         public bool GetSentPos()
         { 
@@ -31,6 +32,14 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.SMT
         public void SetSentPos(bool info)
         {
             SentPos = info;
+        }
+        public bool GetAskLeave()
+        {
+            return askLeave;
+        }
+        public void SetAskLeave(bool info)
+        {
+            askLeave = info;
         }
         public string CommandID
         {

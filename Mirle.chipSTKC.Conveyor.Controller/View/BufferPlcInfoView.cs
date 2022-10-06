@@ -107,7 +107,8 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                                 label_Start_Roll_Signal.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).StartRollAck.ToString();
                             if (TrayIndexBuffer.Contains(StnIdx))
                                 lblTrayID.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).GetTrayID;
-
+                            if (StnIdx == 1 || StnIdx == 7 || StnIdx == 13 || StnIdx == 19 || StnIdx == 25 || StnIdx == 31)
+                                lblTrayID.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).GetTrayID;
 
                             lblCmd_PC.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).CommandID_PC;
                             lblMode_PC.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).CommandMode_PC.ToString();

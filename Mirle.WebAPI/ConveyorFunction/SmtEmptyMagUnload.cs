@@ -1,5 +1,6 @@
 ﻿using Mirle.Def;
 using Mirle.WebAPI.ConveyorReportInfo;
+using Mirle.WebAPI.ReportInfo;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,28 +10,28 @@ using System.Threading.Tasks;
 
 namespace Mirle.WebAPI.ConveyorFunction
 {
-    public class UnknownBinLeaveInfo
+    public class SmtEmptyMagUnload
     {
         private WebApiConfig _config = new WebApiConfig();
 
-        public UnknownBinLeaveInfo(WebApiConfig Config)
+        public SmtEmptyMagUnload(WebApiConfig Config)
         {
             _config = Config;
         }
 
-        public bool FunReport(UnknownBinLeaveReport info, ref TrayEmpty_WCS info_wcs)
+        public bool FunReport(SmtEmptyMagUnloadInfo info)
         {
             try
             {
                 string strJson = JsonConvert.SerializeObject(info);
                 clsWriLog.Log.FunWriTraceLog_CV(strJson);
-                string sLink = $"http://{_config.IP}/UNKNOWN_BIN_LEAVE_INFO";
+                string sLink = $"http://{_config.IP}/WCS/SMTC_EMPTY_MAGAZINE_UNLOAD";
                 clsWriLog.Log.FunWriTraceLog_CV($"URL: {sLink}");
                 string re = clsTool.HttpPost(sLink, strJson);
                 clsWriLog.Log.FunWriTraceLog_CV(re);
-                info_wcs = (TrayEmpty_WCS)Newtonsoft.Json.Linq.JObject.Parse(re).ToObject(typeof(TrayEmpty_WCS));
-
-                return true;
+                ReturnMsgInfo info_wcs = (ReturnMsgInfo)Newtonsoft.Json.Linq.JObject.Parse(re).ToObject(typeof(ReturnMsgInfo));
+                if (info_wcs.returnCode == clsConstValue.ApiReturnCode.Success) return true;
+                else return false;
             }
             catch (Exception ex)
             {

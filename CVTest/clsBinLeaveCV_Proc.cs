@@ -64,7 +64,7 @@ namespace CVTest
                             {
                                 if (!string.IsNullOrWhiteSpace(sCmdSno) && leaveCVBuffer.GetSentPos() == false)
                                 {
-                                    clsInitSys.FunWriTraceLog_CV($"<任務號>{sCmdSno} => 抵達終點");
+                                    clsInitSys.FunWriTraceLog_Remark($"<任務號>{sCmdSno} => 抵達終點");
                                     PositionReport info = new PositionReport
                                     {
                                         jobId = sCmdSno,

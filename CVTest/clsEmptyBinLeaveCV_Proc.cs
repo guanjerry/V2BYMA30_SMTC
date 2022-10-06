@@ -46,22 +46,24 @@ namespace CVTest
                                 //string CommandID = "11111";
                                 if (!clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo).SetReadReq().Result)
                                 {
-                                    clsInitSys.FunWriTraceLog_CV("空箱離開...");
+                                    clsInitSys.FunWriTraceLog_Remark("空箱離開...");
                                 }
-                                //if (string.IsNullOrWhiteSpace(sCmdSno))
-                                //{
-                                //    UnknownBinLeaveReport info = new UnknownBinLeaveReport
-                                //    {
-                                //        position = $"S{CVNo}-{bufferNo}"
-                                //    };
-                                //    TrayEmpty_WCS info_wcs = new TrayEmpty_WCS();
-                                //    if (clsWcsApi.GetApiProcess().GetTrayEmptyInform().FunReport(info, ref info_wcs))
-                                //    {
-                                //        string CommandID = info_wcs.CmdSno;
-                                //        clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo).WriteCommandAsync(CommandID, 1, 10);
-                                //    }
-                                //}
+                                if (string.IsNullOrWhiteSpace(sCmdSno) && leaveCVBuffer.GetAskLeave() == false)
+                                {
+                                    UnknownBinLeaveReport info = new UnknownBinLeaveReport
+                                    {
+                                        position = $"S{CVNo}-{bufferNo}"
+                                    };
+                                    TrayEmpty_WCS info_wcs = new TrayEmpty_WCS();
+                                    if (clsWcsApi.GetApiProcess().GetTrayEmptyInform().FunReport(info, ref info_wcs))
+                                    {
+                                        clsInitSys.FunWriTraceLog_Remark($"<location> S{CVNo}-{bufferNo}  已呼叫空箱離開...");
+                                        clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo).SetAskLeave(true);
+                                    }
+                                }
                             }
+                            if (!leaveCVBuffer.Presence && leaveCVBuffer.GetAskLeave() == true)
+                                clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo).SetAskLeave(false);
                         }
                     }
                 }

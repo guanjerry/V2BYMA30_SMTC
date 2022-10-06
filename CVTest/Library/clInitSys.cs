@@ -405,7 +405,7 @@ namespace CVTest
         {
             try
             {
-                gobjLog.WriteLogFile("chipC_Trace_" + DateTime.Now.ToString("yyyyMMddHH") + ".log", sValue);
+                gobjLog.WriteLogFile("SMTC_Trace_" + DateTime.Now.ToString("yyyyMMddHH") + ".log", sValue);
             }
             catch (Exception ex)
             {
@@ -418,7 +418,7 @@ namespace CVTest
         {
             try
             {
-                gobjLog.WriteLogFile("chipC_Trace_Remark_" + DateTime.Now.ToString("yyyyMMddHH") + ".log", sValue);
+                gobjLog.WriteLogFile("SMTC_Trace_Remark_" + DateTime.Now.ToString("yyyyMMddHH") + ".log", sValue);
             }
             catch (Exception ex)
             {

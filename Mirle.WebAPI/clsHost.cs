@@ -14,19 +14,23 @@ namespace Mirle.WebAPI
         private WebApiConfig _config = new WebApiConfig();
         private AlarmHappenUpdate alarmHappenUpdate;
         private UnknownBinLeaveInfo trayEmptyInform;
-        private BCRCheckRequest trayLeaveInform;
+        private BCRCheckRequest bcrCheckRequest;
         private PositionReportFunc positionReportFunc;
         private RackAwayInform rackAwayInform;
-        private BCRCheckRequest bCRCheckRequest;
+        private SmtEmptyMagLoadRequest smtEmptyMagLoadRequest;
+        private SmtEmptyMagUnload smtEmptyMagUnload;
+        private SmtMagLoadRequest smtMagLoadRequest;
         public clsHost(WebApiConfig Config)
         {
             _config = Config;
             alarmHappenUpdate = new AlarmHappenUpdate(_config);
             trayEmptyInform = new UnknownBinLeaveInfo(_config);
-            trayLeaveInform = new BCRCheckRequest(_config);
+            bcrCheckRequest = new BCRCheckRequest(_config);
             positionReportFunc = new PositionReportFunc(_config);
             rackAwayInform = new RackAwayInform(_config);
-            bCRCheckRequest = new BCRCheckRequest(_config);
+            smtEmptyMagLoadRequest = new SmtEmptyMagLoadRequest(_config);
+            smtEmptyMagUnload = new SmtEmptyMagUnload(_config);
+            smtMagLoadRequest = new SmtMagLoadRequest(_config);
         }
 
         public AlarmHappenUpdate GetAlarmHappenUpdate()
@@ -37,9 +41,9 @@ namespace Mirle.WebAPI
         {
             return trayEmptyInform;
         }
-        public BCRCheckRequest GetTrayReadyGoInform()
+        public BCRCheckRequest GetBcrChechRequest()
         {
-            return trayLeaveInform;
+            return bcrCheckRequest;
         }
         public PositionReportFunc GetPositionReportFunc()
         {
@@ -49,9 +53,17 @@ namespace Mirle.WebAPI
         {
             return rackAwayInform;
         }
-        public BCRCheckRequest GetBCRCheckRequest()
+        public SmtEmptyMagLoadRequest GetEmptyMagLoadRequest()
         {
-            return bCRCheckRequest;
+            return smtEmptyMagLoadRequest;
+        }
+        public SmtEmptyMagUnload GetSmtEmptyMagUnload()
+        {
+            return smtEmptyMagUnload;
+        }
+        public SmtMagLoadRequest GetSmtMagLoadRequest()
+        {
+            return smtMagLoadRequest;
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Mirle.SMTCV;
 using Mirle.WebAPI.ReportInfo;
 using Mirle.WebAPI.ConveyorReportInfo;
+using Mirle.SMTCV.Conveyor.Controller.View;
 
 namespace CVTest
 {
@@ -41,28 +42,28 @@ namespace CVTest
                         var TrayID = stockInCV.GetTrayID.Trim();
                         if (!string.IsNullOrEmpty(TrayID))
                         {
-                            clsInitSys.FunWriTraceLog_CV("成功接收TrayID...");
+                            clsInitSys.FunWriTraceLog_Remark($"S0-{TrayBuffer.ToString().PadLeft(2, '0')}: 成功接收TrayID...");
                             BCRCheckRequestInfo bcrinfo = new BCRCheckRequestInfo
                             {
                                 location = "S0-03",
                                 barcode = TrayID
                             };
                             #region 測試
-                            if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(TrayBuffer).WriteCommandAndSetReadReqAsync("11111", 1, 10).Result)
+                            if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(TrayBuffer).SetReadReq().Result)
                             {
-                                string Remark = $"<TrayID> {TrayID}, leave start";
-                                clsInitSys.FunWriTraceLog_CV(Remark);
+                                string Remark = $"S0-{TrayBuffer.ToString().PadLeft(2, '0')}:<TrayID> {TrayID}, leave start";
+                                clsInitSys.FunWriTraceLog_Remark(Remark);
                             }
                             else
                             {
-                                string Remark = $"<Buffer> S0-03 fail to write to PLC...";
-                                clsInitSys.FunWriTraceLog_CV(Remark);
+                                string Remark = $"S0-{TrayBuffer.ToString().PadLeft(2, '0')}:<Buffer> S0-03 fail to write to PLC...";
+                                clsInitSys.FunWriTraceLog_Remark(Remark);
                             }
                             #endregion 測試
                             #region 正式
                             //if (clsWcsApi.GetApiProcess().GetBCRCheckRequest().FunReport(bcrinfo))
                             //{
-                            //    if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(TrayBuffer).WritePathAndReadReqAsync(10).Result)
+                            //    if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(TrayBuffer).SetReadReq().Result)
                             //    {
                             //        string Remark = $"<TrayID> {TrayID}, leave start";
                             //        clsInitSys.FunWriTraceLog_CV(Remark);

@@ -47,6 +47,8 @@ namespace CVTest
                             };
                             if (clsWcsApi.GetApiProcess().GetRackAwayInform().FunReport(info))
                             {
+                                string Remark = $"S0-{RackBuffer.ToString().PadLeft(2, '0')}: leave start";
+                                clsInitSys.FunWriTraceLog_Remark(Remark);
                                 RequestAway = true;
                             }
                         }

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Mirle.WebAPI.ConveyorReportInfo
 {
-    public class UnknownBinLeaveReport
+    public class SmtEmptyMagUnloadInfo
     {
         public string jobId { get; set; }
-        public string transactionId { get; set; } = "UNKNOWN_BIN_LEAVE_INFO";
-        public string position { get; set; }
+        public string transactionId { get; set; } = "SMTC_EMPTY_MAGAZINE_UNLOAD";
+        public string carrierId { get; set; }
+        public string location { get; set; }
     }
 }

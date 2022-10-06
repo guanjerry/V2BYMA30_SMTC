@@ -25,6 +25,7 @@ namespace CVTest
         public clsMagLeaveSMT_Proc _magLeaveSMT_Proc = new clsMagLeaveSMT_Proc();
         public clsCheckError_Proc _checkError_Proc = new clsCheckError_Proc();
         public clsEmptyRackLeave_Proc _emptyRackLeave_Proc = new clsEmptyRackLeave_Proc();
+        public clsMagCallNewSMT_Proc _magCallNewSMT_Proc = new clsMagCallNewSMT_Proc();
         private WebApiHost _webApiHost;
         private UnityContainer _unityContainer;
         private static System.Timers.Timer timRead = new System.Timers.Timer();
@@ -50,6 +51,7 @@ namespace CVTest
             _magLeaveSMT_Proc.subStart();
             _emptyRackLeave_Proc.subStart();
             _smtRack_Proc.subStart();
+            _magCallNewSMT_Proc.subStart();
             _unityContainer = new UnityContainer();
             _unityContainer.RegisterInstance(new WCSController());
             _webApiHost = new WebApiHost(new Startup(_unityContainer), clsInitSys.SMTC_Config.IP);

@@ -65,7 +65,7 @@ namespace Mirle.WebAPI.Event
                             throw new Exception(exMessage);
                         }
                         SpinWait.SpinUntil(() => false, 300);
-                        if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).StartRollAck != 1)
+                        if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).StartRollAck != 1)
                         {
                             string exMessage = $"<Buffer> {Body.bufferId} fail for PLC START ROLL...";
                             throw new Exception(exMessage);
@@ -126,6 +126,36 @@ namespace Mirle.WebAPI.Event
                                 if (!clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).WriteCommandAsync(Body.jobId, 2, 10).Result)
                                 {
                                     string exMessage = $"<Buffer> {Body.bufferId} fail to write Command Info...";
+                                    throw new Exception(exMessage);
+                                }
+                            }
+                            else
+                            {
+                                int agvPort = (bufferNo / 6);
+                                agvPort = (agvPort * 6) + 1;
+                                //AGV已有命令
+                                if (!string.IsNullOrWhiteSpace(clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(agvPort).CommandID))
+                                {
+                                    string exMessage = $"AGVPort <Buffer> {Body.bufferId} already have other command, FAIL to insert.";
+                                    throw new Exception(exMessage);
+                                }
+                                //定位已有命令
+                                if (!string.IsNullOrWhiteSpace(clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).CommandID))
+                                {
+                                    string exMessage = $"<Buffer> {Body.bufferId} already have other command, FAIL to insert.";
+                                    throw new Exception(exMessage);
+                                }
+                                if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(agvPort).WriteCommandAsync(Body.jobId, 2, 20).Result)
+                                {
+                                    if (!clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).WriteCommandAsync(Body.jobId, 2, 20).Result)
+                                    {
+                                        string exMessage = $"<Buffer> {Body.bufferId} fail to write Command Info...";
+                                        throw new Exception(exMessage);
+                                    }
+                                }
+                                else
+                                {
+                                    string exMessage = $"AGVPort <Buffer> {Body.bufferId} fail to write Command Info...";
                                     throw new Exception(exMessage);
                                 }
                             }
@@ -224,9 +254,9 @@ namespace Mirle.WebAPI.Event
                 {
                     if (clsSMTCVStart.GetControllerHost().GetS800Manager().IsConnected)
                     {
-                        readySts = clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).Ready.ToString();
-                        CmdSno = clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).CommandID;
-                        isLoad = clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).Presence;
+                        readySts = clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).Ready.ToString();
+                        CmdSno = clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).CommandID;
+                        isLoad = clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).Presence;
                     }
                     else
                     {

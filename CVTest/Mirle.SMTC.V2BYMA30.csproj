@@ -107,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsCVBinCheck_Proc.cs" />
+    <Compile Include="clsMagCallNewSMT_Proc.cs" />
     <Compile Include="clsSMTRack_Proc.cs" />
     <Compile Include="clsEmptyRackLeave_Proc.cs" />
     <Compile Include="clsCheckError_Proc.cs" />
