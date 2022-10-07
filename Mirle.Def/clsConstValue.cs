@@ -28,7 +28,17 @@ namespace Mirle.Def
             public const string LeftFork = "0001001";
             public const string RightFork = "0001002";
         }
-
+        public class Ready
+        {
+            public const int Leave = 1;
+            public const int Receive = 2;
+        }
+        public class carrierType
+        {
+            public const string Bin = "BIN";
+            public const string Mag = "MAG";
+            public const string Rack = "RACK";
+        }
         public class CmdSts
         {
             public const string Initial = "0";

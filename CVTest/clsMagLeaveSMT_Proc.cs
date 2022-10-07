@@ -36,13 +36,13 @@ namespace CVTest
                     {
                         if (clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).IsConnected)
                         {
+                            int BcrBuffer = 6 * i + 1;
+                            var PortBuffer = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer);
                             int BufferNo = 0;
                             if (CVNo % 2 == 1)
                             {
                                 BufferNo = 6 * i + 2;
-                                int BcrBuffer = 6 * i + 1;
                                 var leaveCVBuffer = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo);
-                                var PortBuffer = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer);
                                 //string sCmdSno = leaveCVBuffer.CommandID;
                                 if (leaveCVBuffer.Presence && (!PortBuffer.Presence && string.IsNullOrWhiteSpace(PortBuffer.CommandID)))
                                     if (leaveCVBuffer.ReadBcrAck == 1 && leaveCVBuffer.ReadBcrReq_PC == 0 )
@@ -50,7 +50,7 @@ namespace CVTest
                                         string TrayID = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).GetTrayID.Trim();
                                         if (!string.IsNullOrWhiteSpace(TrayID))
                                         {
-                                            clsInitSys.FunWriTraceLog_Remark($"<Position> S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')} <Mag ID>{TrayID} => 準備離開");
+                                            clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}: <Mag ID>{TrayID} => 準備離開");
                                             SmtEmptyMagUnloadInfo info = new SmtEmptyMagUnloadInfo
                                             {
                                                 carrierId = TrayID,
@@ -81,32 +81,43 @@ namespace CVTest
                             else
                             {
                                 BufferNo = 6 * i + 6;
-                                int BcrBuffer = 6 * i + 1;
                                 var leaveCVBuffer = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo);
-                                var PortBuffer = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer);
                                 //string sCmdSno = leaveCVBuffer.CommandID;
-                                if (leaveCVBuffer.Presence && leaveCVBuffer.ReadBcrAck == 1 && leaveCVBuffer.ReadBcrReq_PC == 0 &&
-                                    (!PortBuffer.Presence && string.IsNullOrWhiteSpace(PortBuffer.CommandID)))
+                                if (leaveCVBuffer.Presence && (!PortBuffer.Presence && string.IsNullOrWhiteSpace(PortBuffer.CommandID)))
                                 {
-
-                                    string TrayID = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).GetTrayID.Trim();
-                                    if (!string.IsNullOrWhiteSpace(TrayID))
+                                    if (leaveCVBuffer.ReadBcrAck == 1 && leaveCVBuffer.ReadBcrReq_PC == 0)
                                     {
-                                        clsInitSys.FunWriTraceLog_Remark($"<Position> S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')} <Mag ID>{TrayID} => 準備離開");
-                                        BCRCheckRequestInfo info = new BCRCheckRequestInfo
+                                        string TrayID = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).GetTrayID.Trim();
+                                        if (!string.IsNullOrWhiteSpace(TrayID))
                                         {
-                                            barcode = TrayID,
-                                            ioType = "MAG",
-                                            location = $"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}"
-                                        };
-                                        //if (clsWcsApi.GetApiProcess().GetBcrChechRequest().FunReport(info))
-                                        {
-                                            clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).SetReadReq();
+                                            clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}: <Mag ID>{TrayID} => 準備離開");
+                                            SmtEmptyMagUnloadInfo info = new SmtEmptyMagUnloadInfo
+                                            {
+                                                carrierId = TrayID,
+                                                location = $"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}"
+                                            };
+                                            //if (clsWcsApi.GetApiProcess().GetSmtEmptyMagUnload().FunReport(info))
+                                            {
+                                                clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetReadReq();
+                                            }
                                         }
                                     }
                                 }
                             }
-                            
+                            if (PortBuffer.Presence && PortBuffer.Ready == clsConstValue.Ready.Leave && !PortBuffer.GetSentPos())
+                            {
+                                clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}: <任務號>{PortBuffer.CommandID} => 抵達終點");
+                                PositionReport info = new PositionReport
+                                {
+                                    jobId = PortBuffer.CommandID,
+                                    carrierType = clsConstValue.carrierType.Mag,
+                                    position = $"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}"
+                                };
+                                if (clsWcsApi.GetApiProcess().GetPositionReportFunc().FunReport(info))
+                                    clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).SetSentPos(true);
+                            }
+                            if (!PortBuffer.Presence && PortBuffer.GetSentPos())
+                                clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).SetSentPos(false);
                         }
                     }
                 }

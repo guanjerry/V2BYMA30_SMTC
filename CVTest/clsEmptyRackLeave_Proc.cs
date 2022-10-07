@@ -47,12 +47,12 @@ namespace CVTest
                                 {
                                     RackAwayInfo info = new RackAwayInfo
                                     {
-                                        stagePosition = $"S{CVNo}-{bufferNo.ToString().PadLeft(3, '0')}",
+                                        stagePosition = $"S{CVNo}-{bufferNo.ToString().PadLeft(2, '0')}",
                                         rackId = "EMPTY"
                                     };
                                     if (clsWcsApi.GetApiProcess().GetRackAwayInform().FunReport(info))
                                     {
-                                        clsInitSys.FunWriTraceLog_Remark($"<Buffer> E2-S{CVNo}-{bufferNo.ToString().PadLeft(3, '0')} <RackID> 空料架 => 已送出離開請求");
+                                        clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{bufferNo.ToString().PadLeft(2, '0')}: <RackID> 空料架 => 已送出離開請求");
                                         SentPosition[i] = true;
                                     }
                                 }

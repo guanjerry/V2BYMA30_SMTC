@@ -59,14 +59,14 @@ namespace CVTest
                             {
                                 if (string.IsNullOrWhiteSpace(BufferNoCV.CommandID) && string.IsNullOrWhiteSpace(BufferDDCV.CommandID) && !BufferNoCV.GetAskLeave())
                                 {
-                                    clsInitSys.FunWriTraceLog_Remark($"<Position> S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')} 呼叫新Magazine...");
+                                    clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}: 呼叫新Magazine...");
                                     SmtMagLoadRequestInfo info = new SmtMagLoadRequestInfo
                                     {
                                         location = $"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}"
                                     };
                                     //if (clsWcsApi.GetApiProcess().GetSmtMagLoadRequest().FunReport(info))
                                     {
-                                        clsInitSys.FunWriTraceLog_Remark($"<location>S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')} ->已呼叫來料");
+                                        clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}: 已呼叫來料");
                                         clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetAskLeave(true);
                                     }
                                 }

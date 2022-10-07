@@ -44,11 +44,11 @@ namespace CVTest
                             if (leaveCVBuffer.Presence && leaveCVBuffer.Ready == (int)clsEnum.Ready.Leave && string.IsNullOrWhiteSpace(sCmdSno))
                             {
                                 //string CommandID = "11111";
-                                if (!clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo).SetReadReq().Result)
-                                {
-                                    clsInitSys.FunWriTraceLog_Remark("空箱離開...");
-                                }
-                                if (string.IsNullOrWhiteSpace(sCmdSno) && leaveCVBuffer.GetAskLeave() == false)
+                                //if (!clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo).SetReadReq().Result)
+                                //{
+                                //    clsInitSys.FunWriTraceLog_Remark("空箱離開...");
+                                //}
+                                if (string.IsNullOrWhiteSpace(sCmdSno) && !leaveCVBuffer.GetAskLeave())
                                 {
                                     UnknownBinLeaveReport info = new UnknownBinLeaveReport
                                     {
@@ -57,7 +57,7 @@ namespace CVTest
                                     TrayEmpty_WCS info_wcs = new TrayEmpty_WCS();
                                     if (clsWcsApi.GetApiProcess().GetTrayEmptyInform().FunReport(info, ref info_wcs))
                                     {
-                                        clsInitSys.FunWriTraceLog_Remark($"<location> S{CVNo}-{bufferNo}  已呼叫空箱離開...");
+                                        clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{bufferNo.ToString().PadLeft(2, '0')}: 已呼叫空箱離開...");
                                         clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo).SetAskLeave(true);
                                     }
                                 }

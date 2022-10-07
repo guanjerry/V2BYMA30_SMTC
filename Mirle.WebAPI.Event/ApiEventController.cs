@@ -131,7 +131,7 @@ namespace Mirle.WebAPI.Event
                             }
                             else
                             {
-                                int agvPort = (bufferNo / 6);
+                                int agvPort = ((bufferNo - 1)/ 6);
                                 agvPort = (agvPort * 6) + 1;
                                 //AGV已有命令
                                 if (!string.IsNullOrWhiteSpace(clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(agvPort).CommandID))

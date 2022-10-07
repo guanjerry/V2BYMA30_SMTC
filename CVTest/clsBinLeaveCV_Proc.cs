@@ -64,15 +64,18 @@ namespace CVTest
                             {
                                 if (!string.IsNullOrWhiteSpace(sCmdSno) && leaveCVBuffer.GetSentPos() == false)
                                 {
-                                    clsInitSys.FunWriTraceLog_Remark($"<任務號>{sCmdSno} => 抵達終點");
                                     PositionReport info = new PositionReport
                                     {
                                         jobId = sCmdSno,
-                                        carrierType = "Bin",
+                                        carrierType = "BIN",
                                         position = $"S{CVNo}-{bufferNo.ToString().PadLeft(2, '0')}"
                                     };
                                     if (clsWcsApi.GetApiProcess().GetPositionReportFunc().FunReport(info))
+                                    {
+                                        clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{bufferNo.ToString().PadLeft(2, '0')}: <任務號>{sCmdSno} => 抵達終點");
                                         clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo).SetSentPos(true);
+                                    }
+                                        
                                 }
                             }
                             if (!leaveCVBuffer.Presence && leaveCVBuffer.GetSentPos() == true)
