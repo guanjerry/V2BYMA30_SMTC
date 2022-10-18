@@ -56,7 +56,7 @@ namespace CVTest
                                                 carrierId = TrayID,
                                                 location = $"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}"
                                             };
-                                            //if (clsWcsApi.GetApiProcess().GetSmtEmptyMagUnload().FunReport(info))
+                                            if (clsWcsApi.GetApiProcess().GetSmtEmptyMagUnload().FunReport(info))
                                             {
                                                 clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetReadReq();
                                             }
@@ -91,12 +91,13 @@ namespace CVTest
                                         if (!string.IsNullOrWhiteSpace(TrayID))
                                         {
                                             clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}: <Mag ID>{TrayID} => 準備離開");
-                                            SmtEmptyMagUnloadInfo info = new SmtEmptyMagUnloadInfo
+                                            BCRCheckRequestInfo info = new BCRCheckRequestInfo
                                             {
-                                                carrierId = TrayID,
+                                                barcode = TrayID,
+                                                ioType = "MAG",
                                                 location = $"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}"
                                             };
-                                            //if (clsWcsApi.GetApiProcess().GetSmtEmptyMagUnload().FunReport(info))
+                                            if(clsWcsApi.GetApiProcess().GetBcrCheckRequest().FunReport(info))
                                             {
                                                 clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetReadReq();
                                             }

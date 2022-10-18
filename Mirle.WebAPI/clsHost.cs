@@ -20,6 +20,7 @@ namespace Mirle.WebAPI
         private SmtEmptyMagLoadRequest smtEmptyMagLoadRequest;
         private SmtEmptyMagUnload smtEmptyMagUnload;
         private SmtMagLoadRequest smtMagLoadRequest;
+        private EmptyBinLoadRequest emptyBinLoadRequest;
         public clsHost(WebApiConfig Config)
         {
             _config = Config;
@@ -31,6 +32,7 @@ namespace Mirle.WebAPI
             smtEmptyMagLoadRequest = new SmtEmptyMagLoadRequest(_config);
             smtEmptyMagUnload = new SmtEmptyMagUnload(_config);
             smtMagLoadRequest = new SmtMagLoadRequest(_config);
+            emptyBinLoadRequest = new EmptyBinLoadRequest(_config);
         }
 
         public AlarmHappenUpdate GetAlarmHappenUpdate()
@@ -41,7 +43,7 @@ namespace Mirle.WebAPI
         {
             return trayEmptyInform;
         }
-        public BCRCheckRequest GetBcrChechRequest()
+        public BCRCheckRequest GetBcrCheckRequest()
         {
             return bcrCheckRequest;
         }
@@ -53,7 +55,7 @@ namespace Mirle.WebAPI
         {
             return rackAwayInform;
         }
-        public SmtEmptyMagLoadRequest GetEmptyMagLoadRequest()
+        public SmtEmptyMagLoadRequest GetSmtEmptyMagLoadRequest()
         {
             return smtEmptyMagLoadRequest;
         }
@@ -64,6 +66,10 @@ namespace Mirle.WebAPI
         public SmtMagLoadRequest GetSmtMagLoadRequest()
         {
             return smtMagLoadRequest;
+        }
+        public EmptyBinLoadRequest GetEmptyBinLoadRequest()
+        {
+            return emptyBinLoadRequest;
         }
     }
 }

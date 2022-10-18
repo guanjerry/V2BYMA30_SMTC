@@ -62,12 +62,14 @@
     <Compile Include="clsHost.cs" />
     <Compile Include="clsTool.cs" />
     <Compile Include="clsWriLog.cs" />
+    <Compile Include="ConveyorFunction\EmptyBinLoadRequest.cs" />
     <Compile Include="ConveyorFunction\SmtMagLoadRequest.cs" />
     <Compile Include="ConveyorFunction\SmtEmptyMagUnload.cs" />
     <Compile Include="ConveyorFunction\SmtEmptyMagLoadRequest.cs" />
     <Compile Include="ConveyorFunction\RackAwayInform.cs" />
     <Compile Include="ConveyorFunction\BCRCheckRequest.cs" />
     <Compile Include="ConveyorFunction\UnknownBinLeaveInfo.cs" />
+    <Compile Include="ConveyorReportInfo\EmptyBinLoadRequestInfo.cs" />
     <Compile Include="ConveyorReportInfo\SmtEmptyMagLoadRequestInfo.cs" />
     <Compile Include="ConveyorReportInfo\SmtMagLoadRequestInfo.cs" />
     <Compile Include="ConveyorReportInfo\SmtEmptyMagUnloadInfo.cs" />
