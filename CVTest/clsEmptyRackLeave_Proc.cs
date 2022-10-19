@@ -48,7 +48,7 @@ namespace CVTest
                                     RackAwayInfo info = new RackAwayInfo
                                     {
                                         stagePosition = $"S{CVNo}-{bufferNo.ToString().PadLeft(2, '0')}",
-                                        rackId = "EMPTY"
+                                        rackId = "UNKNOWN"
                                     };
                                     if (clsWcsApi.GetApiProcess().GetRackAwayInform().FunReport(info))
                                     {
