@@ -34,46 +34,49 @@ namespace Mirle.WebAPI.Event
             {
                 int plcNo = Convert.ToInt32(Body.bufferId.Substring(1, 1));
                 int bufferNo = Convert.ToInt32(Body.bufferId.Substring(3, 2));
-                if (plcNo != 0)
+                if (bufferNo != 49 && bufferNo != 50)
                 {
-                    if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).IsConnected)
+                    if (plcNo != 0)
                     {
-                        if (!clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).SetStartRollAsync().Result)
+                        if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).IsConnected)
                         {
-                            string exMessage = $"<Buffer> {Body.bufferId} fail to write START ROLL...";
-                            throw new Exception(exMessage);
+                            if (!clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).SetStartRollAsync().Result)
+                            {
+                                string exMessage = $"<Buffer> {Body.bufferId} fail to write START ROLL...";
+                                throw new Exception(exMessage);
+                            }
+                            SpinWait.SpinUntil(() => false, 300);
+                            if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).StartRollAck != 1)
+                            {
+                                string exMessage = $"<Buffer> {Body.bufferId} fail for PLC START ROLL...";
+                                throw new Exception(exMessage);
+                            }
                         }
-                        SpinWait.SpinUntil(() => false, 300);
-                        if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).StartRollAck != 1)
+                        else
                         {
-                            string exMessage = $"<Buffer> {Body.bufferId} fail for PLC START ROLL...";
-                            throw new Exception(exMessage);
+                            throw new Exception($"<{Body.jobId}>BUFFER_ROLL_INFO <PLC>{plcNo} not connected!!!");
                         }
                     }
                     else
                     {
-                        throw new Exception($"<{Body.jobId}>BUFFER_ROLL_INFO <PLC>{plcNo} not connected!!!");
-                    }
-                }
-                else
-                {
-                    if (clsSMTCVStart.GetControllerHost().GetS800Manager().IsConnected)
-                    {
-                        if (!clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).SetStartRollAsync().Result)
+                        if (clsSMTCVStart.GetControllerHost().GetS800Manager().IsConnected)
                         {
-                            string exMessage = $"<Buffer> {Body.bufferId} fail to write START ROLL...";
-                            throw new Exception(exMessage);
+                            if (!clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).SetStartRollAsync().Result)
+                            {
+                                string exMessage = $"<Buffer> {Body.bufferId} fail to write START ROLL...";
+                                throw new Exception(exMessage);
+                            }
+                            SpinWait.SpinUntil(() => false, 300);
+                            if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).StartRollAck != 1)
+                            {
+                                string exMessage = $"<Buffer> {Body.bufferId} fail for PLC START ROLL...";
+                                throw new Exception(exMessage);
+                            }
                         }
-                        SpinWait.SpinUntil(() => false, 300);
-                        if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).StartRollAck != 1)
+                        else
                         {
-                            string exMessage = $"<Buffer> {Body.bufferId} fail for PLC START ROLL...";
-                            throw new Exception(exMessage);
+                            throw new Exception($"<{Body.jobId}>BUFFER_ROLL_INFO <PLC>{plcNo} not connected!!!");
                         }
-                    }
-                    else
-                    {
-                        throw new Exception($"<{Body.jobId}>BUFFER_ROLL_INFO <PLC>{plcNo} not connected!!!");
                     }
                 }
                 rMsg.returnCode = clsConstValue.ApiReturnCode.Success;
