@@ -56,25 +56,10 @@ namespace CVTest
                                                 carrierId = TrayID,
                                                 location = $"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}"
                                             };
-                                            if (clsWcsApi.GetApiProcess().GetSmtEmptyMagUnload().FunReport(info))
+                                            //if (clsWcsApi.GetApiProcess().GetSmtEmptyMagUnload().FunReport(info))
                                             {
                                                 clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetReadReq();
                                             }
-                                            //BCRCheckRequestInfo info = new BCRCheckRequestInfo
-                                            //{
-                                            //    barcode = TrayID,
-                                            //    ioType = "Mag",
-                                            //    location = $"S{CVNo}-{BufferNo.ToString().PadLeft(3, '0')}"
-                                            //};
-                                            //if (clsWcsApi.GetApiProcess().GetTrayReadyGoInform().FunReport(info))
-                                            //{
-                                            //    clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).SetReadReq();
-                                            //    //string CommandID = info_wcs.CmdSno;
-                                            //    ////填入Port
-                                            //    //if (clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).WriteCommandAndSetReadReqAsync(CommandID, 1, 20).Result)
-                                            //    //    //填入觸發的buffer
-                                            //    //    clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).WriteCommandAndSetReadReqAsync(CommandID, 1, 20);
-                                            //}
                                         }
                                     }
                             }
@@ -97,7 +82,7 @@ namespace CVTest
                                                 ioType = "MAG",
                                                 location = $"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}"
                                             };
-                                            if(clsWcsApi.GetApiProcess().GetBcrCheckRequest().FunReport(info))
+                                            //if(clsWcsApi.GetApiProcess().GetBcrCheckRequest().FunReport(info))
                                             {
                                                 clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetReadReq();
                                             }

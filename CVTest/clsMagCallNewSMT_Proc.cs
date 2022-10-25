@@ -66,7 +66,7 @@ namespace CVTest
                                         {
                                             location = $"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}"
                                         };
-                                        if (clsWcsApi.GetApiProcess().GetSmtEmptyMagLoadRequest().FunReport(info))
+                                        //if (clsWcsApi.GetApiProcess().GetSmtEmptyMagLoadRequest().FunReport(info))
                                         {
                                             clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}: 已呼叫空Mag來料");
                                             clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetAskLeave(true);
@@ -78,7 +78,7 @@ namespace CVTest
                                         {
                                             location = $"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}"
                                         };
-                                        if (clsWcsApi.GetApiProcess().GetSmtMagLoadRequest().FunReport(info))
+                                        //if (clsWcsApi.GetApiProcess().GetSmtMagLoadRequest().FunReport(info))
                                         {
                                             clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}: 已呼叫實Mag來料");
                                             clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetAskLeave(true);
@@ -91,6 +91,7 @@ namespace CVTest
                                 clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetAskLeave(false);
                             }
                         }
+                        SpinWait.SpinUntil(() => false, 50);
                     }
                 }
                 SpinWait.SpinUntil(() => false, 10);

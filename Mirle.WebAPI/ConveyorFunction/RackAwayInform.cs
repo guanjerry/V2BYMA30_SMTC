@@ -25,7 +25,7 @@ namespace Mirle.WebAPI.ConveyorFunction
             {
                 string strJson = JsonConvert.SerializeObject(info);
                 clsWriLog.Log.FunWriTraceLog_CV(strJson);
-                string sLink = $"http://{_config.IP}/RACK_AWAY_INFORM";
+                string sLink = $"http://{_config.IP}/WCS/RACK_AWAY_INFO";
                 clsWriLog.Log.FunWriTraceLog_CV($"URL: {sLink}");
                 string re = clsTool.HttpPost(sLink, strJson);
                 clsWriLog.Log.FunWriTraceLog_CV(re);
