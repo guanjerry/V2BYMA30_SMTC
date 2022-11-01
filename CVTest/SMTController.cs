@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Mirle.Def;
@@ -188,21 +189,25 @@ namespace CVTest
 
         private void BTN_S1_Click(object sender, EventArgs e)
         {
+            btnColorSet(BTN_S1);
             clsSMTCVStart.GetMainView_Object().SetCurController(0);
         }
 
         private void BTN_S2_Click(object sender, EventArgs e)
         {
+            btnColorSet(BTN_S2);
             clsSMTCVStart.GetMainView_Object().SetCurController(1);
         }
 
         private void BTN_S3_Click(object sender, EventArgs e)
         {
+            btnColorSet(BTN_S3);
             clsSMTCVStart.GetMainView_Object().SetCurController(2);
         }
 
         private void BTN_S4_Click(object sender, EventArgs e)
         {
+            btnColorSet(BTN_S4);
             clsSMTCVStart.GetMainView_Object().SetCurController(3);
         }
 
@@ -218,7 +223,18 @@ namespace CVTest
 
         private void BTN_S800_Click(object sender, EventArgs e)
         {
+            btnColorSet(BTN_S800);
             clsSMTCVStart.GetMainView_Object().SetCurController(6);
+        }
+
+        private void btnColorSet(Button button1)
+        {
+            var buttons = this.tableLayoutPanel1.Controls.OfType<Button>();
+            foreach (Button btn in buttons)
+            {
+                btn.BackColor = Color.LightBlue;
+            }
+            button1.BackColor = Color.SteelBlue;
         }
     }
 }
