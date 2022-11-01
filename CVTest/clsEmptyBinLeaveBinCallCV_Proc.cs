@@ -14,11 +14,11 @@ using System.ComponentModel.Design;
 namespace CVTest
 {
     //39,43,47
-    public class clsEmptyBinLeaveCV_Proc
+    public class clsEmptyBinLeaveBinCallCV_Proc
     {
         private System.Timers.Timer timRead = new System.Timers.Timer();
         //private int EmptyCount = 0;
-        public clsEmptyBinLeaveCV_Proc()
+        public clsEmptyBinLeaveBinCallCV_Proc()
         {
             timRead.Elapsed += new System.Timers.ElapsedEventHandler(timRead_Elapsed);
             timRead.Enabled = false; timRead.Interval = 500;
@@ -36,6 +36,7 @@ namespace CVTest
                 {
                     for (int i = 0; i <= 2; i++)
                     {
+                        //BinLeaveAsk
                         int bufferNo = 39 + 4 * i;
                         if (clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).IsConnected)
                         {
@@ -64,6 +65,31 @@ namespace CVTest
                             }
                             if (!leaveCVBuffer.Presence && leaveCVBuffer.GetAskLeave() == true)
                                 clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo).SetAskLeave(false);
+                        }
+
+                        //BinComeCall
+                        bufferNo = 38 + 4 * i;
+                        if (clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).IsConnected)
+                        {
+                            var CallCVBuffer = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo);
+                            int CallBin = CallCVBuffer.EmptyBinCall;
+                            int CallBin_PC = CallCVBuffer.EmptyBinCall_PC;
+                            if (CallBin > 0 && CallBin_PC == 0)
+                            {
+                                if (!CallCVBuffer.GetSentPos())
+                                {
+                                    EmptyBinLoadRequestInfo info = new EmptyBinLoadRequestInfo
+                                    {
+                                        jobId = "EMPTY" + DateTime.Now.ToString("yyyyMMddHHmmssfff"),
+                                        location = $"S{CVNo}-{bufferNo}",
+                                        reqQty = CallBin
+                                    };
+                                    if (clsWcsApi.GetApiProcess().GetEmptyBinLoadRequest().FunReport(info))
+                                    {
+                                        clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo).SetSentPos(true);
+                                    }
+                                }
+                            }
                         }
                     }
                 }

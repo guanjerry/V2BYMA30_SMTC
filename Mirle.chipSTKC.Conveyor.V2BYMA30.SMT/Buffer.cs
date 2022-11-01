@@ -6,6 +6,7 @@ using System.Reflection;
 using Mirle.SMTCV.Conveyor.Config;
 using System.Threading.Tasks;
 using Mirle.Def;
+using System.Diagnostics.Eventing.Reader;
 
 namespace Mirle.SMTCV.Conveyor.V2BYMA30.SMT
 {
@@ -24,6 +25,8 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.SMT
         private bool _lastPresence = false;
         private bool SentPos = false;
         private bool askLeave = false;
+        private DateTime SentTime;
+        private bool NGCheck = false;
         public BufferSignal Signal { get; }
         public bool GetSentPos()
         { 
@@ -40,6 +43,27 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.SMT
         public void SetAskLeave(bool info)
         {
             askLeave = info;
+        }
+        public bool GetNGCheck()
+        {
+            return NGCheck;
+        }
+        public void SetNGCheck(bool info)
+        {
+            NGCheck = info;
+        }
+        public void SetNGCheckWithTime(bool info, DateTime timeInfo)
+        {
+            NGCheck = info;
+            SentTime = timeInfo;
+        }
+        public DateTime GetRecordTime()
+        {
+            return SentTime;
+        }
+        public void SetRecordTime(DateTime info)
+        {
+            SentTime = info;
         }
         public string CommandID
         {
@@ -63,6 +87,8 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.SMT
         public int CommandMode_PC => Signal.Controller.CommandMode.GetValue();
         public int PathNotice => Signal.PathNotice.GetValue();
         public int PathNotice_PC => Signal.Controller.PathNotice.GetValue();
+        public int EmptyBinCall => Signal.EmptyBinCall.GetValue();
+        public int EmptyBinCall_PC => Signal.Controller.EmptyBinCall.GetValue();
         public int Ready => Signal.Ready.GetValue();
         public int ReadBcrAck => Signal.AckSignal.ReadBcrSignal.GetValue();
         public int ReadBcrReq_PC => Signal.RequestController.ReadBcrDoneAck.GetValue();
@@ -215,7 +241,24 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.SMT
                 }
             });
         }
+        public Task<bool> WriteEmptyBinDone(int doneBin)
+        {
+            return Task.Run(() =>
+            {
+                try
+                {
+                    Signal.Controller.EmptyBinCall.SetValue(doneBin);
 
+                    Task.Delay(500).Wait();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    _LoggerService.WriteExceptionLog(MethodBase.GetCurrentMethod(), $"{ex.Message}\n{ex.StackTrace}");
+                    return false;
+                }
+            });
+        }
 
         public Task<bool> SetStartRollAsync()
         {

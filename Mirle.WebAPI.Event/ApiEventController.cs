@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Mirle.WebAPI.Event.Model;
 using Mirle.SMTCVStart;
 using System.Threading;
+using static Mirle.Def.clsConstValue;
 
 namespace Mirle.WebAPI.Event
 {
@@ -120,7 +121,8 @@ namespace Mirle.WebAPI.Event
                         {
                             if (bufferNo % 6 == 1)
                             {
-                                if (!string.IsNullOrWhiteSpace(clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).CommandID))
+                                if (!string.IsNullOrWhiteSpace(clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).CommandID) ||
+                                    !string.IsNullOrWhiteSpace(clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).CommandID_PC))
                                 {
                                     string exMessage = $"<Buffer> {Body.bufferId} already have other command, FAIL to insert.";
                                     throw new Exception(exMessage);
@@ -273,6 +275,54 @@ namespace Mirle.WebAPI.Event
                 rMsg.returnComment = "";
                 clsWriLog.FunWriTraceLog_CV($"<BUFFER_STATUS_QUERY> <Reply Send>\n{JsonConvert.SerializeObject(rMsg)}");
                 clsWriLog.FunWriTraceLog_CV($"<{Body.jobId}>BUFFER_STATUS_QUERY record end!");
+                return Json(rMsg);
+            }
+            catch (Exception ex)
+            {
+                rMsg.returnCode = clsConstValue.ApiReturnCode.Fail;
+                rMsg.returnComment = ex.Message;
+
+                var cmet = System.Reflection.MethodBase.GetCurrentMethod();
+                clsWriLog.subWriteExLog(cmet.DeclaringType.FullName + "." + cmet.Name, ex.Message);
+                return Json(rMsg);
+            }
+        }
+
+        [Route("SMTC/EMPTY_BIN_LOAD_DONE")]
+        [HttpPost]
+        public IHttpActionResult EMPTY_BIN_LOAD_DONE([FromBody] EmptyBinLoadDoneInfo Body)
+        {
+            clsWriLog.FunWriTraceLog_CV($"<EMPTY_BIN_LOAD_DONE> <WCS Send>\n{JsonConvert.SerializeObject(Body)}");
+            ReturnCode rMsg = new ReturnCode
+            {
+                jobId = Body.jobId,
+                transactionId = Body.transactionId
+            };
+            clsWriLog.FunWriTraceLog_CV($"<{Body.jobId}>EMPTY_BIN_LOAD_DONE record start!");
+            try
+            {
+
+                int plcNo = Convert.ToInt32(Body.location.Substring(1, 1));
+                int bufferNo = Convert.ToInt32(Body.location.Substring(3, 2));
+                if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).IsConnected)
+                {
+                    var CallCVBuffer = clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo);
+                    int CallBin = CallCVBuffer.EmptyBinCall;
+                    int CallBin_PC = CallCVBuffer.EmptyBinCall_PC;
+                    if (CallBin > CallBin_PC)
+                    {
+                        if (!clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).WriteEmptyBinDone(CallBin_PC + 1).Result)
+                            throw new Exception($"<{Body.jobId}>EMPTY_BIN_LOAD_DONE <location>{Body.location} fail to write!!!");
+                    }
+                }
+                else
+                {
+                    throw new Exception($"<{Body.jobId}>EMPTY_BIN_LOAD_DONE <PLC>{plcNo} not connected!!!");
+                }
+                rMsg.returnCode = clsConstValue.ApiReturnCode.Success;
+                rMsg.returnComment = "";
+                clsWriLog.FunWriTraceLog_CV($"<EMPTY_BIN_LOAD_DONE> <Reply Send>\n{JsonConvert.SerializeObject(rMsg)}");
+                clsWriLog.FunWriTraceLog_CV($"<{Body.jobId}>EMPTY_BIN_LOAD_DONE record end!");
                 return Json(rMsg);
             }
             catch (Exception ex)

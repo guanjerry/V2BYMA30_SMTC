@@ -93,6 +93,11 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.SMT.Signal
                 bufferSignal.Ready = new Word(_mplc, $"D{startAddress + offset + 4}");
                 bufferSignal.AckSignal.ReadBcrSignal = new Word(_mplc, $"D{startAddress + offset + 5}");
                 bufferSignal.PathNotice = new Word(_mplc, $"D{startAddress + offset + 6}");
+
+                if (i == 38 || i == 42 || i == 46)
+                {
+                    bufferSignal.EmptyBinCall = new Word(_mplc, $"D{startAddress + offset + 8}");
+                }
                 if (i == 37 || i == 40 || i == 41 || i == 44 || i == 45 || i == 48 ||
                     i == 1 || i == 7 || i == 13 || i == 19 || i == 25 || i == 31)
                 {
@@ -149,8 +154,12 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.SMT.Signal
                 //End with 6
                 bufferSignal.Controller.PathNotice = new Word(_mplc, $"D{controllerStartAddress + offset + 6}");
                 //End with 7
-                
+
                 //End with 8
+                if (i == 38 || i == 42 || i == 46)
+                {
+                    bufferSignal.Controller.EmptyBinCall = new Word(_mplc, $"D{controllerStartAddress + offset + 8}");
+                }
                 //if (i == 9)
                 //    bufferSignal.RequestController.PickStartRequest = new Word(_mplc, $"D{controllerStartAddress + offset + 8}");
                 //End with 9

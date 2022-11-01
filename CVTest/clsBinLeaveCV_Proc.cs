@@ -35,27 +35,10 @@ namespace CVTest
             {
                 for (int CVNo = 1; CVNo <= 4; CVNo++)
                 {
-                    //Mag要到8
                     for (int i = 0; i <= 2; i ++)
                     {
-                        int bufferNo = 0;
-                        //Bin
-                        if (i < 3)
-                        {
-                            if (CVNo % 2 == 1)
-                            {
-                                bufferNo = 40 + 4 * i;
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                        }
-                        //Mag
-                        else
-                        {
-                            bufferNo = 1 + 6 * (i - 3);
-                        }
+                        //上報離開
+                        int bufferNo = 40 + 4 * i;
                         if (clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).IsConnected)
                         {
                             var leaveCVBuffer = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo);

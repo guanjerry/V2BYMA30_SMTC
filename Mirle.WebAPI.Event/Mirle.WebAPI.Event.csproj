@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="ApiEventController.cs" />
     <Compile Include="Model\AGVTestMoveTaskInfo.cs" />
+    <Compile Include="Model\EmptyBinLoadDoneInfo.cs" />
     <Compile Include="Model\ReceiveNewBinInfo.cs" />
     <Compile Include="Model\PutawayTransferInfo.cs" />
     <Compile Include="ReplyModel\BlockListReply.cs" />

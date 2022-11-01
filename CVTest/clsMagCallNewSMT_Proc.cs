@@ -54,47 +54,64 @@ namespace CVTest
                                 continue;
                             var BufferNoCV = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo);
                             var BufferDDCV = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferDD);
-                            //string sCmdSno = leaveCVBuffer.CommandID;
-                            if (!BufferNoCV.Presence && !BufferDDCV.Presence)
+                            if (!BufferNoCV.GetNGCheck() || 
+                                (BufferNoCV.GetNGCheck() && ((DateTime.Now - BufferNoCV.GetRecordTime()).Minutes >= 5)))
                             {
-                                if (string.IsNullOrWhiteSpace(BufferNoCV.CommandID) && string.IsNullOrWhiteSpace(BufferDDCV.CommandID) && !BufferNoCV.GetAskLeave())
+                                if (!BufferNoCV.Presence && !BufferDDCV.Presence)
                                 {
-                                    clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}: 呼叫新Magazine...");
-                                    if (CVNo % 2 == 1)
+                                    if (string.IsNullOrWhiteSpace(BufferNoCV.CommandID) && string.IsNullOrWhiteSpace(BufferDDCV.CommandID) && !BufferNoCV.GetAskLeave())
                                     {
-                                        SmtEmptyMagLoadRequestInfo info = new SmtEmptyMagLoadRequestInfo
+                                        clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}: 呼叫新Magazine...");
+                                        if (CVNo % 2 == 1)
                                         {
-                                            location = $"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}"
-                                        };
-                                        //if (clsWcsApi.GetApiProcess().GetSmtEmptyMagLoadRequest().FunReport(info))
-                                        {
-                                            clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}: 已呼叫空Mag來料");
-                                            clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetAskLeave(true);
+                                            SmtEmptyMagLoadRequestInfo info = new SmtEmptyMagLoadRequestInfo
+                                            {
+                                                location = $"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}"
+                                            };
+                                            if (clsWcsApi.GetApiProcess().GetSmtEmptyMagLoadRequest().FunReport(info))
+                                            {
+                                                clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}: 已呼叫空Mag來料");
+                                                clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetAskLeave(true);
+                                            }
+                                            else
+                                            {
+                                                clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}: 空Mag來料呼叫失敗");
+                                                clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetNGCheckWithTime(true, DateTime.Now);
+                                            }
                                         }
-                                    }
-                                    else
-                                    {
-                                        SmtMagLoadRequestInfo info = new SmtMagLoadRequestInfo
+                                        else
                                         {
-                                            location = $"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}"
-                                        };
-                                        //if (clsWcsApi.GetApiProcess().GetSmtMagLoadRequest().FunReport(info))
-                                        {
-                                            clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}: 已呼叫實Mag來料");
-                                            clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetAskLeave(true);
+                                            SmtMagLoadRequestInfo info = new SmtMagLoadRequestInfo
+                                            {
+                                                location = $"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}"
+                                            };
+                                            if (clsWcsApi.GetApiProcess().GetSmtMagLoadRequest().FunReport(info))
+                                            {
+                                                clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}: 已呼叫實Mag來料");
+                                                clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetAskLeave(true);
+                                            }
+                                            else
+                                            {
+                                                clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}: 實Mag來料呼叫失敗");
+                                                clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetNGCheckWithTime(true, DateTime.Now);
+                                            }
                                         }
                                     }
                                 }
                             }
+                            
                             if (BufferNoCV.Presence && BufferNoCV.GetAskLeave())
                             {
                                 clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetAskLeave(false);
+                            }
+                            if (BufferNoCV.Presence && BufferNoCV.GetNGCheck())
+                            {
+                                clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetNGCheck(false);
                             }
                         }
                         SpinWait.SpinUntil(() => false, 50);
                     }
                 }
-                SpinWait.SpinUntil(() => false, 10);
             }
             catch (Exception ex)
             {

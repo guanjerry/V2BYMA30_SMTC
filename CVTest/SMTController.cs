@@ -20,7 +20,7 @@ namespace CVTest
         //Mag掃描
         public clsBinLeaveCV_Proc _binLeaveCV_Procs = new clsBinLeaveCV_Proc();
         public clsCVBinCheck_Proc _cvBinCheck_Proc = new clsCVBinCheck_Proc();
-        public clsEmptyBinLeaveCV_Proc _emptyBinLeaveCV_Proc = new clsEmptyBinLeaveCV_Proc();
+        public clsEmptyBinLeaveBinCallCV_Proc _emptyBinLeaveCV_Proc = new clsEmptyBinLeaveBinCallCV_Proc();
         public clsSMTRack_Proc _smtRack_Proc = new clsSMTRack_Proc();
         public clsMagLeaveSMT_Proc _magLeaveSMT_Proc = new clsMagLeaveSMT_Proc();
         public clsCheckError_Proc _checkError_Proc = new clsCheckError_Proc();

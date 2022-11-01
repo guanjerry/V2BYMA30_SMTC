@@ -106,13 +106,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsCallNewBinCV_Proc.cs" />
     <Compile Include="clsCVBinCheck_Proc.cs" />
     <Compile Include="clsMagCallNewSMT_Proc.cs" />
     <Compile Include="clsSMTRack_Proc.cs" />
     <Compile Include="clsEmptyRackLeave_Proc.cs" />
     <Compile Include="clsCheckError_Proc.cs" />
-    <Compile Include="clsEmptyBinLeaveCV_Proc.cs" />
+    <Compile Include="clsEmptyBinLeaveBinCallCV_Proc.cs" />
     <Compile Include="clsMagLeaveSMT_Proc.cs" />
     <Compile Include="clsBinLeaveCV_Proc.cs" />
     <Compile Include="SMTController.cs">
