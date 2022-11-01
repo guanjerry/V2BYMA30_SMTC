@@ -67,10 +67,12 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                     if (_cvcHost.GetCVCManager(CurController + 1).IsConnected)
                     {
                         lblPLCConnSts.BackColor = Color.Lime;
+                        lblPLCConnSts.Text = "Connected";
                     }
                     else
                     {
                         lblPLCConnSts.BackColor = Color.Red;
+                        lblPLCConnSts.Text = "Disconnected";
                     }
                 }
                 else
@@ -79,10 +81,12 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                     if (_cvcHost.GetS800Manager().IsConnected)
                     {
                         lblPLCConnSts.BackColor = Color.Lime;
+                        lblPLCConnSts.Text = "Connected";
                     }
                     else
                     {
                         lblPLCConnSts.BackColor = Color.Red;
+                        lblPLCConnSts.Text = "Disconnected";
                     }
                 }
             }

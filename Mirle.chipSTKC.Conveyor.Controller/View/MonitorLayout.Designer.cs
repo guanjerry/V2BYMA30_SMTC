@@ -92,31 +92,37 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.label1, 3);
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(1095, 0);
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(965, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 19);
+            this.label1.Size = new System.Drawing.Size(105, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label2
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.label2, 3);
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(633, 0);
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(558, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 19);
+            this.label2.Size = new System.Drawing.Size(105, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "label1";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label3
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.label3, 3);
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(171, 0);
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(151, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 19);
+            this.label3.Size = new System.Drawing.Size(105, 20);
             this.label3.TabIndex = 1;
             this.label3.Text = "label1";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // refresherTimer
             // 
@@ -124,6 +130,7 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.tableLayoutPanel1.ColumnCount = 33;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.030302F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.030302F));
@@ -214,17 +221,19 @@
             this.tableLayoutPanel1.Controls.Add(this.label1, 26, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 8;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.777778F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.88889F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.88889F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.88889F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.88889F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.88889F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.88889F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.88889F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1400, 696);
+            this.tableLayoutPanel1.RowCount = 9;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.523489F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.9821F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.9821F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.9821F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.9821F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.060402F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.9821F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.9821F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 3.523489F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1244, 580);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // ucl34
@@ -248,7 +257,7 @@
             this.ucl34.InitialNotice = 0;
             this.ucl34.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl34.LoadColor = System.Drawing.Color.White;
-            this.ucl34.Location = new System.Drawing.Point(84, 19);
+            this.ucl34.Location = new System.Drawing.Point(74, 20);
             this.ucl34.Margin = new System.Windows.Forms.Padding(0);
             this.ucl34.Name = "ucl34";
             this.ucl34.PathNotice = 0;
@@ -258,7 +267,7 @@
             this.ucl34.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl34.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl34.ReadyColor = System.Drawing.Color.White;
-            this.ucl34.Size = new System.Drawing.Size(84, 96);
+            this.ucl34.Size = new System.Drawing.Size(74, 81);
             this.ucl34.TabIndex = 0;
             this.ucl34.Visible = false;
             // 
@@ -283,7 +292,7 @@
             this.ucl49.InitialNotice = 0;
             this.ucl49.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl49.LoadColor = System.Drawing.Color.White;
-            this.ucl49.Location = new System.Drawing.Point(1218, 499);
+            this.ucl49.Location = new System.Drawing.Point(1073, 396);
             this.ucl49.Margin = new System.Windows.Forms.Padding(0);
             this.ucl49.Name = "ucl49";
             this.ucl49.PathNotice = 0;
@@ -293,7 +302,7 @@
             this.ucl49.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl49.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl49.ReadyColor = System.Drawing.Color.White;
-            this.ucl49.Size = new System.Drawing.Size(84, 96);
+            this.ucl49.Size = new System.Drawing.Size(74, 81);
             this.ucl49.TabIndex = 0;
             this.ucl49.Visible = false;
             // 
@@ -318,7 +327,7 @@
             this.ucl40.InitialNotice = 0;
             this.ucl40.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl40.LoadColor = System.Drawing.Color.White;
-            this.ucl40.Location = new System.Drawing.Point(1092, 595);
+            this.ucl40.Location = new System.Drawing.Point(962, 477);
             this.ucl40.Margin = new System.Windows.Forms.Padding(0);
             this.ucl40.Name = "ucl40";
             this.ucl40.PathNotice = 0;
@@ -328,7 +337,7 @@
             this.ucl40.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl40.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl40.ReadyColor = System.Drawing.Color.White;
-            this.ucl40.Size = new System.Drawing.Size(84, 101);
+            this.ucl40.Size = new System.Drawing.Size(74, 81);
             this.ucl40.TabIndex = 0;
             this.ucl40.Visible = false;
             // 
@@ -353,7 +362,7 @@
             this.ucl4.InitialNotice = 0;
             this.ucl4.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl4.LoadColor = System.Drawing.Color.White;
-            this.ucl4.Location = new System.Drawing.Point(1218, 19);
+            this.ucl4.Location = new System.Drawing.Point(1073, 20);
             this.ucl4.Margin = new System.Windows.Forms.Padding(0);
             this.ucl4.Name = "ucl4";
             this.ucl4.PathNotice = 0;
@@ -363,7 +372,7 @@
             this.ucl4.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl4.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl4.ReadyColor = System.Drawing.Color.White;
-            this.ucl4.Size = new System.Drawing.Size(84, 96);
+            this.ucl4.Size = new System.Drawing.Size(74, 81);
             this.ucl4.TabIndex = 0;
             this.ucl4.Visible = false;
             // 
@@ -388,7 +397,7 @@
             this.ucl37.InitialNotice = 0;
             this.ucl37.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl37.LoadColor = System.Drawing.Color.White;
-            this.ucl37.Location = new System.Drawing.Point(1008, 595);
+            this.ucl37.Location = new System.Drawing.Point(888, 477);
             this.ucl37.Margin = new System.Windows.Forms.Padding(0);
             this.ucl37.Name = "ucl37";
             this.ucl37.PathNotice = 0;
@@ -398,7 +407,7 @@
             this.ucl37.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl37.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl37.ReadyColor = System.Drawing.Color.White;
-            this.ucl37.Size = new System.Drawing.Size(84, 101);
+            this.ucl37.Size = new System.Drawing.Size(74, 81);
             this.ucl37.TabIndex = 0;
             // 
             // ucl38
@@ -422,7 +431,7 @@
             this.ucl38.InitialNotice = 0;
             this.ucl38.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl38.LoadColor = System.Drawing.Color.White;
-            this.ucl38.Location = new System.Drawing.Point(1008, 499);
+            this.ucl38.Location = new System.Drawing.Point(888, 396);
             this.ucl38.Margin = new System.Windows.Forms.Padding(0);
             this.ucl38.Name = "ucl38";
             this.ucl38.PathNotice = 0;
@@ -432,7 +441,7 @@
             this.ucl38.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl38.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl38.ReadyColor = System.Drawing.Color.White;
-            this.ucl38.Size = new System.Drawing.Size(84, 96);
+            this.ucl38.Size = new System.Drawing.Size(74, 81);
             this.ucl38.TabIndex = 0;
             this.ucl38.Visible = false;
             // 
@@ -457,7 +466,7 @@
             this.ucl1.InitialNotice = 0;
             this.ucl1.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl1.LoadColor = System.Drawing.Color.White;
-            this.ucl1.Location = new System.Drawing.Point(1218, 307);
+            this.ucl1.Location = new System.Drawing.Point(1073, 263);
             this.ucl1.Margin = new System.Windows.Forms.Padding(0);
             this.ucl1.Name = "ucl1";
             this.ucl1.PathNotice = 0;
@@ -467,7 +476,7 @@
             this.ucl1.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl1.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl1.ReadyColor = System.Drawing.Color.White;
-            this.ucl1.Size = new System.Drawing.Size(84, 96);
+            this.ucl1.Size = new System.Drawing.Size(74, 81);
             this.ucl1.TabIndex = 0;
             this.ucl1.Visible = false;
             // 
@@ -492,7 +501,7 @@
             this.ucl10.InitialNotice = 0;
             this.ucl10.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl10.LoadColor = System.Drawing.Color.White;
-            this.ucl10.Location = new System.Drawing.Point(1008, 19);
+            this.ucl10.Location = new System.Drawing.Point(888, 20);
             this.ucl10.Margin = new System.Windows.Forms.Padding(0);
             this.ucl10.Name = "ucl10";
             this.ucl10.PathNotice = 0;
@@ -502,7 +511,7 @@
             this.ucl10.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl10.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl10.ReadyColor = System.Drawing.Color.White;
-            this.ucl10.Size = new System.Drawing.Size(84, 96);
+            this.ucl10.Size = new System.Drawing.Size(74, 81);
             this.ucl10.TabIndex = 0;
             this.ucl10.Visible = false;
             // 
@@ -527,7 +536,7 @@
             this.ucl7.InitialNotice = 0;
             this.ucl7.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl7.LoadColor = System.Drawing.Color.White;
-            this.ucl7.Location = new System.Drawing.Point(1008, 307);
+            this.ucl7.Location = new System.Drawing.Point(888, 263);
             this.ucl7.Margin = new System.Windows.Forms.Padding(0);
             this.ucl7.Name = "ucl7";
             this.ucl7.PathNotice = 0;
@@ -537,7 +546,7 @@
             this.ucl7.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl7.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl7.ReadyColor = System.Drawing.Color.White;
-            this.ucl7.Size = new System.Drawing.Size(84, 96);
+            this.ucl7.Size = new System.Drawing.Size(74, 81);
             this.ucl7.TabIndex = 0;
             this.ucl7.Visible = false;
             // 
@@ -562,7 +571,7 @@
             this.ucl35.InitialNotice = 0;
             this.ucl35.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl35.LoadColor = System.Drawing.Color.White;
-            this.ucl35.Location = new System.Drawing.Point(42, 115);
+            this.ucl35.Location = new System.Drawing.Point(37, 101);
             this.ucl35.Margin = new System.Windows.Forms.Padding(0);
             this.ucl35.Name = "ucl35";
             this.ucl35.PathNotice = 0;
@@ -572,7 +581,7 @@
             this.ucl35.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl35.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl35.ReadyColor = System.Drawing.Color.White;
-            this.ucl35.Size = new System.Drawing.Size(84, 96);
+            this.ucl35.Size = new System.Drawing.Size(74, 81);
             this.ucl35.TabIndex = 0;
             this.ucl35.Visible = false;
             // 
@@ -597,7 +606,7 @@
             this.ucl8.InitialNotice = 0;
             this.ucl8.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl8.LoadColor = System.Drawing.Color.White;
-            this.ucl8.Location = new System.Drawing.Point(1050, 211);
+            this.ucl8.Location = new System.Drawing.Point(925, 182);
             this.ucl8.Margin = new System.Windows.Forms.Padding(0);
             this.ucl8.Name = "ucl8";
             this.ucl8.PathNotice = 0;
@@ -607,7 +616,7 @@
             this.ucl8.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl8.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl8.ReadyColor = System.Drawing.Color.White;
-            this.ucl8.Size = new System.Drawing.Size(84, 96);
+            this.ucl8.Size = new System.Drawing.Size(74, 81);
             this.ucl8.TabIndex = 0;
             this.ucl8.Visible = false;
             // 
@@ -632,7 +641,7 @@
             this.ucl5.InitialNotice = 0;
             this.ucl5.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl5.LoadColor = System.Drawing.Color.White;
-            this.ucl5.Location = new System.Drawing.Point(1176, 115);
+            this.ucl5.Location = new System.Drawing.Point(1036, 101);
             this.ucl5.Margin = new System.Windows.Forms.Padding(0);
             this.ucl5.Name = "ucl5";
             this.ucl5.PathNotice = 0;
@@ -642,7 +651,7 @@
             this.ucl5.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl5.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl5.ReadyColor = System.Drawing.Color.White;
-            this.ucl5.Size = new System.Drawing.Size(84, 96);
+            this.ucl5.Size = new System.Drawing.Size(74, 81);
             this.ucl5.TabIndex = 0;
             this.ucl5.Visible = false;
             // 
@@ -667,7 +676,7 @@
             this.ucl36.InitialNotice = 0;
             this.ucl36.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl36.LoadColor = System.Drawing.Color.White;
-            this.ucl36.Location = new System.Drawing.Point(42, 211);
+            this.ucl36.Location = new System.Drawing.Point(37, 182);
             this.ucl36.Margin = new System.Windows.Forms.Padding(0);
             this.ucl36.Name = "ucl36";
             this.ucl36.PathNotice = 0;
@@ -677,7 +686,7 @@
             this.ucl36.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl36.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl36.ReadyColor = System.Drawing.Color.White;
-            this.ucl36.Size = new System.Drawing.Size(84, 96);
+            this.ucl36.Size = new System.Drawing.Size(74, 81);
             this.ucl36.TabIndex = 0;
             this.ucl36.Visible = false;
             // 
@@ -702,7 +711,7 @@
             this.ucl31.InitialNotice = 0;
             this.ucl31.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl31.LoadColor = System.Drawing.Color.White;
-            this.ucl31.Location = new System.Drawing.Point(84, 307);
+            this.ucl31.Location = new System.Drawing.Point(74, 263);
             this.ucl31.Margin = new System.Windows.Forms.Padding(0);
             this.ucl31.Name = "ucl31";
             this.ucl31.PathNotice = 0;
@@ -712,7 +721,7 @@
             this.ucl31.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl31.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl31.ReadyColor = System.Drawing.Color.White;
-            this.ucl31.Size = new System.Drawing.Size(84, 96);
+            this.ucl31.Size = new System.Drawing.Size(74, 81);
             this.ucl31.TabIndex = 0;
             this.ucl31.Visible = false;
             // 
@@ -737,7 +746,7 @@
             this.ucl6.InitialNotice = 0;
             this.ucl6.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl6.LoadColor = System.Drawing.Color.White;
-            this.ucl6.Location = new System.Drawing.Point(1176, 211);
+            this.ucl6.Location = new System.Drawing.Point(1036, 182);
             this.ucl6.Margin = new System.Windows.Forms.Padding(0);
             this.ucl6.Name = "ucl6";
             this.ucl6.PathNotice = 0;
@@ -747,7 +756,7 @@
             this.ucl6.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl6.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl6.ReadyColor = System.Drawing.Color.White;
-            this.ucl6.Size = new System.Drawing.Size(84, 96);
+            this.ucl6.Size = new System.Drawing.Size(74, 81);
             this.ucl6.TabIndex = 0;
             this.ucl6.Visible = false;
             // 
@@ -772,7 +781,7 @@
             this.ucl33.InitialNotice = 0;
             this.ucl33.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl33.LoadColor = System.Drawing.Color.White;
-            this.ucl33.Location = new System.Drawing.Point(126, 115);
+            this.ucl33.Location = new System.Drawing.Point(111, 101);
             this.ucl33.Margin = new System.Windows.Forms.Padding(0);
             this.ucl33.Name = "ucl33";
             this.ucl33.PathNotice = 0;
@@ -782,7 +791,7 @@
             this.ucl33.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl33.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl33.ReadyColor = System.Drawing.Color.White;
-            this.ucl33.Size = new System.Drawing.Size(84, 96);
+            this.ucl33.Size = new System.Drawing.Size(74, 81);
             this.ucl33.TabIndex = 0;
             this.ucl33.Visible = false;
             // 
@@ -807,7 +816,7 @@
             this.ucl16.InitialNotice = 0;
             this.ucl16.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl16.LoadColor = System.Drawing.Color.White;
-            this.ucl16.Location = new System.Drawing.Point(756, 19);
+            this.ucl16.Location = new System.Drawing.Point(666, 20);
             this.ucl16.Margin = new System.Windows.Forms.Padding(0);
             this.ucl16.Name = "ucl16";
             this.ucl16.PathNotice = 0;
@@ -817,7 +826,7 @@
             this.ucl16.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl16.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl16.ReadyColor = System.Drawing.Color.White;
-            this.ucl16.Size = new System.Drawing.Size(84, 96);
+            this.ucl16.Size = new System.Drawing.Size(74, 81);
             this.ucl16.TabIndex = 0;
             this.ucl16.Visible = false;
             // 
@@ -842,7 +851,7 @@
             this.ucl32.InitialNotice = 0;
             this.ucl32.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl32.LoadColor = System.Drawing.Color.White;
-            this.ucl32.Location = new System.Drawing.Point(126, 211);
+            this.ucl32.Location = new System.Drawing.Point(111, 182);
             this.ucl32.Margin = new System.Windows.Forms.Padding(0);
             this.ucl32.Name = "ucl32";
             this.ucl32.PathNotice = 0;
@@ -852,7 +861,7 @@
             this.ucl32.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl32.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl32.ReadyColor = System.Drawing.Color.White;
-            this.ucl32.Size = new System.Drawing.Size(84, 96);
+            this.ucl32.Size = new System.Drawing.Size(74, 81);
             this.ucl32.TabIndex = 0;
             this.ucl32.Visible = false;
             // 
@@ -877,7 +886,7 @@
             this.ucl28.InitialNotice = 0;
             this.ucl28.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl28.LoadColor = System.Drawing.Color.White;
-            this.ucl28.Location = new System.Drawing.Point(294, 19);
+            this.ucl28.Location = new System.Drawing.Point(259, 20);
             this.ucl28.Margin = new System.Windows.Forms.Padding(0);
             this.ucl28.Name = "ucl28";
             this.ucl28.PathNotice = 0;
@@ -887,7 +896,7 @@
             this.ucl28.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl28.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl28.ReadyColor = System.Drawing.Color.White;
-            this.ucl28.Size = new System.Drawing.Size(84, 96);
+            this.ucl28.Size = new System.Drawing.Size(74, 81);
             this.ucl28.TabIndex = 0;
             this.ucl28.Visible = false;
             // 
@@ -912,7 +921,7 @@
             this.ucl22.InitialNotice = 0;
             this.ucl22.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl22.LoadColor = System.Drawing.Color.White;
-            this.ucl22.Location = new System.Drawing.Point(546, 19);
+            this.ucl22.Location = new System.Drawing.Point(481, 20);
             this.ucl22.Margin = new System.Windows.Forms.Padding(0);
             this.ucl22.Name = "ucl22";
             this.ucl22.PathNotice = 0;
@@ -922,7 +931,7 @@
             this.ucl22.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl22.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl22.ReadyColor = System.Drawing.Color.White;
-            this.ucl22.Size = new System.Drawing.Size(84, 96);
+            this.ucl22.Size = new System.Drawing.Size(74, 81);
             this.ucl22.TabIndex = 0;
             this.ucl22.Visible = false;
             // 
@@ -947,7 +956,7 @@
             this.ucl9.InitialNotice = 0;
             this.ucl9.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl9.LoadColor = System.Drawing.Color.White;
-            this.ucl9.Location = new System.Drawing.Point(1050, 115);
+            this.ucl9.Location = new System.Drawing.Point(925, 101);
             this.ucl9.Margin = new System.Windows.Forms.Padding(0);
             this.ucl9.Name = "ucl9";
             this.ucl9.PathNotice = 0;
@@ -957,7 +966,7 @@
             this.ucl9.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl9.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl9.ReadyColor = System.Drawing.Color.White;
-            this.ucl9.Size = new System.Drawing.Size(84, 96);
+            this.ucl9.Size = new System.Drawing.Size(74, 81);
             this.ucl9.TabIndex = 0;
             this.ucl9.Visible = false;
             // 
@@ -982,7 +991,7 @@
             this.ucl13.InitialNotice = 0;
             this.ucl13.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl13.LoadColor = System.Drawing.Color.White;
-            this.ucl13.Location = new System.Drawing.Point(756, 307);
+            this.ucl13.Location = new System.Drawing.Point(666, 263);
             this.ucl13.Margin = new System.Windows.Forms.Padding(0);
             this.ucl13.Name = "ucl13";
             this.ucl13.PathNotice = 0;
@@ -992,7 +1001,7 @@
             this.ucl13.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl13.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl13.ReadyColor = System.Drawing.Color.White;
-            this.ucl13.Size = new System.Drawing.Size(84, 96);
+            this.ucl13.Size = new System.Drawing.Size(74, 81);
             this.ucl13.TabIndex = 0;
             this.ucl13.Visible = false;
             // 
@@ -1017,7 +1026,7 @@
             this.ucl46.InitialNotice = 0;
             this.ucl46.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl46.LoadColor = System.Drawing.Color.White;
-            this.ucl46.Location = new System.Drawing.Point(84, 499);
+            this.ucl46.Location = new System.Drawing.Point(74, 396);
             this.ucl46.Margin = new System.Windows.Forms.Padding(0);
             this.ucl46.Name = "ucl46";
             this.ucl46.PathNotice = 0;
@@ -1027,7 +1036,7 @@
             this.ucl46.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl46.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl46.ReadyColor = System.Drawing.Color.White;
-            this.ucl46.Size = new System.Drawing.Size(84, 96);
+            this.ucl46.Size = new System.Drawing.Size(74, 81);
             this.ucl46.TabIndex = 0;
             this.ucl46.Visible = false;
             // 
@@ -1052,7 +1061,7 @@
             this.ucl45.InitialNotice = 0;
             this.ucl45.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl45.LoadColor = System.Drawing.Color.White;
-            this.ucl45.Location = new System.Drawing.Point(84, 595);
+            this.ucl45.Location = new System.Drawing.Point(74, 477);
             this.ucl45.Margin = new System.Windows.Forms.Padding(0);
             this.ucl45.Name = "ucl45";
             this.ucl45.PathNotice = 0;
@@ -1062,7 +1071,7 @@
             this.ucl45.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl45.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl45.ReadyColor = System.Drawing.Color.White;
-            this.ucl45.Size = new System.Drawing.Size(84, 101);
+            this.ucl45.Size = new System.Drawing.Size(74, 81);
             this.ucl45.TabIndex = 0;
             this.ucl45.Visible = false;
             // 
@@ -1087,7 +1096,7 @@
             this.ucl19.InitialNotice = 0;
             this.ucl19.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl19.LoadColor = System.Drawing.Color.White;
-            this.ucl19.Location = new System.Drawing.Point(546, 307);
+            this.ucl19.Location = new System.Drawing.Point(481, 263);
             this.ucl19.Margin = new System.Windows.Forms.Padding(0);
             this.ucl19.Name = "ucl19";
             this.ucl19.PathNotice = 0;
@@ -1097,7 +1106,7 @@
             this.ucl19.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl19.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl19.ReadyColor = System.Drawing.Color.White;
-            this.ucl19.Size = new System.Drawing.Size(84, 96);
+            this.ucl19.Size = new System.Drawing.Size(74, 81);
             this.ucl19.TabIndex = 0;
             this.ucl19.Visible = false;
             // 
@@ -1122,7 +1131,7 @@
             this.ucl12.InitialNotice = 0;
             this.ucl12.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl12.LoadColor = System.Drawing.Color.White;
-            this.ucl12.Location = new System.Drawing.Point(966, 211);
+            this.ucl12.Location = new System.Drawing.Point(851, 182);
             this.ucl12.Margin = new System.Windows.Forms.Padding(0);
             this.ucl12.Name = "ucl12";
             this.ucl12.PathNotice = 0;
@@ -1132,7 +1141,7 @@
             this.ucl12.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl12.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl12.ReadyColor = System.Drawing.Color.White;
-            this.ucl12.Size = new System.Drawing.Size(84, 96);
+            this.ucl12.Size = new System.Drawing.Size(74, 81);
             this.ucl12.TabIndex = 0;
             this.ucl12.Visible = false;
             // 
@@ -1157,7 +1166,7 @@
             this.ucl14.InitialNotice = 0;
             this.ucl14.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl14.LoadColor = System.Drawing.Color.White;
-            this.ucl14.Location = new System.Drawing.Point(798, 211);
+            this.ucl14.Location = new System.Drawing.Point(703, 182);
             this.ucl14.Margin = new System.Windows.Forms.Padding(0);
             this.ucl14.Name = "ucl14";
             this.ucl14.PathNotice = 0;
@@ -1167,7 +1176,7 @@
             this.ucl14.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl14.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl14.ReadyColor = System.Drawing.Color.White;
-            this.ucl14.Size = new System.Drawing.Size(84, 96);
+            this.ucl14.Size = new System.Drawing.Size(74, 81);
             this.ucl14.TabIndex = 0;
             this.ucl14.Visible = false;
             // 
@@ -1192,7 +1201,7 @@
             this.ucl47.InitialNotice = 0;
             this.ucl47.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl47.LoadColor = System.Drawing.Color.White;
-            this.ucl47.Location = new System.Drawing.Point(168, 499);
+            this.ucl47.Location = new System.Drawing.Point(148, 396);
             this.ucl47.Margin = new System.Windows.Forms.Padding(0);
             this.ucl47.Name = "ucl47";
             this.ucl47.PathNotice = 0;
@@ -1202,7 +1211,7 @@
             this.ucl47.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl47.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl47.ReadyColor = System.Drawing.Color.White;
-            this.ucl47.Size = new System.Drawing.Size(84, 96);
+            this.ucl47.Size = new System.Drawing.Size(74, 81);
             this.ucl47.TabIndex = 0;
             this.ucl47.Visible = false;
             // 
@@ -1227,7 +1236,7 @@
             this.ucl11.InitialNotice = 0;
             this.ucl11.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl11.LoadColor = System.Drawing.Color.White;
-            this.ucl11.Location = new System.Drawing.Point(966, 115);
+            this.ucl11.Location = new System.Drawing.Point(851, 101);
             this.ucl11.Margin = new System.Windows.Forms.Padding(0);
             this.ucl11.Name = "ucl11";
             this.ucl11.PathNotice = 0;
@@ -1237,7 +1246,7 @@
             this.ucl11.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl11.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl11.ReadyColor = System.Drawing.Color.White;
-            this.ucl11.Size = new System.Drawing.Size(84, 96);
+            this.ucl11.Size = new System.Drawing.Size(74, 81);
             this.ucl11.TabIndex = 0;
             this.ucl11.Visible = false;
             // 
@@ -1262,7 +1271,7 @@
             this.ucl48.InitialNotice = 0;
             this.ucl48.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl48.LoadColor = System.Drawing.Color.White;
-            this.ucl48.Location = new System.Drawing.Point(168, 595);
+            this.ucl48.Location = new System.Drawing.Point(148, 477);
             this.ucl48.Margin = new System.Windows.Forms.Padding(0);
             this.ucl48.Name = "ucl48";
             this.ucl48.PathNotice = 0;
@@ -1272,7 +1281,7 @@
             this.ucl48.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl48.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl48.ReadyColor = System.Drawing.Color.White;
-            this.ucl48.Size = new System.Drawing.Size(84, 101);
+            this.ucl48.Size = new System.Drawing.Size(74, 81);
             this.ucl48.TabIndex = 0;
             this.ucl48.Visible = false;
             // 
@@ -1297,7 +1306,7 @@
             this.ucl44.InitialNotice = 0;
             this.ucl44.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl44.LoadColor = System.Drawing.Color.White;
-            this.ucl44.Location = new System.Drawing.Point(630, 595);
+            this.ucl44.Location = new System.Drawing.Point(555, 477);
             this.ucl44.Margin = new System.Windows.Forms.Padding(0);
             this.ucl44.Name = "ucl44";
             this.ucl44.PathNotice = 0;
@@ -1307,7 +1316,7 @@
             this.ucl44.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl44.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl44.ReadyColor = System.Drawing.Color.White;
-            this.ucl44.Size = new System.Drawing.Size(84, 101);
+            this.ucl44.Size = new System.Drawing.Size(74, 81);
             this.ucl44.TabIndex = 0;
             this.ucl44.Visible = false;
             // 
@@ -1332,7 +1341,7 @@
             this.ucl30.InitialNotice = 0;
             this.ucl30.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl30.LoadColor = System.Drawing.Color.White;
-            this.ucl30.Location = new System.Drawing.Point(252, 211);
+            this.ucl30.Location = new System.Drawing.Point(222, 182);
             this.ucl30.Margin = new System.Windows.Forms.Padding(0);
             this.ucl30.Name = "ucl30";
             this.ucl30.PathNotice = 0;
@@ -1342,7 +1351,7 @@
             this.ucl30.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl30.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl30.ReadyColor = System.Drawing.Color.White;
-            this.ucl30.Size = new System.Drawing.Size(84, 96);
+            this.ucl30.Size = new System.Drawing.Size(74, 81);
             this.ucl30.TabIndex = 0;
             this.ucl30.Visible = false;
             // 
@@ -1367,7 +1376,7 @@
             this.ucl15.InitialNotice = 0;
             this.ucl15.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl15.LoadColor = System.Drawing.Color.White;
-            this.ucl15.Location = new System.Drawing.Point(798, 115);
+            this.ucl15.Location = new System.Drawing.Point(703, 101);
             this.ucl15.Margin = new System.Windows.Forms.Padding(0);
             this.ucl15.Name = "ucl15";
             this.ucl15.PathNotice = 0;
@@ -1377,7 +1386,7 @@
             this.ucl15.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl15.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl15.ReadyColor = System.Drawing.Color.White;
-            this.ucl15.Size = new System.Drawing.Size(84, 96);
+            this.ucl15.Size = new System.Drawing.Size(74, 81);
             this.ucl15.TabIndex = 0;
             this.ucl15.Visible = false;
             // 
@@ -1402,7 +1411,7 @@
             this.ucl25.InitialNotice = 0;
             this.ucl25.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl25.LoadColor = System.Drawing.Color.White;
-            this.ucl25.Location = new System.Drawing.Point(294, 307);
+            this.ucl25.Location = new System.Drawing.Point(259, 263);
             this.ucl25.Margin = new System.Windows.Forms.Padding(0);
             this.ucl25.Name = "ucl25";
             this.ucl25.PathNotice = 0;
@@ -1412,7 +1421,7 @@
             this.ucl25.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl25.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl25.ReadyColor = System.Drawing.Color.White;
-            this.ucl25.Size = new System.Drawing.Size(84, 96);
+            this.ucl25.Size = new System.Drawing.Size(74, 81);
             this.ucl25.TabIndex = 0;
             this.ucl25.Visible = false;
             // 
@@ -1437,7 +1446,7 @@
             this.ucl26.InitialNotice = 0;
             this.ucl26.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl26.LoadColor = System.Drawing.Color.White;
-            this.ucl26.Location = new System.Drawing.Point(336, 211);
+            this.ucl26.Location = new System.Drawing.Point(296, 182);
             this.ucl26.Margin = new System.Windows.Forms.Padding(0);
             this.ucl26.Name = "ucl26";
             this.ucl26.PathNotice = 0;
@@ -1447,7 +1456,7 @@
             this.ucl26.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl26.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl26.ReadyColor = System.Drawing.Color.White;
-            this.ucl26.Size = new System.Drawing.Size(84, 96);
+            this.ucl26.Size = new System.Drawing.Size(74, 81);
             this.ucl26.TabIndex = 0;
             this.ucl26.Visible = false;
             // 
@@ -1472,7 +1481,7 @@
             this.ucl17.InitialNotice = 0;
             this.ucl17.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl17.LoadColor = System.Drawing.Color.White;
-            this.ucl17.Location = new System.Drawing.Point(714, 115);
+            this.ucl17.Location = new System.Drawing.Point(629, 101);
             this.ucl17.Margin = new System.Windows.Forms.Padding(0);
             this.ucl17.Name = "ucl17";
             this.ucl17.PathNotice = 0;
@@ -1482,7 +1491,7 @@
             this.ucl17.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl17.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl17.ReadyColor = System.Drawing.Color.White;
-            this.ucl17.Size = new System.Drawing.Size(84, 96);
+            this.ucl17.Size = new System.Drawing.Size(74, 81);
             this.ucl17.TabIndex = 0;
             this.ucl17.Visible = false;
             // 
@@ -1507,7 +1516,7 @@
             this.ucl50.InitialNotice = 0;
             this.ucl50.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl50.LoadColor = System.Drawing.Color.White;
-            this.ucl50.Location = new System.Drawing.Point(294, 499);
+            this.ucl50.Location = new System.Drawing.Point(259, 396);
             this.ucl50.Margin = new System.Windows.Forms.Padding(0);
             this.ucl50.Name = "ucl50";
             this.ucl50.PathNotice = 0;
@@ -1517,7 +1526,7 @@
             this.ucl50.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl50.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl50.ReadyColor = System.Drawing.Color.White;
-            this.ucl50.Size = new System.Drawing.Size(84, 96);
+            this.ucl50.Size = new System.Drawing.Size(74, 81);
             this.ucl50.TabIndex = 0;
             this.ucl50.Visible = false;
             // 
@@ -1542,7 +1551,7 @@
             this.ucl18.InitialNotice = 0;
             this.ucl18.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl18.LoadColor = System.Drawing.Color.White;
-            this.ucl18.Location = new System.Drawing.Point(714, 211);
+            this.ucl18.Location = new System.Drawing.Point(629, 182);
             this.ucl18.Margin = new System.Windows.Forms.Padding(0);
             this.ucl18.Name = "ucl18";
             this.ucl18.PathNotice = 0;
@@ -1552,7 +1561,7 @@
             this.ucl18.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl18.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl18.ReadyColor = System.Drawing.Color.White;
-            this.ucl18.Size = new System.Drawing.Size(84, 96);
+            this.ucl18.Size = new System.Drawing.Size(74, 81);
             this.ucl18.TabIndex = 0;
             this.ucl18.Visible = false;
             // 
@@ -1577,7 +1586,7 @@
             this.ucl20.InitialNotice = 0;
             this.ucl20.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl20.LoadColor = System.Drawing.Color.White;
-            this.ucl20.Location = new System.Drawing.Point(588, 211);
+            this.ucl20.Location = new System.Drawing.Point(518, 182);
             this.ucl20.Margin = new System.Windows.Forms.Padding(0);
             this.ucl20.Name = "ucl20";
             this.ucl20.PathNotice = 0;
@@ -1587,7 +1596,7 @@
             this.ucl20.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl20.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl20.ReadyColor = System.Drawing.Color.White;
-            this.ucl20.Size = new System.Drawing.Size(84, 96);
+            this.ucl20.Size = new System.Drawing.Size(74, 81);
             this.ucl20.TabIndex = 0;
             this.ucl20.Visible = false;
             // 
@@ -1612,7 +1621,7 @@
             this.ucl43.InitialNotice = 0;
             this.ucl43.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl43.LoadColor = System.Drawing.Color.White;
-            this.ucl43.Location = new System.Drawing.Point(630, 499);
+            this.ucl43.Location = new System.Drawing.Point(555, 396);
             this.ucl43.Margin = new System.Windows.Forms.Padding(0);
             this.ucl43.Name = "ucl43";
             this.ucl43.PathNotice = 0;
@@ -1622,7 +1631,7 @@
             this.ucl43.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl43.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl43.ReadyColor = System.Drawing.Color.White;
-            this.ucl43.Size = new System.Drawing.Size(84, 96);
+            this.ucl43.Size = new System.Drawing.Size(74, 81);
             this.ucl43.TabIndex = 0;
             this.ucl43.Visible = false;
             // 
@@ -1647,7 +1656,7 @@
             this.ucl49b.InitialNotice = 0;
             this.ucl49b.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl49b.LoadColor = System.Drawing.Color.White;
-            this.ucl49b.Location = new System.Drawing.Point(756, 499);
+            this.ucl49b.Location = new System.Drawing.Point(666, 396);
             this.ucl49b.Margin = new System.Windows.Forms.Padding(0);
             this.ucl49b.Name = "ucl49b";
             this.ucl49b.PathNotice = 0;
@@ -1657,7 +1666,7 @@
             this.ucl49b.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl49b.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl49b.ReadyColor = System.Drawing.Color.White;
-            this.ucl49b.Size = new System.Drawing.Size(84, 96);
+            this.ucl49b.Size = new System.Drawing.Size(74, 81);
             this.ucl49b.TabIndex = 0;
             this.ucl49b.Visible = false;
             // 
@@ -1682,7 +1691,7 @@
             this.ucl29.InitialNotice = 0;
             this.ucl29.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl29.LoadColor = System.Drawing.Color.White;
-            this.ucl29.Location = new System.Drawing.Point(252, 115);
+            this.ucl29.Location = new System.Drawing.Point(222, 101);
             this.ucl29.Margin = new System.Windows.Forms.Padding(0);
             this.ucl29.Name = "ucl29";
             this.ucl29.PathNotice = 0;
@@ -1692,7 +1701,7 @@
             this.ucl29.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl29.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl29.ReadyColor = System.Drawing.Color.White;
-            this.ucl29.Size = new System.Drawing.Size(84, 96);
+            this.ucl29.Size = new System.Drawing.Size(74, 81);
             this.ucl29.TabIndex = 0;
             this.ucl29.Visible = false;
             // 
@@ -1717,7 +1726,7 @@
             this.ucl27.InitialNotice = 0;
             this.ucl27.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl27.LoadColor = System.Drawing.Color.White;
-            this.ucl27.Location = new System.Drawing.Point(336, 115);
+            this.ucl27.Location = new System.Drawing.Point(296, 101);
             this.ucl27.Margin = new System.Windows.Forms.Padding(0);
             this.ucl27.Name = "ucl27";
             this.ucl27.PathNotice = 0;
@@ -1727,7 +1736,7 @@
             this.ucl27.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl27.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl27.ReadyColor = System.Drawing.Color.White;
-            this.ucl27.Size = new System.Drawing.Size(84, 96);
+            this.ucl27.Size = new System.Drawing.Size(74, 81);
             this.ucl27.TabIndex = 0;
             this.ucl27.Visible = false;
             // 
@@ -1752,7 +1761,7 @@
             this.ucl23.InitialNotice = 0;
             this.ucl23.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl23.LoadColor = System.Drawing.Color.White;
-            this.ucl23.Location = new System.Drawing.Point(504, 115);
+            this.ucl23.Location = new System.Drawing.Point(444, 101);
             this.ucl23.Margin = new System.Windows.Forms.Padding(0);
             this.ucl23.Name = "ucl23";
             this.ucl23.PathNotice = 0;
@@ -1762,7 +1771,7 @@
             this.ucl23.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl23.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl23.ReadyColor = System.Drawing.Color.White;
-            this.ucl23.Size = new System.Drawing.Size(84, 96);
+            this.ucl23.Size = new System.Drawing.Size(74, 81);
             this.ucl23.TabIndex = 0;
             this.ucl23.Visible = false;
             // 
@@ -1787,7 +1796,7 @@
             this.ucl21.InitialNotice = 0;
             this.ucl21.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl21.LoadColor = System.Drawing.Color.White;
-            this.ucl21.Location = new System.Drawing.Point(588, 115);
+            this.ucl21.Location = new System.Drawing.Point(518, 101);
             this.ucl21.Margin = new System.Windows.Forms.Padding(0);
             this.ucl21.Name = "ucl21";
             this.ucl21.PathNotice = 0;
@@ -1797,7 +1806,7 @@
             this.ucl21.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl21.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl21.ReadyColor = System.Drawing.Color.White;
-            this.ucl21.Size = new System.Drawing.Size(84, 96);
+            this.ucl21.Size = new System.Drawing.Size(74, 81);
             this.ucl21.TabIndex = 0;
             this.ucl21.Visible = false;
             // 
@@ -1822,7 +1831,7 @@
             this.ucl24.InitialNotice = 0;
             this.ucl24.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl24.LoadColor = System.Drawing.Color.White;
-            this.ucl24.Location = new System.Drawing.Point(504, 211);
+            this.ucl24.Location = new System.Drawing.Point(444, 182);
             this.ucl24.Margin = new System.Windows.Forms.Padding(0);
             this.ucl24.Name = "ucl24";
             this.ucl24.PathNotice = 0;
@@ -1832,7 +1841,7 @@
             this.ucl24.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl24.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl24.ReadyColor = System.Drawing.Color.White;
-            this.ucl24.Size = new System.Drawing.Size(84, 96);
+            this.ucl24.Size = new System.Drawing.Size(74, 81);
             this.ucl24.TabIndex = 0;
             this.ucl24.Visible = false;
             // 
@@ -1857,7 +1866,7 @@
             this.ucl42.InitialNotice = 0;
             this.ucl42.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl42.LoadColor = System.Drawing.Color.White;
-            this.ucl42.Location = new System.Drawing.Point(546, 499);
+            this.ucl42.Location = new System.Drawing.Point(481, 396);
             this.ucl42.Margin = new System.Windows.Forms.Padding(0);
             this.ucl42.Name = "ucl42";
             this.ucl42.PathNotice = 0;
@@ -1867,7 +1876,7 @@
             this.ucl42.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl42.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl42.ReadyColor = System.Drawing.Color.White;
-            this.ucl42.Size = new System.Drawing.Size(84, 96);
+            this.ucl42.Size = new System.Drawing.Size(74, 81);
             this.ucl42.TabIndex = 0;
             this.ucl42.Visible = false;
             // 
@@ -1892,7 +1901,7 @@
             this.ucl41.InitialNotice = 0;
             this.ucl41.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl41.LoadColor = System.Drawing.Color.White;
-            this.ucl41.Location = new System.Drawing.Point(546, 595);
+            this.ucl41.Location = new System.Drawing.Point(481, 477);
             this.ucl41.Margin = new System.Windows.Forms.Padding(0);
             this.ucl41.Name = "ucl41";
             this.ucl41.PathNotice = 0;
@@ -1902,7 +1911,7 @@
             this.ucl41.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl41.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl41.ReadyColor = System.Drawing.Color.White;
-            this.ucl41.Size = new System.Drawing.Size(84, 101);
+            this.ucl41.Size = new System.Drawing.Size(74, 81);
             this.ucl41.TabIndex = 0;
             this.ucl41.Visible = false;
             // 
@@ -1927,7 +1936,7 @@
             this.ucl3.InitialNotice = 0;
             this.ucl3.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl3.LoadColor = System.Drawing.Color.White;
-            this.ucl3.Location = new System.Drawing.Point(1260, 115);
+            this.ucl3.Location = new System.Drawing.Point(1110, 101);
             this.ucl3.Margin = new System.Windows.Forms.Padding(0);
             this.ucl3.Name = "ucl3";
             this.ucl3.PathNotice = 0;
@@ -1937,7 +1946,7 @@
             this.ucl3.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl3.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl3.ReadyColor = System.Drawing.Color.White;
-            this.ucl3.Size = new System.Drawing.Size(84, 96);
+            this.ucl3.Size = new System.Drawing.Size(74, 81);
             this.ucl3.TabIndex = 0;
             this.ucl3.Visible = false;
             // 
@@ -1962,7 +1971,7 @@
             this.ucl2.InitialNotice = 0;
             this.ucl2.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl2.LoadColor = System.Drawing.Color.White;
-            this.ucl2.Location = new System.Drawing.Point(1260, 211);
+            this.ucl2.Location = new System.Drawing.Point(1110, 182);
             this.ucl2.Margin = new System.Windows.Forms.Padding(0);
             this.ucl2.Name = "ucl2";
             this.ucl2.PathNotice = 0;
@@ -1972,7 +1981,7 @@
             this.ucl2.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl2.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl2.ReadyColor = System.Drawing.Color.White;
-            this.ucl2.Size = new System.Drawing.Size(84, 96);
+            this.ucl2.Size = new System.Drawing.Size(74, 81);
             this.ucl2.TabIndex = 0;
             this.ucl2.Visible = false;
             // 
@@ -1997,7 +2006,7 @@
             this.ucl39.InitialNotice = 0;
             this.ucl39.InitialNoticeColor = System.Drawing.Color.White;
             this.ucl39.LoadColor = System.Drawing.Color.White;
-            this.ucl39.Location = new System.Drawing.Point(1092, 499);
+            this.ucl39.Location = new System.Drawing.Point(962, 396);
             this.ucl39.Margin = new System.Windows.Forms.Padding(0);
             this.ucl39.Name = "ucl39";
             this.ucl39.PathNotice = 0;
@@ -2007,16 +2016,17 @@
             this.ucl39.ReadNoticeColor = System.Drawing.Color.White;
             this.ucl39.Ready = Mirle.SMTCV.Conveyor.Controller.View.uclBuffer.enuReady.NoReady;
             this.ucl39.ReadyColor = System.Drawing.Color.White;
-            this.ucl39.Size = new System.Drawing.Size(84, 96);
+            this.ucl39.Size = new System.Drawing.Size(74, 81);
             this.ucl39.TabIndex = 0;
             this.ucl39.Visible = false;
             // 
             // MonitorLayout
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1400, 696);
+            this.ClientSize = new System.Drawing.Size(1244, 580);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MonitorLayout";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MonitorLayout_Load);

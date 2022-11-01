@@ -17,10 +17,12 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
         //private CVCManager_8F[] cvController = new CVCManager_8F[6];
         private int CurController = 0;
         int[][] InvisibleItem = new int[7][];
+        int[][] VisibleItem = new int[7][];
         private int[] RollBuffer = new int[] { 1, 7, 13, 19, 25, 31, 37, 40, 41, 44, 45, 48 };
         private int[] S800RollBuffer = new int[] { 1, 4 };
         private int[] TrayIndexBuffer = new int[] { 1, 7, 13, 19, 25, 31 };
         string[] showBuff = new string[] { "6", "5", "3", "2", "49" };
+
         public BufferPlcInfoView(CVCHost controller, int curC, LoggerService Log)
         {
             InitializeComponent();
@@ -35,8 +37,30 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                                             34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50 };
             InvisibleItem[6] = new int[] { 1, 4, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
                                             31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 50};
+            VisibleItem[1] = new int[31];
+            VisibleItem[3] = new int[32];
+            SetVisible(ref VisibleItem[1], 0, 6, 7);
+            SetVisible(ref VisibleItem[1], 6, 12, -5);
+            SetVisible(ref VisibleItem[1], 12, 18, 1);
+            SetVisible(ref VisibleItem[1], 18, 24, 13);
+            SetVisible(ref VisibleItem[1], 24, 30, 1);
+            VisibleItem[1][30] = 49;
+            SetVisible(ref VisibleItem[3], 0, 6, 7);
+            SetVisible(ref VisibleItem[3], 6, 12, -5);
+            SetVisible(ref VisibleItem[3], 12, 18, 7);
+            SetVisible(ref VisibleItem[3], 18, 24, -5);
+            SetVisible(ref VisibleItem[3], 24, 30, 1);
+            VisibleItem[3][30] = 49;
+            VisibleItem[3][31] = 50;
             SetCurController(curC);
             _LoggerService = Log;
+        }
+        protected void SetVisible(ref int[] array, int start, int end, int request)
+        {
+            for (int i = start; i < end; i++)
+            {
+                array[i] = i + request;
+            }
         }
         public int GetCurController()
         {
@@ -55,7 +79,39 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                 for (int i = 1; i <= _cvcHost.GetCVCManager(CurController + 1).GetSignalMapper().GetBufferCount(); i++)
                 {
                     if (!InvisibleItem[CurController].Contains(i))
-                        comboBoxBufferIndex.Items.Add($"{i}:S{CurController + 1}-{i.ToString().PadLeft(2, '0')}");
+                    {
+                        if (CurController == 3)
+                        {
+                            int index = 0;
+                            index = Array.IndexOf(VisibleItem[CurController], i);
+                            if (index != -1)
+                            {
+                                if (index < 30)
+                                    comboBoxBufferIndex.Items.Add($"{(index + 1)}:S{CurController + 1}-{(index + 1).ToString().PadLeft(2, '0')}");
+                                if (index >= 30)
+                                    comboBoxBufferIndex.Items.Add($"{i}:S{CurController + 1}-{i.ToString().PadLeft(2, '0')}");
+                            }
+                        }
+                        else if(CurController == 1)
+                        {
+                            int index = 0;
+                            index = Array.IndexOf(VisibleItem[CurController], i);
+                            if(index != -1)
+                            {
+                                if (index < 30)
+                                {
+                                    if (index >= 18 && index < 24)
+                                        comboBoxBufferIndex.Items.Add($"{(index + 13)}:S{CurController + 1}-{(index + 13).ToString().PadLeft(2, '0')}");
+                                    else
+                                        comboBoxBufferIndex.Items.Add($"{(index + 1)}:S{CurController + 1}-{(index + 1).ToString().PadLeft(2, '0')}");
+                                }
+                                if (index == 30)
+                                    comboBoxBufferIndex.Items.Add($"{i}:S{CurController + 1}-{i.ToString().PadLeft(2, '0')}");
+                            }
+                        }
+                        else
+                            comboBoxBufferIndex.Items.Add($"{i}:S{CurController + 1}-{i.ToString().PadLeft(2, '0')}");
+                    }
                 }
             }
             else
@@ -171,7 +227,40 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                 for (int i = 1; i <= _cvcHost.GetCVCManager(CurController + 1).GetSignalMapper().GetBufferCount(); i++)
                 {
                     if (!InvisibleItem[CurController].Contains(i))
-                        comboBoxBufferIndex.Items.Add($"{i}:S{CurController + 1}-{i.ToString().PadLeft(2, '0')}");
+                    {
+                        if (CurController == 3)
+                        {
+                            int index = 0;
+                            index = Array.IndexOf(VisibleItem[CurController], i);
+                            if(index != -1) 
+                            {
+                                if (index < 30)
+                                    comboBoxBufferIndex.Items.Add($"{(index + 1)}:S{CurController + 1}-{(index + 1).ToString().PadLeft(2, '0')}");
+                                if (index >= 30)
+                                    comboBoxBufferIndex.Items.Add($"{i}:S{CurController + 1}-{i.ToString().PadLeft(2, '0')}");
+                            }
+                        }
+                        else if (CurController == 1)
+                        {
+                            int index = 0;
+                            index = Array.IndexOf(VisibleItem[CurController], i);
+                            if (index != -1)
+                            {
+                                if (index < 30)
+                                {
+                                    if(index >= 18 && index < 24)
+                                        comboBoxBufferIndex.Items.Add($"{(index + 13)}:S{CurController + 1}-{(index + 13).ToString().PadLeft(2, '0')}");
+                                    else
+                                        comboBoxBufferIndex.Items.Add($"{(index + 1)}:S{CurController + 1}-{(index + 1).ToString().PadLeft(2, '0')}");
+                                }
+                                    
+                                if (index == 30)
+                                    comboBoxBufferIndex.Items.Add($"{i}:S{CurController + 1}-{i.ToString().PadLeft(2, '0')}");
+                            }
+                        }
+                        else
+                            comboBoxBufferIndex.Items.Add($"{i}:S{CurController + 1}-{i.ToString().PadLeft(2, '0')}");
+                    }
                 }
             }
             else

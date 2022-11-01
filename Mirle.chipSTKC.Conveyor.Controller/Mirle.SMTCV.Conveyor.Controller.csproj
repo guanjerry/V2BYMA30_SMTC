@@ -114,10 +114,6 @@
       <Project>{4fe81277-7845-425b-b263-509f9771a516}</Project>
       <Name>Mirle.SMTCV.Conveyor.Config</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mirle.chipSTKC.Conveyor.V2BYMA30.E2\Mirle.chipSTKC.Conveyor.V2BYMA30.E2.csproj">
-      <Project>{01af1e4f-12f8-4a85-81cf-0b5a419511cc}</Project>
-      <Name>Mirle.chipSTKC.Conveyor.V2BYMA30.E2</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Mirle.chipSTKC.Conveyor.V2BYMA30.S800\Mirle.SMTCV.Conveyor.V2BYMA30.S800.csproj">
       <Project>{ba5b7d1d-8cef-4f4c-afff-0e5a601ce904}</Project>
       <Name>Mirle.SMTCV.Conveyor.V2BYMA30.S800</Name>
@@ -136,6 +132,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainPLCView.resx">
       <DependentUpon>MainPLCView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="View\uclBuffer.resx">
       <DependentUpon>uclBuffer.cs</DependentUpon>
