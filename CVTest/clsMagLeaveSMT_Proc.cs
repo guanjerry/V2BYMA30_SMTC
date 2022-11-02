@@ -56,7 +56,7 @@ namespace CVTest
                                                 carrierId = TrayID,
                                                 location = $"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}"
                                             };
-                                            //if (clsWcsApi.GetApiProcess().GetSmtEmptyMagUnload().FunReport(info))
+                                            if (clsWcsApi.GetApiProcess().GetSmtEmptyMagUnload().FunReport(info))
                                             {
                                                 clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetReadReq();
                                             }
@@ -82,7 +82,7 @@ namespace CVTest
                                                 ioType = "MAG",
                                                 location = $"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}"
                                             };
-                                            //if(clsWcsApi.GetApiProcess().GetBcrCheckRequest().FunReport(info))
+                                            if(clsWcsApi.GetApiProcess().GetBcrCheckRequest().FunReport(info))
                                             {
                                                 clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetReadReq();
                                             }

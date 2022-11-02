@@ -314,6 +314,10 @@ namespace Mirle.WebAPI.Event
                         if (!clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).WriteEmptyBinDone(CallBin_PC + 1).Result)
                             throw new Exception($"<{Body.jobId}>EMPTY_BIN_LOAD_DONE <location>{Body.location} fail to write!!!");
                     }
+                    if (CallCVBuffer.GetSentPos())
+                    {
+                        clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).SetSentPos(false);
+                    }
                 }
                 else
                 {

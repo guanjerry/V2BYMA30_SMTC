@@ -49,31 +49,31 @@ namespace CVTest
                                 barcode = TrayID
                             };
                             #region 測試
-                            if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(TrayBuffer).SetReadReq().Result)
-                            {
-                                string Remark = $"S0-{TrayBuffer.ToString().PadLeft(2, '0')}:<TrayID> {TrayID}, leave start";
-                                clsInitSys.FunWriTraceLog_Remark(Remark);
-                            }
-                            else
-                            {
-                                string Remark = $"S0-{TrayBuffer.ToString().PadLeft(2, '0')}:<Buffer> S0-03 fail to write to PLC...";
-                                clsInitSys.FunWriTraceLog_Remark(Remark);
-                            }
+                            //if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(TrayBuffer).SetReadReq().Result)
+                            //{
+                            //    string Remark = $"S0-{TrayBuffer.ToString().PadLeft(2, '0')}:<TrayID> {TrayID}, leave start";
+                            //    clsInitSys.FunWriTraceLog_Remark(Remark);
+                            //}
+                            //else
+                            //{
+                            //    string Remark = $"S0-{TrayBuffer.ToString().PadLeft(2, '0')}:<Buffer> S0-03 fail to write to PLC...";
+                            //    clsInitSys.FunWriTraceLog_Remark(Remark);
+                            //}
                             #endregion 測試
                             #region 正式
-                            //if (clsWcsApi.GetApiProcess().GetBCRCheckRequest().FunReport(bcrinfo))
-                            //{
-                            //    if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(TrayBuffer).SetReadReq().Result)
-                            //    {
-                            //        string Remark = $"<TrayID> {TrayID}, leave start";
-                            //        clsInitSys.FunWriTraceLog_CV(Remark);
-                            //    }
-                            //    else
-                            //    {
-                            //        string Remark = $"<Buffer> S0-03 fail to write to PLC...";
-                            //        clsInitSys.FunWriTraceLog_CV(Remark);
-                            //    }
-                            //}
+                            if (clsWcsApi.GetApiProcess().GetBcrCheckRequest().FunReport(bcrinfo))
+                            {
+                                if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(TrayBuffer).SetReadReq().Result)
+                                {
+                                    string Remark = $"<TrayID> {TrayID}, leave start";
+                                    clsInitSys.FunWriTraceLog_CV(Remark);
+                                }
+                                else
+                                {
+                                    string Remark = $"<Buffer> S0-03 fail to write to PLC...";
+                                    clsInitSys.FunWriTraceLog_CV(Remark);
+                                }
+                            }
                             #endregion 正式
 
                         }
