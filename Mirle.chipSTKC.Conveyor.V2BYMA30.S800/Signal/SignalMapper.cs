@@ -97,6 +97,10 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.S800.Signal
                 {
                     bufferSignal.AckSignal.StartRollSignal = new Word(_mplc, $"D{startAddress + offset + 9}");
                 }
+                if (i == 5)
+                {
+                    bufferSignal.IsEmpty = new Word(_mplc, $"D{startAddress + offset + 9}");
+                }
                 bufferSignal.AckSignal.InitalAck = new Word(_mplc, $"D{startAddress + offset + 10}");
                 #endregion PLC -> PC
                 //BCR Reader

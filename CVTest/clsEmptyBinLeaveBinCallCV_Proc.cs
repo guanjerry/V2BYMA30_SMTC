@@ -38,18 +38,16 @@ namespace CVTest
                     {
                         //BinLeaveAsk
                         int bufferNo = 39 + 4 * i;
+                        int buffer2No = bufferNo + 1;
                         if (clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).IsConnected)
                         {
                             var leaveCVBuffer = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo);
+                            var leave2CVBuffer = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(buffer2No);
                             string sCmdSno = leaveCVBuffer.CommandID;
+                            string sCmdSno2 = leave2CVBuffer.CommandID;
                             if (leaveCVBuffer.Presence && leaveCVBuffer.Ready == (int)clsEnum.Ready.Leave && string.IsNullOrWhiteSpace(sCmdSno))
                             {
-                                //string CommandID = "11111";
-                                //if (!clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo).SetReadReq().Result)
-                                //{
-                                //    clsInitSys.FunWriTraceLog_Remark("空箱離開...");
-                                //}
-                                if (string.IsNullOrWhiteSpace(sCmdSno) && !leaveCVBuffer.GetAskLeave())
+                                if (!leaveCVBuffer.GetAskLeave())
                                 {
                                     UnknownBinLeaveReport info = new UnknownBinLeaveReport
                                     {
@@ -65,6 +63,24 @@ namespace CVTest
                             }
                             if (!leaveCVBuffer.Presence && leaveCVBuffer.GetAskLeave() == true)
                                 clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(bufferNo).SetAskLeave(false);
+                            if (leave2CVBuffer.Presence && leave2CVBuffer.Ready == (int)clsEnum.Ready.Leave && string.IsNullOrWhiteSpace(sCmdSno2))
+                            {
+                                if (!leave2CVBuffer.GetAskLeave())
+                                {
+                                    UnknownBinLeaveReport info = new UnknownBinLeaveReport
+                                    {
+                                        position = $"S{CVNo}-{buffer2No}"
+                                    };
+                                    TrayEmpty_WCS info_wcs = new TrayEmpty_WCS();
+                                    if (clsWcsApi.GetApiProcess().GetTrayEmptyInform().FunReport(info, ref info_wcs))
+                                    {
+                                        clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{buffer2No.ToString().PadLeft(2, '0')}: 已呼叫空箱離開...");
+                                        clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(buffer2No).SetAskLeave(true);
+                                    }
+                                }
+                            }
+                            if (!leave2CVBuffer.Presence && leave2CVBuffer.GetAskLeave() == true)
+                                clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(buffer2No).SetAskLeave(false);
                         }
 
                         //BinComeCall

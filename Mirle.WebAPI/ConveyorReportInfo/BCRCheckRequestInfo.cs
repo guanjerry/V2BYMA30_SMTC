@@ -11,7 +11,7 @@ namespace Mirle.WebAPI.ConveyorReportInfo
         public string jobId { get; set; }
         public string transactionId { get; set; } = "BCR_CHECK_REQUEST";
         public string barcode { get; set; }
-        public string ioType { get; set; }
+        public string carrierType { get; set; }
         public string location { get; set; }
     }
 }

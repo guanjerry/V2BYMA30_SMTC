@@ -66,6 +66,32 @@ namespace CVTest
                         }
                     }
                 }
+                if (clsSMTCVStart.GetControllerHost().GetS800Manager().IsConnected)
+                {
+                    int bufferNo = 4;
+                    var leaveCVBuffer = clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo);
+                    string sCmdSno = leaveCVBuffer.CommandID;
+                    if (leaveCVBuffer.Presence && leaveCVBuffer.Ready == (int)clsEnum.Ready.Leave)
+                    {
+                        if (!string.IsNullOrWhiteSpace(sCmdSno) && leaveCVBuffer.GetSentPos() == false)
+                        {
+                            PositionReport info = new PositionReport
+                            {
+                                jobId = sCmdSno,
+                                carrierType = "BIN",
+                                position = $"S0-{bufferNo.ToString().PadLeft(2, '0')}"
+                            };
+                            if (clsWcsApi.GetApiProcess().GetPositionReportFunc().FunReport(info))
+                            {
+                                clsInitSys.FunWriTraceLog_Remark($"S0-{bufferNo.ToString().PadLeft(2, '0')}: <任務號>{sCmdSno} => 抵達終點");
+                                clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).SetSentPos(true);
+                            }
+
+                        }
+                    }
+                    if (!leaveCVBuffer.Presence && leaveCVBuffer.GetSentPos() == true)
+                        clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).SetSentPos(false);
+                }
                 SpinWait.SpinUntil(() => false, 10);
             }
             catch (Exception ex)

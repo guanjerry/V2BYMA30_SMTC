@@ -59,6 +59,7 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.S800
         public int ReadBcrReq_PC => Signal.RequestController.ReadBcrDoneAck.GetValue();
         public int InitialNotice => Signal.AckSignal.InitalAck.GetValue();
         public int InitialNotice_PC => Signal.RequestController.InitalReq.GetValue();
+        public int IsEmpty => Signal.IsEmpty.GetValue();
         /// <summary>
         /// 手動入庫通知 (0: 自動入庫，1: 手動入庫)
         /// </summary>

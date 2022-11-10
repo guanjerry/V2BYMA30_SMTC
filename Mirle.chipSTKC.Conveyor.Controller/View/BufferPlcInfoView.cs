@@ -149,10 +149,12 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                         if (comboBoxBufferIndex.SelectedIndex != -1)
                         {
                             int StnIdx = Convert.ToInt32(comboBoxBufferIndex.Text.Split(':')[0]);
+                            int BCRIdx = ((StnIdx - 1) / 6) * 6 + 1;
                             clsTool.Signal_Show(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).Error, ref label_Error);
                             clsTool.Signal_Show(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).InMode, ref label_InMode);
                             clsTool.Signal_Show(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).OutMode, ref lblOutMode);
                             clsTool.Signal_Show(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).Presence, ref label_Load);
+                            label_IsEmpty.BackColor = Color.Transparent;
                             label_Command.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).CommandID;
                             label_Mode.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).CommandMode.ToString();
                             label_Ready.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).Ready.ToString();
@@ -163,6 +165,20 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                                 label_Start_Roll_Signal.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).StartRollAck.ToString();
                             if (TrayIndexBuffer.Contains(StnIdx))
                                 lblTrayID.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).GetTrayID;
+                            if (CurController == 0 || CurController == 2)
+                            {
+                                if (StnIdx == 2 || StnIdx == 8 || StnIdx == 14 || StnIdx == 20 || StnIdx == 26 || StnIdx == 32)
+                                {
+                                    lblTrayID.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(BCRIdx).GetTrayID;
+                                }
+                            }
+                            if (CurController == 1 || CurController == 3)
+                            {
+                                if (StnIdx == 6 || StnIdx == 12 || StnIdx == 18 || StnIdx == 24 || StnIdx == 30 || StnIdx == 36)
+                                {
+                                    lblTrayID.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(BCRIdx).GetTrayID;
+                                }
+                            }
                             if (StnIdx == 1 || StnIdx == 7 || StnIdx == 13 || StnIdx == 19 || StnIdx == 25 || StnIdx == 31)
                                 lblTrayID.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).GetTrayID;
 
@@ -198,6 +214,8 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                                 label_Start_Roll_Signal.Text = _cvcHost.GetS800Manager().GetBuffer(StnIdx).StartRollAck.ToString();
                             if (StnIdx == 3)
                                 lblTrayID.Text = _cvcHost.GetS800Manager().GetBuffer(StnIdx).GetTrayID;
+                            if (StnIdx == 5)
+                                label_IsEmpty.BackColor = _cvcHost.GetS800Manager().GetBuffer(StnIdx).IsEmpty == 1 ? Color.Yellow : Color.Transparent; 
 
 
                             lblCmd_PC.Text = _cvcHost.GetS800Manager().GetBuffer(StnIdx).CommandID_PC;

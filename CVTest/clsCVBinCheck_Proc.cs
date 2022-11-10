@@ -46,7 +46,8 @@ namespace CVTest
                             BCRCheckRequestInfo bcrinfo = new BCRCheckRequestInfo
                             {
                                 location = "S0-03",
-                                barcode = TrayID
+                                barcode = TrayID,
+                                carrierType = "BIN"
                             };
                             #region 測試
                             //if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(TrayBuffer).SetReadReq().Result)

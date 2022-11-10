@@ -60,23 +60,26 @@ namespace Mirle.WebAPI.Event
                     }
                     else
                     {
-                        if (clsSMTCVStart.GetControllerHost().GetS800Manager().IsConnected)
+                        if (bufferNo != 5)
                         {
-                            if (!clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).SetStartRollAsync().Result)
+                            if (clsSMTCVStart.GetControllerHost().GetS800Manager().IsConnected)
                             {
-                                string exMessage = $"<Buffer> {Body.bufferId} fail to write START ROLL...";
-                                throw new Exception(exMessage);
+                                if (!clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).SetStartRollAsync().Result)
+                                {
+                                    string exMessage = $"<Buffer> {Body.bufferId} fail to write START ROLL...";
+                                    throw new Exception(exMessage);
+                                }
+                                SpinWait.SpinUntil(() => false, 300);
+                                if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).StartRollAck != 1)
+                                {
+                                    string exMessage = $"<Buffer> {Body.bufferId} fail for PLC START ROLL...";
+                                    throw new Exception(exMessage);
+                                }
                             }
-                            SpinWait.SpinUntil(() => false, 300);
-                            if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).StartRollAck != 1)
+                            else
                             {
-                                string exMessage = $"<Buffer> {Body.bufferId} fail for PLC START ROLL...";
-                                throw new Exception(exMessage);
+                                throw new Exception($"<{Body.jobId}>BUFFER_ROLL_INFO <PLC>{plcNo} not connected!!!");
                             }
-                        }
-                        else
-                        {
-                            throw new Exception($"<{Body.jobId}>BUFFER_ROLL_INFO <PLC>{plcNo} not connected!!!");
                         }
                     }
                 }
@@ -242,6 +245,7 @@ namespace Mirle.WebAPI.Event
                 string bufferId = Body.bufferId;
                 bool isLoad = false;
                 string readySts = "";
+                string isEmpty = "0";
                 if (plcNo != 0)
                 {
                     if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).IsConnected)
@@ -262,6 +266,8 @@ namespace Mirle.WebAPI.Event
                         readySts = clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).Ready.ToString();
                         CmdSno = clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).CommandID;
                         isLoad = clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).Presence;
+                        if (bufferNo == 5)
+                            isEmpty = clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).IsEmpty.ToString();
                     }
                     else
                     {
@@ -271,6 +277,7 @@ namespace Mirle.WebAPI.Event
                 rMsg.ready = readySts;
                 rMsg.jobId = CmdSno;
                 rMsg.isLoad = isLoad == true ? "Y" : "N";
+                rMsg.isEmpty = isEmpty;
                 rMsg.returnCode = clsConstValue.ApiReturnCode.Success;
                 rMsg.returnComment = "";
                 clsWriLog.FunWriTraceLog_CV($"<BUFFER_STATUS_QUERY> <Reply Send>\n{JsonConvert.SerializeObject(rMsg)}");

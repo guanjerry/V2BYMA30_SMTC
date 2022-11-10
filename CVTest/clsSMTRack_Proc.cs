@@ -51,6 +51,10 @@ namespace CVTest
                                 clsInitSys.FunWriTraceLog_Remark(Remark);
                                 RequestAway = true;
                             }
+                            else
+                            {
+                                SpinWait.SpinUntil(() => false, 1000);
+                            }
                         }
                     }
                     if (!SMTBuffer.Presence && RequestAway == true)
