@@ -59,6 +59,7 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.S800
         public int ReadBcrReq_PC => Signal.RequestController.ReadBcrDoneAck.GetValue();
         public int InitialNotice => Signal.AckSignal.InitalAck.GetValue();
         public int InitialNotice_PC => Signal.RequestController.InitalReq.GetValue();
+        public int UndoReq => Signal.Controller.UndoRequest.GetValue();
         public int IsEmpty => Signal.IsEmpty.GetValue();
         /// <summary>
         /// 手動入庫通知 (0: 自動入庫，1: 手動入庫)
@@ -232,6 +233,40 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.S800
                 try
                 {
                     Signal.RequestController.StartRollRequest.SetValue(1);
+                    Task.Delay(500).Wait();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    _LoggerService.WriteExceptionLog(MethodBase.GetCurrentMethod(), $"{ex.Message}\n{ex.StackTrace}");
+                    return false;
+                }
+            });
+        }
+        public Task<bool> SetUndoRequestAsync()
+        {
+            return Task.Run(() =>
+            {
+                try
+                {
+                    Signal.Controller.UndoRequest.SetValue(1);
+                    Task.Delay(500).Wait();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    _LoggerService.WriteExceptionLog(MethodBase.GetCurrentMethod(), $"{ex.Message}\n{ex.StackTrace}");
+                    return false;
+                }
+            });
+        }
+        public Task<bool> ClearUndoRequestAsync()
+        {
+            return Task.Run(() =>
+            {
+                try
+                {
+                    Signal.Controller.UndoRequest.SetValue(0);
                     Task.Delay(500).Wait();
                     return true;
                 }

@@ -127,8 +127,9 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.S800.Signal
                 //End with 6
                 bufferSignal.Controller.PathNotice = new Word(_mplc, $"D{controllerStartAddress + offset + 6}");
                 //End with 7
-                
+
                 //End with 8
+                bufferSignal.Controller.UndoRequest = new Word(_mplc, $"D{controllerStartAddress + offset + 8}");
                 //if (i == 9)
                 //    bufferSignal.RequestController.PickStartRequest = new Word(_mplc, $"D{controllerStartAddress + offset + 8}");
                 //End with 9

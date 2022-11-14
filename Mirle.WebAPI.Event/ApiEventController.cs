@@ -346,5 +346,49 @@ namespace Mirle.WebAPI.Event
                 return Json(rMsg);
             }
         }
+
+        [Route("SMTC/RACK_LEAVING_NG")]
+        [HttpPost]
+        public IHttpActionResult RACK_LEAVING_NG([FromBody] BufferInfo Body)
+        {
+            clsWriLog.FunWriTraceLog_CV($"<RACK_LEAVING_NG> <WCS Send>\n{JsonConvert.SerializeObject(Body)}");
+            ReturnCode rMsg = new ReturnCode
+            {
+                jobId = "",
+                transactionId = Body.transactionId
+            };
+            clsWriLog.FunWriTraceLog_CV($"<{Body.jobId}>RACK_LEAVING_NG record start!");
+            try
+            {
+                int plcNo = Convert.ToInt32(Body.bufferId.Substring(1, 1));
+                int bufferNo = Convert.ToInt32(Body.bufferId.Substring(3, 2));
+                string bufferId = Body.bufferId;
+                if (plcNo == 0)
+                {
+                    if (clsSMTCVStart.GetControllerHost().GetS800Manager().IsConnected)
+                    {
+                        clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).SetUndoRequestAsync();
+                    }
+                    else
+                    {
+                        throw new Exception($"<{Body.jobId}>RACK_LEAVING_NG <PLC>{plcNo} not connected!!!");
+                    }
+                }
+                rMsg.returnCode = clsConstValue.ApiReturnCode.Success;
+                rMsg.returnComment = "";
+                clsWriLog.FunWriTraceLog_CV($"<RACK_LEAVING_NG> <Reply Send>\n{JsonConvert.SerializeObject(rMsg)}");
+                clsWriLog.FunWriTraceLog_CV($"<{Body.jobId}>RACK_LEAVING_NG record end!");
+                return Json(rMsg);
+            }
+            catch (Exception ex)
+            {
+                rMsg.returnCode = clsConstValue.ApiReturnCode.Fail;
+                rMsg.returnComment = ex.Message;
+
+                var cmet = System.Reflection.MethodBase.GetCurrentMethod();
+                clsWriLog.subWriteExLog(cmet.DeclaringType.FullName + "." + cmet.Name, ex.Message);
+                return Json(rMsg);
+            }
+        }
     }
 }

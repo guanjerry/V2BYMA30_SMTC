@@ -61,6 +61,10 @@ namespace CVTest
                     {
                         RequestAway = false;
                     }
+                    if (!SMTBuffer.Presence && clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(RackBuffer).UndoReq == 1)
+                    {
+                        clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(RackBuffer).ClearUndoRequestAsync();
+                    }
                 }
                 SpinWait.SpinUntil(() => false, 10);
             }
