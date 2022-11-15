@@ -245,7 +245,7 @@ namespace Mirle.WebAPI.Event
                 string bufferId = Body.bufferId;
                 bool isLoad = false;
                 string readySts = "";
-                string isEmpty = "0";
+                string isEmpty = clsConstValue.YesNo.No;
                 if (plcNo != 0)
                 {
                     if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).IsConnected)
@@ -267,7 +267,7 @@ namespace Mirle.WebAPI.Event
                         CmdSno = clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).CommandID;
                         isLoad = clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).Presence;
                         if (bufferNo == 5)
-                            isEmpty = clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).IsEmpty.ToString();
+                            isEmpty = clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).IsEmpty.ToString() == "1" ? clsConstValue.YesNo.Yes : clsConstValue.YesNo.No;
                     }
                     else
                     {
@@ -367,6 +367,7 @@ namespace Mirle.WebAPI.Event
                 {
                     if (clsSMTCVStart.GetControllerHost().GetS800Manager().IsConnected)
                     {
+                        clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).WriteCommandAsync("00001", 2, 10);
                         clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(bufferNo).SetUndoRequestAsync();
                     }
                     else
