@@ -182,6 +182,17 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                             if (StnIdx == 1 || StnIdx == 7 || StnIdx == 13 || StnIdx == 19 || StnIdx == 25 || StnIdx == 31)
                                 lblTrayID.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).GetTrayID;
 
+
+                            if (!lbl_NgGet.Visible)
+                            {
+                                lbl_NgGet.Visible = true;
+                                lbl_NGTime.Visible = true;
+                                lbl_AskLeave.Visible = true;
+                            }
+                            clsTool.Signal_Show(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).GetSentPos(), ref lbl_SentPos);
+                            clsTool.Signal_Show(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).GetAskLeave(), ref lbl_AskLeave);
+                            clsTool.Signal_Show(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).GetNGCheck(), ref lbl_NgGet);
+                            lbl_NGTime.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).GetRecordTime().ToString("hh:mm:ss.fff");
                             lblCmd_PC.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).CommandID_PC;
                             lblMode_PC.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).CommandMode_PC.ToString();
                             lblRead_Req.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).ReadBcrReq_PC.ToString();
@@ -215,9 +226,15 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                             if (StnIdx == 3)
                                 lblTrayID.Text = _cvcHost.GetS800Manager().GetBuffer(StnIdx).GetTrayID;
                             if (StnIdx == 5)
-                                label_IsEmpty.BackColor = _cvcHost.GetS800Manager().GetBuffer(StnIdx).IsEmpty == 1 ? Color.Yellow : Color.Transparent; 
+                                label_IsEmpty.BackColor = _cvcHost.GetS800Manager().GetBuffer(StnIdx).IsEmpty == 1 ? Color.Yellow : Color.Transparent;
 
-
+                            clsTool.Signal_Show(_cvcHost.GetS800Manager().GetBuffer(StnIdx).GetSentPos(), ref lbl_SentPos);
+                            if (lbl_NgGet.Visible)
+                            {
+                                lbl_NgGet.Visible = false;
+                                lbl_NGTime.Visible = false;
+                                lbl_AskLeave.Visible = false;
+                            }
                             lblCmd_PC.Text = _cvcHost.GetS800Manager().GetBuffer(StnIdx).CommandID_PC;
                             lblMode_PC.Text = _cvcHost.GetS800Manager().GetBuffer(StnIdx).CommandMode_PC.ToString();
                             lblRead_Req.Text = _cvcHost.GetS800Manager().GetBuffer(StnIdx).ReadBcrReq_PC.ToString();

@@ -69,9 +69,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblTrayID = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.label_IsEmpty = new System.Windows.Forms.Label();
             this.comboBoxBufferIndex = new System.Windows.Forms.ComboBox();
             this.refreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.label_IsEmpty = new System.Windows.Forms.Label();
+            this.lbl_SentPos = new System.Windows.Forms.Label();
+            this.lbl_NgGet = new System.Windows.Forms.Label();
+            this.lbl_NGTime = new System.Windows.Forms.Label();
+            this.lbl_AskLeave = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -259,6 +263,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.Controls.Add(this.lbl_NGTime, 2, 3);
             this.tableLayoutPanel4.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.lblCmd_PC, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.label11, 1, 0);
@@ -272,7 +277,10 @@
             this.tableLayoutPanel4.Controls.Add(this.lblIni, 4, 0);
             this.tableLayoutPanel4.Controls.Add(this.lblInitial_Req, 4, 1);
             this.tableLayoutPanel4.Controls.Add(this.btn_Initial_PC, 4, 3);
-            this.tableLayoutPanel4.Controls.Add(this.btnRoll_PcToPlc, 3, 3);
+            this.tableLayoutPanel4.Controls.Add(this.btnRoll_PcToPlc, 4, 2);
+            this.tableLayoutPanel4.Controls.Add(this.lbl_SentPos, 1, 2);
+            this.tableLayoutPanel4.Controls.Add(this.lbl_NgGet, 2, 2);
+            this.tableLayoutPanel4.Controls.Add(this.lbl_AskLeave, 1, 3);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(4, 26);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4);
@@ -470,10 +478,10 @@
             this.btnRoll_PcToPlc.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRoll_PcToPlc.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnRoll_PcToPlc.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnRoll_PcToPlc.Location = new System.Drawing.Point(729, 173);
+            this.btnRoll_PcToPlc.Location = new System.Drawing.Point(971, 116);
             this.btnRoll_PcToPlc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRoll_PcToPlc.Name = "btnRoll_PcToPlc";
-            this.btnRoll_PcToPlc.Size = new System.Drawing.Size(236, 53);
+            this.btnRoll_PcToPlc.Size = new System.Drawing.Size(240, 53);
             this.btnRoll_PcToPlc.TabIndex = 86;
             this.btnRoll_PcToPlc.Text = "滾動通知";
             this.btnRoll_PcToPlc.UseVisualStyleBackColor = false;
@@ -704,6 +712,20 @@
             this.label14.Text = "開始滾動";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label_IsEmpty
+            // 
+            this.label_IsEmpty.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_IsEmpty.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label_IsEmpty.Font = new System.Drawing.Font("微軟正黑體", 11F);
+            this.label_IsEmpty.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(40)))), ((int)(((byte)(69)))));
+            this.label_IsEmpty.Location = new System.Drawing.Point(1053, 106);
+            this.label_IsEmpty.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.label_IsEmpty.Name = "label_IsEmpty";
+            this.label_IsEmpty.Size = new System.Drawing.Size(174, 48);
+            this.label_IsEmpty.TabIndex = 67;
+            this.label_IsEmpty.Text = "空料架";
+            this.label_IsEmpty.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // comboBoxBufferIndex
             // 
             this.comboBoxBufferIndex.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -727,19 +749,61 @@
             this.refreshTimer.Interval = 500;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
-            // label_IsEmpty
+            // lbl_SentPos
             // 
-            this.label_IsEmpty.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_IsEmpty.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_IsEmpty.Font = new System.Drawing.Font("微軟正黑體", 11F);
-            this.label_IsEmpty.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(40)))), ((int)(((byte)(69)))));
-            this.label_IsEmpty.Location = new System.Drawing.Point(1053, 106);
-            this.label_IsEmpty.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.label_IsEmpty.Name = "label_IsEmpty";
-            this.label_IsEmpty.Size = new System.Drawing.Size(174, 48);
-            this.label_IsEmpty.TabIndex = 67;
-            this.label_IsEmpty.Text = "空料架";
-            this.label_IsEmpty.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbl_SentPos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_SentPos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_SentPos.Font = new System.Drawing.Font("微軟正黑體", 11F);
+            this.lbl_SentPos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(40)))), ((int)(((byte)(69)))));
+            this.lbl_SentPos.Location = new System.Drawing.Point(245, 116);
+            this.lbl_SentPos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lbl_SentPos.Name = "lbl_SentPos";
+            this.lbl_SentPos.Size = new System.Drawing.Size(236, 53);
+            this.lbl_SentPos.TabIndex = 67;
+            this.lbl_SentPos.Text = "已上報位置";
+            this.lbl_SentPos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbl_NgGet
+            // 
+            this.lbl_NgGet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_NgGet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_NgGet.Font = new System.Drawing.Font("微軟正黑體", 11F);
+            this.lbl_NgGet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(40)))), ((int)(((byte)(69)))));
+            this.lbl_NgGet.Location = new System.Drawing.Point(487, 116);
+            this.lbl_NgGet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lbl_NgGet.Name = "lbl_NgGet";
+            this.lbl_NgGet.Size = new System.Drawing.Size(236, 53);
+            this.lbl_NgGet.TabIndex = 67;
+            this.lbl_NgGet.Text = "被回覆NG";
+            this.lbl_NgGet.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbl_NGTime
+            // 
+            this.lbl_NGTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(210)))), ((int)(((byte)(237)))));
+            this.lbl_NGTime.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lbl_NGTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_NGTime.Font = new System.Drawing.Font("微軟正黑體", 9.75F);
+            this.lbl_NGTime.ForeColor = System.Drawing.Color.Blue;
+            this.lbl_NGTime.Location = new System.Drawing.Point(487, 173);
+            this.lbl_NGTime.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lbl_NGTime.Name = "lbl_NGTime";
+            this.lbl_NGTime.Size = new System.Drawing.Size(236, 53);
+            this.lbl_NGTime.TabIndex = 87;
+            this.lbl_NGTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_AskLeave
+            // 
+            this.lbl_AskLeave.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_AskLeave.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_AskLeave.Font = new System.Drawing.Font("微軟正黑體", 11F);
+            this.lbl_AskLeave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(40)))), ((int)(((byte)(69)))));
+            this.lbl_AskLeave.Location = new System.Drawing.Point(245, 173);
+            this.lbl_AskLeave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lbl_AskLeave.Name = "lbl_AskLeave";
+            this.lbl_AskLeave.Size = new System.Drawing.Size(236, 53);
+            this.lbl_AskLeave.TabIndex = 67;
+            this.lbl_AskLeave.Text = "已詢問離開";
+            this.lbl_AskLeave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // BufferPlcInfoView
             // 
@@ -805,5 +869,9 @@
         private System.Windows.Forms.Button btn_Initial_PLC;
         private System.Windows.Forms.Button btnRoll_PcToPlc;
         private System.Windows.Forms.Label label_IsEmpty;
+        private System.Windows.Forms.Label lbl_NGTime;
+        private System.Windows.Forms.Label lbl_SentPos;
+        private System.Windows.Forms.Label lbl_NgGet;
+        private System.Windows.Forms.Label lbl_AskLeave;
     }
 }
