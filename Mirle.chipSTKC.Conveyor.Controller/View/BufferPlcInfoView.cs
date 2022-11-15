@@ -338,6 +338,9 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                             _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).SetStopRollAsync();
                         }
                         _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).SetReadReq(0);
+                        _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).SetAskLeave(false);
+                        _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).SetNGCheck(false);
+                        _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).SetSentPos(false);
                         _LoggerService.WriteLog($"手動按下CV初始PC -> PLC按鈕：<Buffer> {comboBoxBufferIndex.Text.Split(':')[1]}");
                     }
                 }
