@@ -99,6 +99,7 @@
             // 
             this.label9.BackColor = System.Drawing.Color.Black;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label9.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(2, 2);
@@ -128,9 +129,8 @@
             // lblPLCConnSts
             // 
             this.lblPLCConnSts.BackColor = System.Drawing.Color.Red;
-            this.lblPLCConnSts.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblPLCConnSts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPLCConnSts.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.lblPLCConnSts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblPLCConnSts.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lblPLCConnSts.ForeColor = System.Drawing.Color.Black;
             this.lblPLCConnSts.Location = new System.Drawing.Point(2, 41);
