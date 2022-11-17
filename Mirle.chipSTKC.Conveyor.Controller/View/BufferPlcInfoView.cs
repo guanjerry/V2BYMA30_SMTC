@@ -189,6 +189,18 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                                 lbl_NGTime.Visible = true;
                                 lbl_AskLeave.Visible = true;
                             }
+                            if (StnIdx == 38 || StnIdx == 42 || StnIdx == 46)
+                            {
+                                if (!label_AskEmpty.Visible)
+                                {
+                                    label_AskEmpty.Visible = true;
+                                    label_EmptyLabel.Visible = true;
+                                    lbl_BinReach.Visible = true;
+                                    lbl_BinReachLabel.Visible = true;
+                                }
+                                label_AskEmpty.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).EmptyBinCall.ToString();
+                                lbl_BinReach.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).EmptyBinCall_PC.ToString();
+                            }
                             clsTool.Signal_Show(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).GetSentPos(), ref lbl_SentPos);
                             clsTool.Signal_Show(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).GetAskLeave(), ref lbl_AskLeave);
                             clsTool.Signal_Show(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).GetNGCheck(), ref lbl_NgGet);
@@ -234,6 +246,10 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                                 lbl_NgGet.Visible = false;
                                 lbl_NGTime.Visible = false;
                                 lbl_AskLeave.Visible = false;
+                                label_AskEmpty.Visible = false;
+                                label_EmptyLabel.Visible = false;
+                                lbl_BinReach.Visible = false;
+                                lbl_BinReachLabel.Visible = false;
                             }
                             lblCmd_PC.Text = _cvcHost.GetS800Manager().GetBuffer(StnIdx).CommandID_PC;
                             lblMode_PC.Text = _cvcHost.GetS800Manager().GetBuffer(StnIdx).CommandMode_PC.ToString();
