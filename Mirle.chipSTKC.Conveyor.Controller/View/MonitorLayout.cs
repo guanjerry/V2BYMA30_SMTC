@@ -255,7 +255,7 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                         else if(i == VisibleItem[curC].Length)
                         {
                             BufferControl = Controls.Find("ucl" + VisibleItem[curC][i - 1] + "b", true).FirstOrDefault() as uclBuffer;
-                            BufferControl.BufferName = $"S{CurController + 1}-{VisibleItem[curC][i - 1].ToString().PadLeft(2, '0')}";
+                            index = 49;
                         }
                         else
                             index = i;
