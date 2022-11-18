@@ -31,7 +31,8 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
             InvisibleItem[0] = new int[] { 19, 20, 21, 22, 23, 24 };
             InvisibleItem[1] = new int[] { 19, 20, 21, 22, 23, 24, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 50 };
             InvisibleItem[2] = new int[] { 50 };
-            InvisibleItem[3] = new int[] { 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48 };
+            //InvisibleItem[3] = new int[] { 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48 };
+            InvisibleItem[3] = new int[] { 7, 8, 9, 10, 11, 12, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48 };
             InvisibleItem[4] = new int[] { 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
                                             34, 35, 36, 41, 42, 43, 44, 45, 46, 47, 48, 50 };
             InvisibleItem[5] = new int[] { 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
@@ -40,17 +41,17 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                                             31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 50};
             VisibleItem[1] = new int[31];
             VisibleItem[3] = new int[32];
-            SetVisible(ref VisibleItem[1], 0, 6, 7); //7~12
-            SetVisible(ref VisibleItem[1], 6, 12, -5); //1~5
+            SetVisible(ref VisibleItem[1], 0, 6, 31); //31~36
+            SetVisible(ref VisibleItem[1], 6, 12, 19); //25~30
             SetVisible(ref VisibleItem[1], 12, 18, 1); //13~18
-            SetVisible(ref VisibleItem[1], 18, 24, 13); //31~36
-            SetVisible(ref VisibleItem[1], 24, 30, 1); //25~30
+            SetVisible(ref VisibleItem[1], 18, 24, -11); //7~12
+            SetVisible(ref VisibleItem[1], 24, 30, -23); //1~6
             VisibleItem[1][30] = 49;
-            SetVisible(ref VisibleItem[3], 0, 6, 7);
-            SetVisible(ref VisibleItem[3], 6, 12, -5);
-            SetVisible(ref VisibleItem[3], 12, 18, 7);
-            SetVisible(ref VisibleItem[3], 18, 24, -5);
-            SetVisible(ref VisibleItem[3], 24, 30, 1);
+            SetVisible(ref VisibleItem[3], 0, 6, 31); //31~36
+            SetVisible(ref VisibleItem[3], 6, 12, 19); //25~30
+            SetVisible(ref VisibleItem[3], 12, 18, 7); //19~24
+            SetVisible(ref VisibleItem[3], 18, 24, -5); //13~18
+            SetVisible(ref VisibleItem[3], 24, 30, -23); //1~6
             VisibleItem[3][30] = 49;
             VisibleItem[3][31] = 50;
             SetCurController(curC);
@@ -124,18 +125,8 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                             uclBuffer BufferControl = Controls.Find("ucl" + i, true).FirstOrDefault() as uclBuffer;
                             if (CurController == 2 && i ==49)
                                 BufferControl = Controls.Find("ucl" + i + "b", true).FirstOrDefault() as uclBuffer;
-                            
-                            BufferControl.Auto = true;//_cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Auto;
-                            BufferControl.bLoad = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Presence;
-                            BufferControl.CmdMode = clsTool.funGetEnumValue<uclBuffer.enuCmdMode>(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).CommandMode);
-                            BufferControl.CmdSno = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).CommandID;
-                            BufferControl.Error = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Error;
-                            BufferControl.PathNotice = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).PathNotice;
-                            //BufferControl.Position = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Position;
-                            BufferControl.ReadNotice = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Signal.AckSignal.ReadBcrSignal.GetValue();
-                            BufferControl.Ready = clsTool.funGetEnumValue<uclBuffer.enuReady>(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Ready);
-                            //BufferControl.Done = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Signal.StatusSignal.Finish.IsOn();
-                            BufferControl.InitialNotice = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Signal.AckSignal.InitalAck.GetValue();
+
+                            GetSignal(BufferControl, i);
                         }
                     }
                     else if(CurController == 3)
@@ -148,17 +139,7 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                                 index = VisibleItem[CurController][i - 1];
                             else
                                 index = i;
-                            BufferControl.Auto = true;//_cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Auto;
-                            BufferControl.bLoad = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(index).Presence;
-                            BufferControl.CmdMode = clsTool.funGetEnumValue<uclBuffer.enuCmdMode>(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(index).CommandMode);
-                            BufferControl.CmdSno = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(index).CommandID;
-                            BufferControl.Error = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(index).Error;
-                            BufferControl.PathNotice = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(index).PathNotice;
-                            //BufferControl.Position = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Position;
-                            BufferControl.ReadNotice = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(index).Signal.AckSignal.ReadBcrSignal.GetValue();
-                            BufferControl.Ready = clsTool.funGetEnumValue<uclBuffer.enuReady>(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(index).Ready);
-                            //BufferControl.Done = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Signal.StatusSignal.Finish.IsOn();
-                            BufferControl.InitialNotice = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(index).Signal.AckSignal.InitalAck.GetValue();
+                            GetSignal(BufferControl, index);
                         }
                     }
                     else
@@ -168,24 +149,16 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                             int index = 0;
                             uclBuffer BufferControl = Controls.Find("ucl" + VisibleItem[CurController][i - 1], true).FirstOrDefault() as uclBuffer;
                             if (i == VisibleItem[CurController].Length)
-                                BufferControl = Controls.Find("ucl"+ VisibleItem[CurController][i - 1] + "b", true).FirstOrDefault() as uclBuffer;
-                            if (i >= 19 && i < VisibleItem[CurController].Length)
-                                index = i + 6;
-                            else if(i == VisibleItem[CurController].Length)
+                            {
+                                BufferControl = Controls.Find("ucl" + VisibleItem[CurController][i - 1] + "b", true).FirstOrDefault() as uclBuffer;
                                 index = 49;
+                            }
+                            else if (i >= 19 && i < VisibleItem[CurController].Length)
+                                index = i + 6;
                             else
                                 index = i;
-                            BufferControl.Auto = true;//_cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Auto;
-                            BufferControl.bLoad = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(index).Presence;
-                            BufferControl.CmdMode = clsTool.funGetEnumValue<uclBuffer.enuCmdMode>(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(index).CommandMode);
-                            BufferControl.CmdSno = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(index).CommandID;
-                            BufferControl.Error = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(index).Error;
-                            BufferControl.PathNotice = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(index).PathNotice;
-                            //BufferControl.Position = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Position;
-                            BufferControl.ReadNotice = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(index).Signal.AckSignal.ReadBcrSignal.GetValue();
-                            BufferControl.Ready = clsTool.funGetEnumValue<uclBuffer.enuReady>(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(index).Ready);
-                            //BufferControl.Done = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Signal.StatusSignal.Finish.IsOn();
-                            BufferControl.InitialNotice = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(index).Signal.AckSignal.InitalAck.GetValue();
+                            GetSignal(BufferControl, index);
+                            
                         }
                     }
                 }
@@ -277,17 +250,19 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                     {
                         int index = 0;
                         uclBuffer BufferControl = Controls.Find("ucl" + VisibleItem[curC][i - 1], true).FirstOrDefault() as uclBuffer;
-                        if (i >= 19)
+                        if (i >= 19 && i < VisibleItem[curC].Length)
                             index = i + 6;
-                        else
-                            index = i;
-                        BufferControl.BufferName = $"S{CurController + 1}-{index.ToString().PadLeft(2, '0')}";
-
-                        if (VisibleItem[curC][i - 1] == 49)
+                        else if(i == VisibleItem[curC].Length)
                         {
-                            BufferControl = Controls.Find("ucl" + VisibleItem[curC][i - 1]+"b", true).FirstOrDefault() as uclBuffer;
+                            BufferControl = Controls.Find("ucl" + VisibleItem[curC][i - 1] + "b", true).FirstOrDefault() as uclBuffer;
                             BufferControl.BufferName = $"S{CurController + 1}-{VisibleItem[curC][i - 1].ToString().PadLeft(2, '0')}";
                         }
+                        else
+                            index = i;
+                        
+                        BufferControl.BufferName = $"S{CurController + 1}-{index.ToString().PadLeft(2, '0')}";
+
+                        
                     }
                 }
             }
@@ -311,9 +286,40 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                 line = 4;
             else
                 line = 7;
-            label1.Text = $"Line{line}";
-            label2.Text = (line != 7)? $"Line{line + 1}": string.Empty;
-            label3.Text = (line != 7) ? $"Line{line + 2}" : string.Empty;
+
+            if(curC % 2 == 0 && curC != 4)
+            {
+                label1.Text = $"Line {line}";
+                label2.Text = (line != 7) ? $"Line {line + 1}" : string.Empty;
+                label3.Text = (line != 7) ? $"Line {line + 2}" : string.Empty;
+            }
+            else if(curC % 2 == 1)
+            {
+                label1.Text = $"Line {line+2}";
+                label2.Text = (line != 7) ? $"Line {line + 1}" : string.Empty;
+                label3.Text = (line != 7) ? $"Line {line}" : string.Empty;
+            }
+            else
+            {
+                label1.Text = $"Line{line}";
+                label2.Text = string.Empty;
+                label3.Text = string.Empty;
+            }
+            
+        }
+
+        private void GetSignal(uclBuffer BufferControl, int index)
+        {
+            V2BYMA30.SMT.Buffer buffer = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(index);
+            BufferControl.Auto = true;//_cvcHost.GetCVCManager(CurController + 1).GetBuffer(i).Auto;
+            BufferControl.bLoad = buffer.Presence;
+            BufferControl.CmdMode = clsTool.funGetEnumValue<uclBuffer.enuCmdMode>(buffer.CommandMode);
+            BufferControl.CmdSno = buffer.CommandID;
+            BufferControl.Error = buffer.Error;
+            BufferControl.PathNotice = buffer.PathNotice;
+            BufferControl.ReadNotice = buffer.Signal.AckSignal.ReadBcrSignal.GetValue();
+            BufferControl.Ready = clsTool.funGetEnumValue<uclBuffer.enuReady>(buffer.Ready);
+            BufferControl.InitialNotice = buffer.Signal.AckSignal.InitalAck.GetValue();
         }
     }
 }
