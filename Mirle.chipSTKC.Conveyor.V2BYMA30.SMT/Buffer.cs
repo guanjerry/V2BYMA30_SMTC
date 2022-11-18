@@ -468,7 +468,19 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.SMT
             {
                 _LoggerService.WriteExceptionLog(MethodBase.GetCurrentMethod(), $"{ex.Message}\n{ex.StackTrace}");
             }
-
+            //Clear Ask Empty Bin
+            try
+            {
+                if (Signal.EmptyBinCall != null && Signal.Controller.EmptyBinCall != null)
+                    if (Signal.EmptyBinCall.GetValue() == 0 && Signal.Controller.EmptyBinCall.GetValue()  != 0)
+                    {
+                        Signal.Controller.EmptyBinCall.SetValue(0);
+                    }
+            }
+            catch (Exception ex)
+            {
+                _LoggerService.WriteExceptionLog(MethodBase.GetCurrentMethod(), $"{ex.Message}\n{ex.StackTrace}");
+            }
         }
 
         

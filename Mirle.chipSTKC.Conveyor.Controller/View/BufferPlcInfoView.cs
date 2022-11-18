@@ -201,6 +201,16 @@ namespace Mirle.SMTCV.Conveyor.Controller.View
                                 label_AskEmpty.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).EmptyBinCall.ToString();
                                 lbl_BinReach.Text = _cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).EmptyBinCall_PC.ToString();
                             }
+                            else
+                            {
+                                if (label_AskEmpty.Visible)
+                                {
+                                    label_AskEmpty.Visible = false;
+                                    label_EmptyLabel.Visible = false;
+                                    lbl_BinReach.Visible = false;
+                                    lbl_BinReachLabel.Visible = false;
+                                }
+                            }
                             clsTool.Signal_Show(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).GetSentPos(), ref lbl_SentPos);
                             clsTool.Signal_Show(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).GetAskLeave(), ref lbl_AskLeave);
                             clsTool.Signal_Show(_cvcHost.GetCVCManager(CurController + 1).GetBuffer(StnIdx).GetNGCheck(), ref lbl_NgGet);
