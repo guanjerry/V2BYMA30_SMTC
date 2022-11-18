@@ -124,6 +124,28 @@ namespace Mirle.WebAPI.Event
                         {
                             if (bufferNo % 6 == 1)
                             {
+                                int MagNo = 0;
+                                #region 判斷輸送板機上Mag的數量
+                                if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo + 1).Presence ||
+                                    clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo + 2).Presence)
+                                {
+                                    MagNo++;
+                                }
+                                if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo + 3).Presence)
+                                {
+                                    MagNo++;
+                                }
+                                if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo + 4).Presence ||
+                                    clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo + 5).Presence)
+                                {
+                                    MagNo++;
+                                }
+                                #endregion 判斷輸送板機上Mag的數量
+                                if (MagNo >= 3)
+                                {
+                                    string exMessage = $"<Buffer> {Body.bufferId} too many Magazine, reject insert.";
+                                    throw new Exception(exMessage);
+                                }
                                 if (!string.IsNullOrWhiteSpace(clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).CommandID) ||
                                     !string.IsNullOrWhiteSpace(clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).CommandID_PC))
                                 {
@@ -245,7 +267,7 @@ namespace Mirle.WebAPI.Event
                 string bufferId = Body.bufferId;
                 bool isLoad = false;
                 string readySts = "";
-                string isEmpty = clsConstValue.YesNo.No;
+                string isEmpty = YesNo.No;
                 if (plcNo != 0)
                 {
                     if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).IsConnected)
@@ -253,6 +275,32 @@ namespace Mirle.WebAPI.Event
                         readySts = clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).Ready.ToString();
                         CmdSno = clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).CommandID;
                         isLoad = clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).Presence;
+                        #region 3版以上則不給Ready
+                        if (bufferNo % 6 == 1)
+                        {
+                            int MagNo = 0;
+                            #region 判斷輸送板機上Mag的數量
+                            if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo + 1).Presence ||
+                                clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo + 2).Presence)
+                            {
+                                MagNo++;
+                            }
+                            if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo + 3).Presence)
+                            {
+                                MagNo++;
+                            }
+                            if (clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo + 4).Presence ||
+                                clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo + 5).Presence)
+                            {
+                                MagNo++;
+                            }
+                            #endregion 判斷輸送板機上Mag的數量
+                            if (MagNo >= 3)
+                            {
+                                readySts = Ready.NoReady.ToString();
+                            }
+                        }
+                        #endregion 3版以上則不給Ready
                     }
                     else
                     {

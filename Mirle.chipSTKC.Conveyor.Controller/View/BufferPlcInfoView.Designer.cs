@@ -57,6 +57,8 @@
             this.lbl_SentPos = new System.Windows.Forms.Label();
             this.lbl_NgGet = new System.Windows.Forms.Label();
             this.lbl_AskLeave = new System.Windows.Forms.Label();
+            this.lbl_BinReach = new System.Windows.Forms.Label();
+            this.lbl_BinReachLabel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label_Mode = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -74,12 +76,10 @@
             this.lblTrayID = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label_IsEmpty = new System.Windows.Forms.Label();
-            this.comboBoxBufferIndex = new System.Windows.Forms.ComboBox();
-            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.label_EmptyLabel = new System.Windows.Forms.Label();
             this.label_AskEmpty = new System.Windows.Forms.Label();
-            this.lbl_BinReach = new System.Windows.Forms.Label();
-            this.lbl_BinReachLabel = new System.Windows.Forms.Label();
+            this.comboBoxBufferIndex = new System.Windows.Forms.ComboBox();
+            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -236,7 +236,7 @@
             // label_Path
             // 
             this.label_Path.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(210)))), ((int)(((byte)(237)))));
-            this.label_Path.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_Path.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_Path.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label_Path.Font = new System.Drawing.Font("微軟正黑體", 9.75F);
             this.label_Path.ForeColor = System.Drawing.Color.Blue;
@@ -551,6 +551,33 @@
             this.lbl_AskLeave.Text = "已詢問離開";
             this.lbl_AskLeave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // lbl_BinReach
+            // 
+            this.lbl_BinReach.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(210)))), ((int)(((byte)(237)))));
+            this.lbl_BinReach.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lbl_BinReach.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_BinReach.Font = new System.Drawing.Font("微軟正黑體", 9.75F);
+            this.lbl_BinReach.ForeColor = System.Drawing.Color.Blue;
+            this.lbl_BinReach.Location = new System.Drawing.Point(245, 173);
+            this.lbl_BinReach.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lbl_BinReach.Name = "lbl_BinReach";
+            this.lbl_BinReach.Size = new System.Drawing.Size(236, 53);
+            this.lbl_BinReach.TabIndex = 67;
+            this.lbl_BinReach.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_BinReachLabel
+            // 
+            this.lbl_BinReachLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_BinReachLabel.Font = new System.Drawing.Font("微軟正黑體", 11F);
+            this.lbl_BinReachLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(40)))), ((int)(((byte)(69)))));
+            this.lbl_BinReachLabel.Location = new System.Drawing.Point(245, 116);
+            this.lbl_BinReachLabel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lbl_BinReachLabel.Name = "lbl_BinReachLabel";
+            this.lbl_BinReachLabel.Size = new System.Drawing.Size(236, 53);
+            this.lbl_BinReachLabel.TabIndex = 67;
+            this.lbl_BinReachLabel.Text = "空箱抵達";
+            this.lbl_BinReachLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // label8
             // 
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -665,7 +692,7 @@
             // label_Initial
             // 
             this.label_Initial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(210)))), ((int)(((byte)(237)))));
-            this.label_Initial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_Initial.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_Initial.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label_Initial.Font = new System.Drawing.Font("微軟正黑體", 9.75F);
             this.label_Initial.ForeColor = System.Drawing.Color.Blue;
@@ -790,6 +817,33 @@
             this.label_IsEmpty.Text = "空料架";
             this.label_IsEmpty.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label_EmptyLabel
+            // 
+            this.label_EmptyLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label_EmptyLabel.Font = new System.Drawing.Font("微軟正黑體", 11F);
+            this.label_EmptyLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(40)))), ((int)(((byte)(69)))));
+            this.label_EmptyLabel.Location = new System.Drawing.Point(1053, 2);
+            this.label_EmptyLabel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.label_EmptyLabel.Name = "label_EmptyLabel";
+            this.label_EmptyLabel.Size = new System.Drawing.Size(174, 48);
+            this.label_EmptyLabel.TabIndex = 67;
+            this.label_EmptyLabel.Text = "呼叫空箱";
+            this.label_EmptyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label_AskEmpty
+            // 
+            this.label_AskEmpty.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(210)))), ((int)(((byte)(237)))));
+            this.label_AskEmpty.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label_AskEmpty.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label_AskEmpty.Font = new System.Drawing.Font("微軟正黑體", 9.75F);
+            this.label_AskEmpty.ForeColor = System.Drawing.Color.Blue;
+            this.label_AskEmpty.Location = new System.Drawing.Point(1053, 54);
+            this.label_AskEmpty.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.label_AskEmpty.Name = "label_AskEmpty";
+            this.label_AskEmpty.Size = new System.Drawing.Size(174, 48);
+            this.label_AskEmpty.TabIndex = 67;
+            this.label_AskEmpty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // comboBoxBufferIndex
             // 
             this.comboBoxBufferIndex.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -812,60 +866,6 @@
             // 
             this.refreshTimer.Interval = 500;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
-            // 
-            // label_EmptyLabel
-            // 
-            this.label_EmptyLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_EmptyLabel.Font = new System.Drawing.Font("微軟正黑體", 11F);
-            this.label_EmptyLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(40)))), ((int)(((byte)(69)))));
-            this.label_EmptyLabel.Location = new System.Drawing.Point(1053, 2);
-            this.label_EmptyLabel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.label_EmptyLabel.Name = "label_EmptyLabel";
-            this.label_EmptyLabel.Size = new System.Drawing.Size(174, 48);
-            this.label_EmptyLabel.TabIndex = 67;
-            this.label_EmptyLabel.Text = "呼叫空箱";
-            this.label_EmptyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label_AskEmpty
-            // 
-            this.label_AskEmpty.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(210)))), ((int)(((byte)(237)))));
-            this.label_AskEmpty.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_AskEmpty.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_AskEmpty.Font = new System.Drawing.Font("微軟正黑體", 9.75F);
-            this.label_AskEmpty.ForeColor = System.Drawing.Color.Blue;
-            this.label_AskEmpty.Location = new System.Drawing.Point(1053, 54);
-            this.label_AskEmpty.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.label_AskEmpty.Name = "label_AskEmpty";
-            this.label_AskEmpty.Size = new System.Drawing.Size(174, 48);
-            this.label_AskEmpty.TabIndex = 67;
-            this.label_AskEmpty.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbl_BinReach
-            // 
-            this.lbl_BinReach.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(210)))), ((int)(((byte)(237)))));
-            this.lbl_BinReach.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lbl_BinReach.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbl_BinReach.Font = new System.Drawing.Font("微軟正黑體", 9.75F);
-            this.lbl_BinReach.ForeColor = System.Drawing.Color.Blue;
-            this.lbl_BinReach.Location = new System.Drawing.Point(245, 173);
-            this.lbl_BinReach.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.lbl_BinReach.Name = "lbl_BinReach";
-            this.lbl_BinReach.Size = new System.Drawing.Size(236, 53);
-            this.lbl_BinReach.TabIndex = 67;
-            this.lbl_BinReach.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbl_BinReachLabel
-            // 
-            this.lbl_BinReachLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbl_BinReachLabel.Font = new System.Drawing.Font("微軟正黑體", 11F);
-            this.lbl_BinReachLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(40)))), ((int)(((byte)(69)))));
-            this.lbl_BinReachLabel.Location = new System.Drawing.Point(245, 116);
-            this.lbl_BinReachLabel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.lbl_BinReachLabel.Name = "lbl_BinReachLabel";
-            this.lbl_BinReachLabel.Size = new System.Drawing.Size(236, 53);
-            this.lbl_BinReachLabel.TabIndex = 67;
-            this.lbl_BinReachLabel.Text = "空箱抵達";
-            this.lbl_BinReachLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // BufferPlcInfoView
             // 

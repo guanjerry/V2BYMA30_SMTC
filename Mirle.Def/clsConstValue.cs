@@ -30,6 +30,7 @@ namespace Mirle.Def
         }
         public class Ready
         {
+            public const int NoReady = 0;
             public const int Leave = 1;
             public const int Receive = 2;
         }
