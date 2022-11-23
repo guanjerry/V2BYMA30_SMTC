@@ -472,7 +472,7 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.SMT
             try
             {
                 if (Signal.EmptyBinCall != null && Signal.Controller.EmptyBinCall != null)
-                    if (Signal.EmptyBinCall.GetValue() == 0 && Signal.Controller.EmptyBinCall.GetValue()  != 0)
+                    if (Signal.EmptyBinCall.GetValue() == 0 && Signal.Controller.EmptyBinCall.GetValue() != 0)
                     {
                         Signal.Controller.EmptyBinCall.SetValue(0);
                     }
