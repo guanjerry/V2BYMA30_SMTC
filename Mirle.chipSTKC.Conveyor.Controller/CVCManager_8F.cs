@@ -178,9 +178,9 @@ namespace Mirle.SMTCV.Conveyor.Controller
             var ctrl = _Signal.GetConveyorSignal().Controller;
             var now = DateTime.Now;
             int[] bcdDatetime = new int[3];
-            bcdDatetime[0] = (now.Year % 100 * 100 + now.Month).ConvertBase10ToBCD();
-            bcdDatetime[1] = (now.Day * 100 + now.Hour).ConvertBase10ToBCD();
-            bcdDatetime[2] = (now.Minute % 100 * 100 + now.Second).ConvertBase10ToBCD();
+            bcdDatetime[0] = (now.Year % 100 * 256 + now.Month);
+            bcdDatetime[1] = (now.Day * 256 + now.Hour);
+            bcdDatetime[2] = (now.Minute * 256 + now.Second);
 
             ctrl.SystemTimeCalibration.SetValue(bcdDatetime);
         }
