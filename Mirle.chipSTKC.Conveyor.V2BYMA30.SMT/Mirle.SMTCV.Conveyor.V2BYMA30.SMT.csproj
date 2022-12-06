@@ -42,8 +42,8 @@
     <Reference Include="Mirle, Version=2.1.0.2207, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Mirle.2.1.0\lib\net472\Mirle.dll</HintPath>
     </Reference>
-    <Reference Include="Mirle.MPLC.MCProtocol, Version=2.1.0.2207, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mirle.MPLC.MCProtocol.2.1.0\lib\net472\Mirle.MPLC.MCProtocol.dll</HintPath>
+    <Reference Include="Mirle.MPLC.MCProtocol, Version=2.1.2.2211, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mirle.MPLC.MCProtocol.2.1.2\lib\net472\Mirle.MPLC.MCProtocol.dll</HintPath>
     </Reference>
     <Reference Include="Mirle.MPLC.MXComponent, Version=1.0.2.2007, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Mirle.MPLC.MXComponent.1.0.2\lib\net472\Mirle.MPLC.MXComponent.dll</HintPath>
