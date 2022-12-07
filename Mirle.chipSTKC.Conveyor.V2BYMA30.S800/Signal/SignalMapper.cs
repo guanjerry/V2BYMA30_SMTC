@@ -97,7 +97,7 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.S800.Signal
                 {
                     bufferSignal.AckSignal.StartRollSignal = new Word(_mplc, $"D{startAddress + offset + 9}");
                 }
-                if (i == 5)
+                if (i == 3 || i == 5)
                 {
                     bufferSignal.IsEmpty = new Word(_mplc, $"D{startAddress + offset + 9}");
                 }

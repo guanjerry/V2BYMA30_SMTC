@@ -73,6 +73,7 @@ namespace Mirle.SMTCV.Conveyor.Controller
             _plcHost.MPLCTimeout = 5000;
             _plcHost.EnableWriteRawData = true;
             _plcHost.EnableAutoReconnect = true;
+            _plcHost.EnableWriteShareMemory = true;
             _plcHost.LogBaseDirectory = AppDomain.CurrentDomain.BaseDirectory + "LOG";
             _plcHost.Start();
         }

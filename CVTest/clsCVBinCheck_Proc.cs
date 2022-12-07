@@ -50,6 +50,8 @@ namespace CVTest
                                 carrierType = "BIN"
                             };
                             #region 測試
+                            if (stockInCV.IsEmpty.ToString() == "1")
+                                bcrinfo.jobId = "EMPTY";
                             //if (clsSMTCVStart.GetControllerHost().GetS800Manager().GetBuffer(TrayBuffer).SetReadReq().Result)
                             //{
                             //    string Remark = $"S0-{TrayBuffer.ToString().PadLeft(2, '0')}:<TrayID> {TrayID}, leave start";
