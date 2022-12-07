@@ -17,7 +17,7 @@ namespace Mirle.SMTCV.Conveyor.Controller
         private readonly SignalMapper _Signal;
         private readonly Dictionary<int, V2BYMA30.S800.Buffer> _Buffers = new Dictionary<int, V2BYMA30.S800.Buffer>();
         private PLCHost _plcHost;
-        //private IMPLCProvider _mplc;
+        private IMPLCProvider _mplc;
 
         private ThreadWorker _Heartbeat;
         private ThreadWorker _CalibrateSystemTime;
@@ -25,6 +25,7 @@ namespace Mirle.SMTCV.Conveyor.Controller
         private ThreadWorker _Buffer;
 
         public bool IsConnected => _plcHost.IsConnected;
+        public bool PLCViewisConnected => _mplc.IsConnected;
         public CVCManager_S800(ConveyorConfig config)
         {
             _ConveyorConfig = config;
@@ -57,6 +58,14 @@ namespace Mirle.SMTCV.Conveyor.Controller
             //}
 
             _Signal = new SignalMapper(_plcHost);
+            InitialBuffer();
+        }
+
+        public CVCManager_S800(IMPLCProvider mplc)
+        {
+            _mplc = mplc;
+            _Signal = new SignalMapper(_mplc);
+
             InitialBuffer();
         }
 

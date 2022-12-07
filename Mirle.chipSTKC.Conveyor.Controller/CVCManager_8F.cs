@@ -17,7 +17,7 @@ namespace Mirle.SMTCV.Conveyor.Controller
         private readonly SignalMapper _Signal;
         private readonly Dictionary<int, V2BYMA30.SMT.Buffer> _Buffers = new Dictionary<int, V2BYMA30.SMT.Buffer>();
         private PLCHost _plcHost;
-        //private IMPLCProvider _mplc;
+        private IMPLCProvider _mplc;
 
         private ThreadWorker _Heartbeat;
         private ThreadWorker _CalibrateSystemTime;
@@ -25,6 +25,8 @@ namespace Mirle.SMTCV.Conveyor.Controller
         private ThreadWorker _Buffer;
 
         public bool IsConnected => _plcHost.IsConnected;
+        public bool PLCViewisConnected => _mplc.IsConnected;
+
         public CVCManager_8F(ConveyorConfig config)
         {
             _ConveyorConfig = config;
@@ -60,6 +62,13 @@ namespace Mirle.SMTCV.Conveyor.Controller
             InitialBuffer();
         }
 
+        public CVCManager_8F(IMPLCProvider mplc)
+        {
+            _mplc = mplc;
+            _Signal = new SignalMapper(_mplc);
+
+            InitialBuffer();
+        }
         private void InitialMCPLCR()
         {
             var plcHostInfo = new MPLC.PLCHostInfo(_ConveyorConfig.ConveyorId, _ConveyorConfig.IPAddress, _ConveyorConfig.Port, SignalMapper.SignalBlocks.Select(b => new BlockInfo(b.DeviceRange, $@"Global\{_ConveyorConfig.ConveyorId}-{b.SharedMemoryName}", b.PLCRawdataIndex)));
