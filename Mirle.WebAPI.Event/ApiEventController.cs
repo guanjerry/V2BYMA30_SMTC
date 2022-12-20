@@ -276,7 +276,8 @@ namespace Mirle.WebAPI.Event
                         CmdSno = clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).CommandID;
                         isLoad = clsSMTCVStart.GetControllerHost().GetCVCManager(plcNo).GetBuffer(bufferNo).Presence;
                         #region 3版以上則不給Ready
-                        if (bufferNo % 6 == 1)
+                        //去除Rack的範圍
+                        if (bufferNo % 6 == 1 && bufferNo < 49)
                         {
                             int MagNo = 0;
                             #region 判斷輸送板機上Mag的數量

@@ -16,6 +16,7 @@ namespace CVTest
     public class clsMagLeaveSMT_Proc
     {
         private System.Timers.Timer timRead = new System.Timers.Timer();
+        public bool BypassSts = false;
         public clsMagLeaveSMT_Proc()
         {
             timRead.Elapsed += new System.Timers.ElapsedEventHandler(timRead_Elapsed);

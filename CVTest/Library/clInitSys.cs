@@ -34,7 +34,7 @@ namespace CVTest
         public static WebApiConfig WCSApi_Config = new WebApiConfig();
         public static WebApiConfig SMTC_Config = new WebApiConfig();
         public static AutoArchive archive = new AutoArchive();
-
+        public static bool ByPassSts;
 
         //API
         [DllImport("kernel32.dll")]
@@ -166,6 +166,7 @@ namespace CVTest
                 {
                     subGetCVConfig(i, sFileName, ref CV_Config[i-1]);
                 }
+                subGetBypassStatusConfig(sFileName);
                 subGetAPIConfig(sFileName);
                 subGetS800Config(sFileName, ref S800_Config);
 
@@ -298,6 +299,22 @@ namespace CVTest
                 strKeyName = "InMemorySimulator";
                 plcConfig.InMemorySimulator = int.Parse(funReadParam(strIniPathName, tempstrAppName, strKeyName)) == 1 ? true : false;
 
+
+            }
+            catch (Exception ex)
+            {
+                var cmet = System.Reflection.MethodBase.GetCurrentMethod();
+                subWriteExLog(cmet.DeclaringType.FullName + "." + cmet.Name, ex.Message);
+            }
+        }
+        public static void subGetBypassStatusConfig(string strIniPathName, string strAppName = "BYPASS CHECK")
+        {
+            string strKeyName;
+            try
+            {
+                strKeyName = "ByPassStatus";
+                string tempSts = funReadParam(strIniPathName, strAppName, strKeyName);
+                ByPassSts = tempSts == clsConstValue.CheckBool.FALSE ? false : true;
 
             }
             catch (Exception ex)
