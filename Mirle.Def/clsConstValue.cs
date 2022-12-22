@@ -17,7 +17,11 @@ namespace Mirle.Def
         public const string BcrError = "ERROR1";
 
         public const string CarrierNoCmd = "FAILID";
-
+        public class CheckBool
+        {
+            public const string TRUE = "1";
+            public const string FALSE = "0";
+        }
         public class ApiReturnCode
         {
             public const string Success = "200";

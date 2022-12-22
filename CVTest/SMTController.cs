@@ -27,6 +27,7 @@ namespace CVTest
         public clsCheckError_Proc _checkError_Proc = new clsCheckError_Proc();
         public clsEmptyRackLeave_Proc _emptyRackLeave_Proc = new clsEmptyRackLeave_Proc();
         public clsMagCallNewSMT_Proc _magCallNewSMT_Proc = new clsMagCallNewSMT_Proc();
+        private bool ByPassSts = false;
         private WebApiHost _webApiHost;
         private UnityContainer _unityContainer;
         private static System.Timers.Timer timRead = new System.Timers.Timer();
@@ -45,6 +46,7 @@ namespace CVTest
             //_Client.FunInitialIPC_Proc();
             
             clsSMTCVStart.FunInitalCVController(clsInitSys.CV_Config, clsInitSys.S800_Config);
+            ByPassSts = clsInitSys.ByPassSts;
             _emptyBinLeaveCV_Proc.subStart();
             _binLeaveCV_Procs.subStart();
             _cvBinCheck_Proc.subStart();
@@ -235,6 +237,12 @@ namespace CVTest
                 btn.BackColor = Color.LightBlue;
             }
             button1.BackColor = Color.SteelBlue;
+        }
+
+        private void checkBox_Bypass_CheckedChanged(object sender, EventArgs e)
+        {
+            ByPassSts = checkBox_Bypass.Checked;
+            _magCallNewSMT_Proc.BypassSts = ByPassSts;
         }
     }
 }

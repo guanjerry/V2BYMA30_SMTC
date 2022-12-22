@@ -17,6 +17,7 @@ namespace CVTest
     {
         private System.Timers.Timer timRead = new System.Timers.Timer();
         private string[] UnavailableBuffer = new string[] { "S1-19", "S2-19", "S4-31" };
+        public bool BypassSts = false;
         public clsMagCallNewSMT_Proc()
         {
             timRead.Elapsed += new System.Timers.ElapsedEventHandler(timRead_Elapsed);
@@ -55,7 +56,7 @@ namespace CVTest
                             var BufferNoCV = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo);
                             var BufferDDCV = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferDD);
                             var PortBufferCV = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer);
-                            if (PortBufferCV.Ready == clsConstValue.Ready.Receive)
+                            if (PortBufferCV.Ready == clsConstValue.Ready.Receive && !BypassSts)
                             {
                                 if (!BufferNoCV.GetNGCheck() ||
                                 (BufferNoCV.GetNGCheck() && ((DateTime.Now - BufferNoCV.GetRecordTime()).Minutes >= 5)))

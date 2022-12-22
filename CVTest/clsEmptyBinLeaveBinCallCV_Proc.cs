@@ -75,6 +75,7 @@ namespace CVTest
                                     if (clsWcsApi.GetApiProcess().GetTrayEmptyInform().FunReport(info, ref info_wcs))
                                     {
                                         clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{buffer2No.ToString().PadLeft(2, '0')}: 已呼叫空箱離開...");
+                                        //clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(buffer2No).WriteCommandAsync("10001", 2, 10);
                                         clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(buffer2No).SetAskLeave(true);
                                     }
                                 }
