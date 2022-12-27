@@ -23,7 +23,7 @@ namespace Mirle.SMTCV.Conveyor.Controller
         private ThreadWorker _CalibrateSystemTime;
         private ThreadWorker _Refresh;
         private ThreadWorker _Buffer;
-
+        public int[] OpcData => _Signal.GetConveyorSignal().OpcData.GetValue();
         public bool IsConnected => _plcHost.IsConnected;
         public CVCManager_S800(ConveyorConfig config)
         {

@@ -23,7 +23,7 @@ namespace Mirle.SMTCV.Conveyor.Controller
         private ThreadWorker _CalibrateSystemTime;
         private ThreadWorker _Refresh;
         private ThreadWorker _Buffer;
-
+        public int[] OpcData => _Signal.GetConveyorSignal().OpcData.GetValue();
         public bool IsConnected => _plcHost.IsConnected;
         public CVCManager_8F(ConveyorConfig config)
         {
@@ -73,7 +73,7 @@ namespace Mirle.SMTCV.Conveyor.Controller
             _plcHost.MPLCTimeout = 5000;
             _plcHost.EnableWriteRawData = true;
             _plcHost.EnableAutoReconnect = true;
-            _plcHost.EnableWriteShareMemory = true;
+            //_plcHost.EnableWriteShareMemory = true;
             _plcHost.LogBaseDirectory = AppDomain.CurrentDomain.BaseDirectory + "LOG";
             _plcHost.Start();
         }

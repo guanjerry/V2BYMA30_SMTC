@@ -39,16 +39,17 @@ namespace CVTest
                         int CtrlErrorIndex = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetCtrlErrorIndex();
                         if (ErrorIndex != CtrlErrorIndex)
                         {
-                            string ErrorCode = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetErrorCode().ToString().PadLeft(5, '0');
+                            string ErrorCode = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetErrorCode().ToString();
                             int ErrorStatus = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetErrorStatus();
                             string HappenTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
                             AlarmReport info = new AlarmReport
                             {
-                                deviceId = "SMTCV",
+                                deviceId = $"S{CVNo}",
                                 alarmCode = ErrorCode,
                                 status = ErrorStatus.ToString(),
                                 happenTime = HappenTime
                             };
+                            clsInitSys.FunWriAlarmLog_CV(ErrorCode + $": " + (ErrorStatus == 1 ? "Ongoing" : "Clear") );
                             if (clsWcsApi.GetApiProcess().GetAlarmHappenUpdate().FunReport(info))
                             {
                                 clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).SetErrorIndex(ErrorIndex);
@@ -57,6 +58,29 @@ namespace CVTest
                     }
                 }
                 SpinWait.SpinUntil(() => false, 10);
+                if (clsSMTCVStart.GetControllerHost().GetS800Manager().IsConnected)
+                {
+                    int ErrorIndex = clsSMTCVStart.GetControllerHost().GetS800Manager().GetErrorIndex();
+                    int CtrlErrorIndex = clsSMTCVStart.GetControllerHost().GetS800Manager().GetCtrlErrorIndex();
+                    if (ErrorIndex != CtrlErrorIndex)
+                    {
+                        string ErrorCode = clsSMTCVStart.GetControllerHost().GetS800Manager().GetErrorCode().ToString();
+                        int ErrorStatus = clsSMTCVStart.GetControllerHost().GetS800Manager().GetErrorStatus();
+                        string HappenTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+                        AlarmReport info = new AlarmReport
+                        {
+                            deviceId = "SMTCV",
+                            alarmCode = ErrorCode,
+                            status = ErrorStatus.ToString(),
+                            happenTime = HappenTime
+                        };
+                        clsInitSys.FunWriAlarmLog_CV(ErrorCode + $": " + (ErrorStatus == 1 ? "Ongoing" : "Clear"));
+                        if (clsWcsApi.GetApiProcess().GetAlarmHappenUpdate().FunReport(info))
+                        {
+                            clsSMTCVStart.GetControllerHost().GetS800Manager().SetErrorIndex(ErrorIndex);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
