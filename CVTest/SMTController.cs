@@ -245,6 +245,7 @@ namespace CVTest
         {
             ByPassSts = checkBox_Bypass.Checked;
             _magCallNewSMT_Proc.BypassSts = ByPassSts;
+            _magLeaveSMT_Proc.BypassSts = ByPassSts;
         }
     }
 }
