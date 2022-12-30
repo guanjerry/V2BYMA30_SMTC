@@ -482,7 +482,7 @@ namespace CVTest
         {
             try
             {
-                gobjLog.WriteLogFile("WCS_Alarm.log", sValue);
+                gobjLog.WriteLogFile("SMTC_Alarm.log", sValue);
             }
             catch (Exception ex)
             {

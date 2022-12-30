@@ -52,23 +52,30 @@ namespace CVTest
                                     {
                                         if (leaveCVBuffer.ReadBcrAck == 1 && leaveCVBuffer.ReadBcrReq_PC == 0)
                                         {
-                                            string TrayID = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).GetTrayID.Trim();
-                                            if (!string.IsNullOrWhiteSpace(TrayID))
+                                            if (!BypassSts)
                                             {
-                                                clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}: <Mag ID>{TrayID} => 準備離開");
-                                                SmtEmptyMagUnloadInfo info = new SmtEmptyMagUnloadInfo
+                                                string TrayID = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).GetTrayID.Trim();
+                                                if (!string.IsNullOrWhiteSpace(TrayID))
                                                 {
-                                                    carrierId = TrayID,
-                                                    location = $"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}"
-                                                };
-                                                if (clsWcsApi.GetApiProcess().GetSmtEmptyMagUnload().FunReport(info))
-                                                {
-                                                    clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetReadReq();
+                                                    clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}: <Mag ID>{TrayID} => 準備離開");
+                                                    SmtEmptyMagUnloadInfo info = new SmtEmptyMagUnloadInfo
+                                                    {
+                                                        carrierId = TrayID,
+                                                        location = $"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}"
+                                                    };
+                                                    if (clsWcsApi.GetApiProcess().GetSmtEmptyMagUnload().FunReport(info))
+                                                    {
+                                                        clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetReadReq();
+                                                    }
+                                                    else
+                                                    {
+                                                        clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetNGCheckWithTime(true, DateTime.Now);
+                                                    }
                                                 }
-                                                else
-                                                {
-                                                    clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetNGCheckWithTime(true, DateTime.Now);
-                                                }
+                                            }
+                                            else
+                                            {
+                                                clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetReadReq();
                                             }
                                         }
                                     }
@@ -90,26 +97,33 @@ namespace CVTest
                                     {
                                         if (leaveCVBuffer.ReadBcrAck == 1 && leaveCVBuffer.ReadBcrReq_PC == 0)
                                         {
-                                            string TrayID = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).GetTrayID.Trim();
-                                            if (!string.IsNullOrWhiteSpace(TrayID))
+                                            if (!BypassSts)
                                             {
-                                                clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}: <Mag ID>{TrayID} => 準備離開");
-                                                BCRCheckRequestInfo info = new BCRCheckRequestInfo
+                                                string TrayID = clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BcrBuffer).GetTrayID.Trim();
+                                                if (!string.IsNullOrWhiteSpace(TrayID))
                                                 {
-                                                    barcode = TrayID,
-                                                    carrierType = "MAG",
-                                                    location = $"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}"
-                                                };
-                                                if (clsWcsApi.GetApiProcess().GetBcrCheckRequest().FunReport(info))
-                                                {
-                                                    clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}: 已呼叫實Mag離開");
-                                                    clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetReadReq();
+                                                    clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}: <Mag ID>{TrayID} => 準備離開");
+                                                    BCRCheckRequestInfo info = new BCRCheckRequestInfo
+                                                    {
+                                                        barcode = TrayID,
+                                                        carrierType = "MAG",
+                                                        location = $"S{CVNo}-{BufferNo.ToString().PadLeft(2, '0')}"
+                                                    };
+                                                    if (clsWcsApi.GetApiProcess().GetBcrCheckRequest().FunReport(info))
+                                                    {
+                                                        clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}: 已呼叫實Mag離開");
+                                                        clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetReadReq();
+                                                    }
+                                                    else
+                                                    {
+                                                        clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}: 實Mag離開呼叫失敗");
+                                                        clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetNGCheckWithTime(true, DateTime.Now);
+                                                    }
                                                 }
-                                                else
-                                                {
-                                                    clsInitSys.FunWriTraceLog_Remark($"S{CVNo}-{BcrBuffer.ToString().PadLeft(2, '0')}: 實Mag離開呼叫失敗");
-                                                    clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetNGCheckWithTime(true, DateTime.Now);
-                                                }
+                                            }
+                                            else
+                                            {
+                                                clsSMTCVStart.GetControllerHost().GetCVCManager(CVNo).GetBuffer(BufferNo).SetReadReq();
                                             }
                                         }
                                     }

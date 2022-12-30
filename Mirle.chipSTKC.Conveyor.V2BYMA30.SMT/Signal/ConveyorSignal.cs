@@ -11,5 +11,6 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.SMT.Signal
         public Word ErrorCode { get; internal set; }
         public Word ErrorStatus { get; internal set; }
         public ConveyorControllerSignal Controller { get; internal set; }
+        public WordBlock OpcData { get; internal set; }
     }
 }

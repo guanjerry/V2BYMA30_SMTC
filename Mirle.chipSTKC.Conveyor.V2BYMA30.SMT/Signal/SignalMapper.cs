@@ -50,6 +50,7 @@ namespace Mirle.SMTCV.Conveyor.V2BYMA30.SMT.Signal
             _Signal.ErrorIndex = new Word(_mplc, $"D{addr + 8}");
             _Signal.ErrorCode = new Word(_mplc, $"D{addr + 9}");
             _Signal.ErrorStatus = new Word(_mplc, $"D{addr + 10}");
+            _Signal.OpcData = new WordBlock(_mplc, $"D{addr + 1}", 4030);
             //_Signal.AlarmBit = new BufferAlarmBitSignal();
 
             //for (int Err = 0; Err < 16; Err++)

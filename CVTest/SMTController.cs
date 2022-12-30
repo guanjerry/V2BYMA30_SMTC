@@ -31,6 +31,7 @@ namespace CVTest
         private WebApiHost _webApiHost;
         private UnityContainer _unityContainer;
         private static System.Timers.Timer timRead = new System.Timers.Timer();
+        private clsOPCStart OPCRun = new clsOPCStart();
         
         #region 建構函數
         public SMTController()
@@ -60,6 +61,7 @@ namespace CVTest
             _webApiHost = new WebApiHost(new Startup(_unityContainer), clsInitSys.SMTC_Config.IP);
             ChangeSubForm(clsSMTCVStart.GetMainView());
             clsWcsApi.FunInit(clsInitSys.WCSApi_Config);
+            OPCRun.Initialize();
         }
 
         public void FunEventInit()
@@ -243,6 +245,7 @@ namespace CVTest
         {
             ByPassSts = checkBox_Bypass.Checked;
             _magCallNewSMT_Proc.BypassSts = ByPassSts;
+            _magLeaveSMT_Proc.BypassSts = ByPassSts;
         }
     }
 }

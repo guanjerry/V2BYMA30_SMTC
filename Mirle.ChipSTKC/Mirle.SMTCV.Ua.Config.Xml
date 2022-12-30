@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ua="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:s1="http://opcfoundation.org/UA/Sample/Configuration.xsd" xmlns:s2="http://opcfoundation.org/UA/SDK/COM/Configuration.xsd" xmlns="http://opcfoundation.org/UA/SDK/Configuration.xsd">
+
+  <ApplicationName>uaPLUSnet4 OPCWrite Server</ApplicationName>
+  <ApplicationUri>urn:DAS-CENTER:UA:Advosol:DANSrv:OPCWrite</ApplicationUri>
+  <ProductUri>uri:advosol.com:Advosol:DANSrv:OPCWrite</ProductUri>
+  <ApplicationType>Server_0</ApplicationType>
+
+  <SecurityConfiguration>
+    <ApplicationCertificate>
+      <StoreType>Windows</StoreType>
+      <StorePath>LocalMachine\UA Applications</StorePath>
+      <SubjectName>CN=uaPLUS OPCWrite, DC=DAS-CENTER</SubjectName>
+    </ApplicationCertificate>
+
+    <TrustedIssuerCertificates>
+      <StoreType>Windows</StoreType>
+      <StorePath>LocalMachine\Trusted UA Applications</StorePath>
+      <TrustedCertificates />
+    </TrustedIssuerCertificates>
+
+    <TrustedPeerCertificates>
+      <StoreType>Windows</StoreType>
+      <StorePath>LocalMachine\Trusted UA Applications</StorePath>
+    </TrustedPeerCertificates>
+
+    <RejectedCertificateStore>
+      <StoreType>Windows</StoreType>
+      <StorePath>LocalMachine\UA Rejected Certificates</StorePath>
+    </RejectedCertificateStore>
+
+    <AutoAcceptUntrustedCertificates>true</AutoAcceptUntrustedCertificates>
+
+  </SecurityConfiguration>
+
+  <TransportConfigurations></TransportConfigurations>
+  <TransportQuotas>
+    <OperationTimeout>600000</OperationTimeout>
+    <MaxStringLength>1048576</MaxStringLength>
+    <MaxByteStringLength>1048576</MaxByteStringLength>
+    <MaxArrayLength>65535</MaxArrayLength>
+    <MaxMessageSize>4194304</MaxMessageSize>
+    <MaxBufferSize>65535</MaxBufferSize>
+    <ChannelLifetime>300000</ChannelLifetime>
+    <SecurityTokenLifetime>3600000</SecurityTokenLifetime>
+  </TransportQuotas>
+
+  <ServerConfiguration>
+    <BaseAddresses>
+      <ua:String>http://DAS-CENTER:80/OPCWrite</ua:String>
+      <ua:String>opc.tcp://DAS-CENTER:30076/OPCWrite</ua:String>
+    </BaseAddresses>
+
+    <SecurityPolicies>
+      <ServerSecurityPolicy>
+        <SecurityMode>SignAndEncrypt_3</SecurityMode>
+        <SecurityPolicyUri>http://opcfoundation.org/UA/SecurityPolicy#Basic128Rsa15</SecurityPolicyUri>
+        <SecurityLevel>3</SecurityLevel>
+      </ServerSecurityPolicy>
+      <ServerSecurityPolicy>
+        <SecurityMode>Sign_2</SecurityMode>
+        <SecurityPolicyUri>http://opcfoundation.org/UA/SecurityPolicy#Basic128Rsa15</SecurityPolicyUri>
+        <SecurityLevel>2</SecurityLevel>
+      </ServerSecurityPolicy>
+      <ServerSecurityPolicy>
+        <SecurityMode>None_1</SecurityMode>
+        <SecurityPolicyUri>http://opcfoundation.org/UA/SecurityPolicy#None</SecurityPolicyUri>
+        <SecurityLevel>0</SecurityLevel>
+      </ServerSecurityPolicy>
+      <ServerSecurityPolicy>
+        <SecurityMode>Sign_2</SecurityMode>
+        <SecurityPolicyUri>http://opcfoundation.org/UA/SecurityPolicy#Basic256</SecurityPolicyUri>
+        <SecurityLevel>2</SecurityLevel>
+      </ServerSecurityPolicy>
+      <ServerSecurityPolicy>
+        <SecurityMode>SignAndEncrypt_3</SecurityMode>
+        <SecurityPolicyUri>http://opcfoundation.org/UA/SecurityPolicy#Basic256</SecurityPolicyUri>
+        <SecurityLevel>4</SecurityLevel>
+      </ServerSecurityPolicy>
+    </SecurityPolicies>
+
+    <MinRequestThreadCount>10</MinRequestThreadCount>
+    <MaxRequestThreadCount>100</MaxRequestThreadCount>
+    <MaxQueuedRequestCount>200</MaxQueuedRequestCount>
+
+    <UserTokenPolicies>
+      <ua:UserTokenPolicy>
+        <ua:TokenType>Anonymous_0</ua:TokenType>
+        <ua:PolicyId xsi:nil="true" />
+        <ua:IssuedTokenType xsi:nil="true" />
+        <ua:IssuerEndpointUrl xsi:nil="true" />
+        <ua:SecurityPolicyUri xsi:nil="true" />
+      </ua:UserTokenPolicy>
+      <ua:UserTokenPolicy>
+        <ua:TokenType>UserName_1</ua:TokenType>
+        <ua:PolicyId xsi:nil="true" />
+        <ua:IssuedTokenType xsi:nil="true" />
+        <ua:IssuerEndpointUrl xsi:nil="true" />
+        <ua:SecurityPolicyUri xsi:nil="true" />
+      </ua:UserTokenPolicy>
+    </UserTokenPolicies>
+
+    <DiagnosticsEnabled>false</DiagnosticsEnabled>
+    <MaxSessionCount>100</MaxSessionCount>
+    <MinSessionTimeout>10000</MinSessionTimeout>
+    <MaxSessionTimeout>3600000</MaxSessionTimeout>
+    <MaxBrowseContinuationPoints>10</MaxBrowseContinuationPoints>
+    <MaxQueryContinuationPoints>10</MaxQueryContinuationPoints>
+    <MaxHistoryContinuationPoints>100</MaxHistoryContinuationPoints>
+    <MaxRequestAge>600000</MaxRequestAge>
+    <MinPublishingInterval>100</MinPublishingInterval>
+    <MaxPublishingInterval>3600000</MaxPublishingInterval>
+    <PublishingResolution>50</PublishingResolution>
+    <MaxSubscriptionLifetime>3600000</MaxSubscriptionLifetime>
+    <MaxMessageQueueSize>10</MaxMessageQueueSize>
+    <MaxNotificationQueueSize>100</MaxNotificationQueueSize>
+    <MaxNotificationsPerPublish>1000</MaxNotificationsPerPublish>
+    <MinMetadataSamplingInterval>1000</MinMetadataSamplingInterval>
+
+    <MaxRegistrationInterval>300000</MaxRegistrationInterval>
+    <NodeManagerSaveFile>Advosol.uaPLUS.nodes.xml</NodeManagerSaveFile>
+  </ServerConfiguration>
+
+  <ClientConfiguration>
+    <DefaultSessionTimeout>60000</DefaultSessionTimeout>
+    <WellKnownDiscoveryUrls xmlns:d3p1="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      <d3p1:String>opc.tcp://{0}:4840</d3p1:String>
+      <d3p1:String>http://{0}/UADiscovery/Default.svc</d3p1:String>
+      <d3p1:String>http://{0}:52601/UADiscovery/Default.svc</d3p1:String>
+    </WellKnownDiscoveryUrls>
+    <DiscoveryServers xmlns:d3p1="http://opcfoundation.org/UA/2008/02/Types.xsd" />
+    <EndpointCacheFilePath>Opc.Ua.Endpoints.xml</EndpointCacheFilePath>
+    <MinSubscriptionLifetime>60000</MinSubscriptionLifetime>
+  </ClientConfiguration>
+
+  <TraceConfiguration>
+    <OutputFilePath>uaPLUS.log.txt</OutputFilePath>
+    <DeleteOnLoad>true</DeleteOnLoad>
+    <TraceMasks>513</TraceMasks>
+    <!-- add the following values to select the logged events  -->
+    <!--   1:   Show Errors -->
+    <!--   2:   Show Info -->
+    <!--   4:   Show Stack Trace -->
+    <!--   8:   Show Service Calls -->
+    <!--  16:   Show Service Detail -->
+    <!--  32:   Show Operation Info -->
+    <!--  64:   Show Operation Detail -->
+    <!-- 128:   Show Start/Stop -->
+    <!-- 256:   Show External System -->
+    <!-- 512:   Show Security Info -->
+  </TraceConfiguration>
+
+  <DisableHiResClock>true</DisableHiResClock>
+</ApplicationConfiguration>

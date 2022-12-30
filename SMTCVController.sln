@@ -27,7 +27,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirle.SMTCV.Conveyor.V2BYMA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirle.SMTC.V2BYMA30.PROG", "Mirle.SMTC.V2BYMA30.PROG\Mirle.SMTC.V2BYMA30.PROG.csproj", "{BC8290AC-8F19-45EE-82FD-A0A26664C6C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirle.SMTC.Conveyor.MPLCViewer", "Mirle.SMT.Conveyor.MPLCViewer\Mirle.SMTC.Conveyor.MPLCViewer.csproj", "{29885CAD-F36B-4172-8B25-32CE4B3C45E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mirle.OpcClient", "Mirle.OpcClient\Mirle.OpcClient.csproj", "{5C85CA22-199A-4B13-9400-23EB51AAC9BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirle.OpcClient.V2BYMA30", "Mirle.OpcClient.V2BYMA30\Mirle.OpcClient.V2BYMA30.csproj", "{4F17F554-4BBF-40B0-9913-EA0BBE4DFF34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,10 +85,6 @@ Global
 		{BC8290AC-8F19-45EE-82FD-A0A26664C6C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC8290AC-8F19-45EE-82FD-A0A26664C6C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC8290AC-8F19-45EE-82FD-A0A26664C6C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{29885CAD-F36B-4172-8B25-32CE4B3C45E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{29885CAD-F36B-4172-8B25-32CE4B3C45E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{29885CAD-F36B-4172-8B25-32CE4B3C45E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{29885CAD-F36B-4172-8B25-32CE4B3C45E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
